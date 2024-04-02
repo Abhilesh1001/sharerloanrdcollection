@@ -8,7 +8,6 @@ import { getUser, getAuthToken, clearAuthToken, clearUser, getUserId } from '@/r
 import { StateProps } from '@/type/type'
 import { getMainheader } from '@/redux/slice'
 import { soundClick, soundSsuccess, soundError } from "@/sound/sound"
-import { cookies } from 'next/headers'
 
 export const useLogin = (data?: loginred) => {
     const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
@@ -44,20 +43,7 @@ export const useLogin = (data?: loginred) => {
     }
     // updatetoken 
 
-    
-    useEffect(() => {
-        let time = 1000 * 4 * 60
-        if (authToken?.access !== undefined) {
-            const userToken: { name: string, user_id: number } = jwtDecode(authToken?.access)
-            dispatch(getUser(userToken.name))
-            dispatch(getUserId(userToken.user_id))
-            
-            let interval = setInterval(() => {
-                updataToken()
-            }, time)
-            return () => clearInterval(interval)
-        }
-    }, [authToken?.access])
+
 
     const updataToken = async () => {
         let data: { data: { access: string }, status: number } = await axios?.post(`${baseurl}cus/api/token/refresh/`, { 'refresh': authToken?.refresh })
@@ -74,6 +60,23 @@ export const useLogin = (data?: loginred) => {
             handleLogout()
         }
     }
+    
+    
+    useEffect(() => {
+        let time = 1000 * 4 * 60
+        if (authToken?.access !== undefined) {
+            const userToken: { name: string, user_id: number } = jwtDecode(authToken?.access)
+            dispatch(getUser(userToken.name))
+            dispatch(getUserId(userToken.user_id))
+            
+            let interval = setInterval(() => {
+                updataToken()
+            }, time)
+            return () => clearInterval(interval)
+        }
+    }, [authToken?.access])
+
+    
     function handleLogout() {
         soundClick?.play()
         document.cookie = 'tokenRefresh=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';

@@ -1,5 +1,4 @@
 
-import React,{useMemo} from 'react'
 import DumyInput from '../dummyinput/DumyInput';
 import {useSelector,useDispatch} from 'react-redux'
 import TextInput from '../dummyinput/TextInput';
@@ -39,7 +38,7 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
     }
 
 
-    const renderTableRows = useMemo(() => {
+    const renderTableRows =() => {
         const prodataitem = props?.prodataitem;
         const rows: any = [];
     
@@ -68,10 +67,10 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
         }
     
         return rows;
-    },[props?.prodataitem[0].duration])
+    }
 
 
-    const newRenswreddata = renderTableRows
+    const newRenswreddata = renderTableRows()
 
 
     newRenswreddata.map((item:any)=>{

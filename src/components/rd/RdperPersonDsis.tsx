@@ -42,7 +42,7 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
 
     
 
-    const renderTableRows = useMemo(() => {
+    const renderTableRows =()=> {
         const prodataitem = props?.prodataitem;
         const rows: any = [];
     
@@ -70,10 +70,10 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
         }
     
         return rows;
-    },[props?.prodataitem[0].duration])
+    }
 
     
-    const newRenswreddata = renderTableRows
+    const newRenswreddata = renderTableRows()
 
     console.log(newRenswreddata)
 
