@@ -6,7 +6,6 @@ import React, { useState } from 'react'
 import {loanholderName} from '@/type/shareholder/shareholde'
 import {getLoanNameData, getRdDataName} from '@/redux/shf/shfslicer'
 
-
 interface MyData {
     data:{
         msg : string,
@@ -15,10 +14,7 @@ interface MyData {
     isPending :boolean,
 }
 
-
-
 export const useLoan=()=>{
-
 
     const {baseurl,authToken,userId} = useSelector((state:StateProps)=>state.counter)
     const dispatch = useDispatch()
@@ -27,11 +23,10 @@ export const useLoan=()=>{
     const [sfcreate, setSfcreate] = useState('create')
     const [change, setChange] = useState('change')
 
-
     // create data 
     const mutation = useMutation<MyData,any,any,unknown>({
         mutationFn: async (newTodo:loanholderName) => {
-          return await axios.post(`${baseurl}shar/loanname`, newTodo,{headers:{
+          return await axios.post(`${baseurl}loan/person`, newTodo,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: () => {    
@@ -44,7 +39,7 @@ export const useLoan=()=>{
         e.preventDefault()
        
         const newDatata = {
-            "user":userId,
+            "usersf":userId,
             "name": loanholder.name,
             "email": loanholder.email,
             "pan_no": loanholder.pan_no, 
@@ -57,21 +52,19 @@ export const useLoan=()=>{
 
     // receive Data 
     const fetchTodoList = async () =>{
-        const res = await axios.get(`${baseurl}shar/loanname`,{headers:{
+        const res = await axios.get(`${baseurl}loan/person`,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})
           dispatch(getLoanNameData(res.data))
           return res.data
     }
-  
-    
+      
     const mutationUpdate = useMutation<MyData,any,any,unknown>({
         mutationFn: async (newTodo:loanholderName) => {
-          return await axios.patch(`${baseurl}shar/loanname/${vid}`,newTodo,{headers:{
+          return await axios.patch(`${baseurl}loan/person/${vid}/`,newTodo,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: (data) => {
-           
            
             setLoanholder({name:'',email:'', pan_no:'',phone_no:''})
 
@@ -83,10 +76,6 @@ export const useLoan=()=>{
     const {data:updateData}:{data?:MyData} = mutationUpdate
 
     const {data:newData,error:errors} = useQuery({ queryKey: ['loanname',data,mutationUpdate,mutation], queryFn: fetchTodoList })
-
-    
-
-
 
 
     const handleChange = ()=>{
@@ -103,7 +92,7 @@ export const useLoan=()=>{
   
     async function handleUPdate(){
         const newData = {
-            user : userId,
+            usersf : userId,
             name:loanholder.name ,
             phone_no:loanholder.phone_no, 
             email: loanholder.email,
@@ -127,7 +116,7 @@ export const useLoan=()=>{
 
     const mutationLoan = useMutation<any,any,any,unknown>({
         mutationFn: async (newTodo:loanholderName) => {
-          return await axios.get(`${baseurl}shar/loanname/${vid}`,{headers:{
+          return await axios.get(`${baseurl}loan/person/${vid}`,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: (data) => {

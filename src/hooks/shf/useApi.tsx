@@ -1,6 +1,4 @@
 
-
-import {shareholderName} from '@/type/shareholder/shareholde'
 import {useSelector} from 'react-redux'
 import {StateProps} from '@/type/type'
 import axios from 'axios'

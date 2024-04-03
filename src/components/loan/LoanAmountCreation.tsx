@@ -54,9 +54,9 @@ const LoanAmountCreation = () => {
             <div>
             </div>
 
-            {change !== 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{mutation.data !== undefined && mutation.data.data.msg} Loan Id {mutation.data !== undefined && mutation.data.data.data.id}</div></div>}</div>}
+            {change !== 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{mutation.data !== undefined && mutation.data.data.msg} Loan Id {mutation.data !== undefined && mutation.data.data.data.loan_id}</div></div>}</div>}
 
-            {change === 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutationUpdate.isPending && <Loading />} {mutationUpdate.isSuccess && <div><div>{mutationUpdate !== undefined && mutationUpdate.data.data.msg} Loan Id {mutationUpdate !== undefined && mutationUpdate?.data?.data?.data?.id}</div></div>}</div>}
+            {change === 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutationUpdate.isPending && <Loading />} {mutationUpdate.isSuccess && <div><div>{mutationUpdate !== undefined && mutationUpdate.data.data.msg} Loan Id {mutationUpdate !== undefined && mutationUpdate?.data?.data?.data?.loan_id}</div></div>}</div>}
 
 
 
@@ -87,6 +87,10 @@ const LoanAmountCreation = () => {
                     <div>
                         <label htmlFor="Phone" className="form-label text-sm ">Interest</label>
                         <input type={'number'} className='input input-bordered w-full block ml-1' value={loan.interest_rate === null ? '' : loan.interest_rate} onChange={(e) => setLoan({ ...loan, interest_rate: Number(e.target.value) })} />
+                    </div>
+                    <div>
+                        <label htmlFor="Phone" className="form-label text-sm ">Days</label>
+                        <input type={'number'} className='input input-bordered w-full block ml-4' value={loan.days === null ? '' : loan.days} onChange={(e) => setLoan({ ...loan, days: Number(e.target.value) })} />
                     </div>
 
                 </div>

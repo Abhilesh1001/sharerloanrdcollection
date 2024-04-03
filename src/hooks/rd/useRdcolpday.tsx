@@ -30,7 +30,7 @@ export const useRdcolpday=()=>{
         }
         console.log(dateData)
         try {
-            const res = await axios.post(`${baseurl}shar/rdDataNewView`, dateData,{
+            const res = await axios.post(`${baseurl}loan/rdDataView`, dateData,{
                 headers:{
                     Authorization: `Bearer ${authToken?.access}`
                 }

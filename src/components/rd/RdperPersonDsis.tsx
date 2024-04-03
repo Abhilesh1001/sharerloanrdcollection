@@ -155,7 +155,7 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
                                 <th scope="col" className='px-6 py-2'>Ending Vallue</th>
                             </tr>
                         </thead>
-                        <tbody className=' text-gray-50 text-center text-nowrap'> 
+                        <tbody className='  text-center text-nowrap'> 
                         {newItem.map((item:any,index:number)=>{
                             return <tr key={index}>
                                 <td><DumyInput indum={item.date} /></td>

@@ -38,6 +38,7 @@ export interface collData {
     user:null|number,
     person : null|number,
     amount_collected : null|number,
+    collection_date : string
     remarks: string
     name : '',
 }
@@ -52,7 +53,7 @@ export interface Entry {
   }
   
   export interface loanholderName {
-    loan_id?: null|number,
+    person_id?: null|number,
     name: string,
     phone_no: string,
     email: string,

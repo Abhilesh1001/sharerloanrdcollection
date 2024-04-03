@@ -19,7 +19,6 @@ const LoanPersonCreate = () => {
                     <AddFormButton onClick={handleCreate} label={'Create'} />
                     <ButtonChange onClick={handleChange} label={'Change'} />
                     {change === 'create' && <UpdateBotton onClick={handleUPdate} label={'Update'} />}
-
                 </div>
 
                 <div>
@@ -30,22 +29,17 @@ const LoanPersonCreate = () => {
 
                 </div>
 
-
-
-
             </div>
             <div>
             </div>
-            {change !== 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutation.isPending && <Loading />}{mutation.isSuccess && <div><div>{data !== undefined && data.data.msg}Loan Holder Id{data !== undefined && data.data.data.loan_id}</div></div>}</div>}
+            {change !== 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutation.isPending && <Loading />}{mutation.isSuccess && <div><div>{data !== undefined && data.data.msg} Customer Id {data !== undefined && data.data.data.person_id}</div></div>}</div>}
 
 
             {/* updata  */}
 
-            {change === 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutationUpdate.isPending && <Loading />} {mutationUpdate.isSuccess && <div><div>{updateData !== undefined && updateData.data.msg} RD Holder Id {updateData !== undefined && updateData.data.data.loan_id}</div></div>}</div>}
+            {change === 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutationUpdate.isPending && <Loading />} {mutationUpdate.isSuccess && <div><div>{updateData !== undefined && updateData.data.msg} Customer Id {updateData !== undefined && updateData.data.data.person_id}</div></div>}</div>}
 
-
-
-            {change === 'create' && <><label htmlFor="Vendor" className="form-label text-sm">Loan Holder Id</label>
+            {change === 'create' && <><label htmlFor="Vendor" className="form-label text-sm">Customer Id</label>
 
                 <input required value={vid} type="number" onKeyDown={(e) => handleKeyDown(e)} onChange={(e) => setVid(e.target.value)} className="input input-bordered w-full  block" /></>}
 

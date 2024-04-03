@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { StateProps } from '@/type/type'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { loanholderName } from '@/type/shareholder/shareholde'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { loanCreateData } from '@/components/dataAll/data'
@@ -17,7 +16,6 @@ interface MyData {
         }
     },
     isPending: boolean,
-
 }
 
 interface loanType {
@@ -30,11 +28,10 @@ interface loanType {
     interest_rate: number | string,
     remarks: string,
     is_active: boolean,
+    days : null |number
 }
 
 export const useLoanamount = () => {
-
-
 
     const { baseurl, authToken, userId } = useSelector((state: StateProps) => state.counter)
     const [loan, setLoan] = useState<loanType>(loanCreateData)
@@ -44,9 +41,9 @@ export const useLoanamount = () => {
     console.log(loan, '..updated')
 
     // create data 
-    const mutation = useMutation<MyData, any, any, unknown>({
+    const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: loanType) => {
-            return await axios.post(`${baseurl}shar/loanamount`, newTodo, {
+            return await axios.post(`${baseurl}loan/loanamount`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -60,13 +57,14 @@ export const useLoanamount = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const newDatata = {
-            user: userId,
-            loan_person: loan.loan_person,
+            usersf: userId,
+            person: loan.loan_person,
             loan_amount: loan.amount,
             remarks: loan.remarks,
             is_active: loan.is_active,
             closing_date: loan.closing_date,
             start_date: loan.start_date,
+            days : loan.days,
             duration: loan.duration,
             interest_rate: loan.interest_rate
         }
@@ -77,7 +75,7 @@ export const useLoanamount = () => {
 
     // receive Data 
     const fetchTodoList = async () => {
-        const res = await axios.get(`${baseurl}shar/loanamount`, {
+        const res = await axios.get(`${baseurl}loan/loanamount`, {
             headers: {
                 Authorization: `Bearer ${authToken?.access}`
             }
@@ -85,16 +83,14 @@ export const useLoanamount = () => {
         console.log(res.data)
         return res.data
     }
-    const [enabled, setEnabled] = useState(false);
-
-    const { data: newData, error: errors } = useQuery({ queryKey: ['rdname', data], queryFn: fetchTodoList, enabled: enabled })
-    console.log(newData)
+   
+    const { data: newData, error: errors } = useQuery({ queryKey: ['loanint', data], queryFn: fetchTodoList })
 
 
     // get initilal Data 
     const mutationFund = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: loanType) => {
-            return await axios.get(`${baseurl}shar/loanname/${newTodo}`, {
+            return await axios.get(`${baseurl}loan/person/${newTodo}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -106,7 +102,7 @@ export const useLoanamount = () => {
                 return {
                     ...prev,
                     name: data.data.name,
-                    loan_person: data.data.loan_id
+                    loan_person: data.data.person_id
                 }
             })
         },
@@ -212,5 +208,5 @@ export const useLoanamount = () => {
 
 
 
-    return { setEnabled, mutation, data, setVid, handleSubmit, setLoan, handleKeyDown, loan, vid, newData, handleUPdate, change, handleCreate, handleChange, sfcreate, handleKeyDownLoanId,mutationUpdate }
+    return {mutation, data, setVid, handleSubmit, setLoan, handleKeyDown, loan, vid, newData, handleUPdate, change, handleCreate, handleChange, sfcreate, handleKeyDownLoanId,mutationUpdate }
 }

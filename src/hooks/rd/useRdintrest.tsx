@@ -17,8 +17,6 @@ interface MyData {
 
 export const useRdintrest=()=>{
     
-
-    const dispatch = useDispatch()
     const {baseurl,authToken,userId} = useSelector((state:StateProps)=>state.counter)
     const [rdintrest,setrdintrest] = useState<rdintresttype>({name:'',holdetId:null,rd_intrest_id:null,isactive:true,duration:null,intrestrate:null, start_date:'',closing_date:''})
     const [vid,setVid]= useState<string>('')
@@ -27,9 +25,9 @@ export const useRdintrest=()=>{
     
 
 
-    const mutationUpdate = useMutation<MyData,any,any,unknown>({
+    const mutationUpdate = useMutation<any,any,any,unknown>({
         mutationFn: async (newTodo:rdintresttype) => {
-          return await axios.patch(`${baseurl}shar/rdintrest/${vid}`,newTodo,{headers:{
+          return await axios.patch(`${baseurl}loan/rdintrest/${vid}`,newTodo,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: () => {
@@ -46,9 +44,9 @@ export const useRdintrest=()=>{
 
 
     // create data 
-    const mutation = useMutation<MyData,any,any,unknown>({
+    const mutation = useMutation<any,any,any,unknown>({
         mutationFn: async (newTodo:rdintresttype) => {
-          return await axios.post(`${baseurl}shar/rdintrest`, newTodo,{headers:{
+          return await axios.post(`${baseurl}loan/rdintrest`, newTodo,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: () => {
@@ -68,7 +66,8 @@ export const useRdintrest=()=>{
             closing_date :rdintrest.closing_date,
             is_active : rdintrest.isactive,
             duration: rdintrest.duration,
-            interest_rate : rdintrest.intrestrate
+            interest_rate : rdintrest.intrestrate,
+            usersf : userId
             }
           
 
@@ -97,7 +96,8 @@ export const useRdintrest=()=>{
             closing_date :rdintrest.closing_date,
             is_active : rdintrest.isactive,
             duration: rdintrest.duration,
-            interest_rate : rdintrest.intrestrate
+            interest_rate : rdintrest.intrestrate,
+            usersf:userId
             }
 
         mutationUpdate.mutate(newDatata)
@@ -117,7 +117,7 @@ export const useRdintrest=()=>{
 
     const mutationFund = useMutation<any,any,any,unknown>({
         mutationFn: async (newTodo:rdintresttype) => {
-          return await axios.get(`${baseurl}shar/rdname/${vid}`,{headers:{
+          return await axios.get(`${baseurl}loan/person/${vid}/`,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: (data) => {
@@ -126,7 +126,7 @@ export const useRdintrest=()=>{
                 return {
                     ...prev,
                     name:data.data.name,
-                    holdetId: data.data.rdp_id,
+                    holdetId: data.data.person_id,
                 }
               })}              
     })
@@ -146,7 +146,7 @@ export const useRdintrest=()=>{
 
     const mutationIntrest = useMutation<any,any,any,unknown>({
         mutationFn: async (newTodo:rdintresttype) => {
-          return await axios.get(`${baseurl}shar/rdintrest/${vid}`,{headers:{
+          return await axios.get(`${baseurl}loan/rdintrest/${vid}`,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: (data) => {
@@ -156,7 +156,7 @@ export const useRdintrest=()=>{
                 return {
                     ...prev,
                     name:data.data.person_name,
-                    rd_intrest_id : data.data.rd_intrest_id,
+                    rd_intrest_id : data.data.rd_id,
                     holdetId: data.data.person_id,
                     isactive : data.data.is_active,
                     duration : data.data.duration,

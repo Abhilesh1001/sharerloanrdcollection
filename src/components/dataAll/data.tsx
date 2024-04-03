@@ -21,7 +21,7 @@ export const irnmainall = [{
 
 export const  matissueMain  =[{mi_line:1,material_no:null,material_name:'',material_unit:'',material_qty:null,material_issue :null,material_remarks:''}]
 
-export const loanCreateData = {loan_person:null,name:'',amount:null, closing_date:'',remarks:'',is_active:true,start_date:'',duration:null,interest_rate:''}
+export const loanCreateData = {loan_person:null,name:'',amount:null, closing_date:'',remarks:'',is_active:true,start_date:'',duration:null,interest_rate:'',days :null}
 
 
 export const loanCollectionData = {}

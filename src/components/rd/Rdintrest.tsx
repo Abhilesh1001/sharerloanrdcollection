@@ -13,6 +13,8 @@ const Rdintrest = () => {
 
     const { mutation, setVid, vid, handleSubmit, rdintrest, setrdintrest, handleUPdate, change, handleCreate, handleChange, sfcreate, handleKeyDown, updateData, mutationUpdate, handleKeyDownIntrest } = useRdintrest()
 
+    // console.log(rdintrest.closing_date)
+
     return (
         <div className='bg-base-100 text-base-content'>
             <div className='flex justify-between'>
@@ -30,9 +32,9 @@ const Rdintrest = () => {
             </div>
             <div>
             </div>
-            {change !== 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{mutation.data !== undefined && mutation.data.data.msg} RD Holder Id {mutation.data !== undefined && mutation.data.data.data.rd_intrest_id}</div></div>}</div>}
+            {change !== 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{mutation.data !== undefined && mutation.data.data.msg} RD Holder Id {mutation.data !== undefined && mutation.data.data.data.rd_id}</div></div>}</div>}
 
-            {change === 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutationUpdate.isPending && <Loading />} {mutationUpdate.isSuccess && <div><div>{updateData !== undefined && updateData.data.msg} RD Holder Id {mutationUpdate !== undefined && mutationUpdate.data.data.data.rd_intrest_id}</div></div>}</div>}
+            {change === 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutationUpdate.isPending && <Loading />} {mutationUpdate.isSuccess && <div><div>{updateData !== undefined && updateData.data.msg} RD Holder Id {mutationUpdate !== undefined && mutationUpdate.data.data.data.rd_id}</div></div>}</div>}
 
             {change !== 'create' && <><label htmlFor="Vendor" className="form-label text-sm">Customer Id</label>
 

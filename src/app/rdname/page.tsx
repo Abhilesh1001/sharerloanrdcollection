@@ -3,7 +3,7 @@ import React from 'react'
 import PrBurron from '@/components/button/PrBurron'
 import dynamic from 'next/dynamic';
 import Rdintrest from '@/components/rd/Rdintrest'
-
+import CustomerRdView from '@/components/rd/CustomerRdView';
 
 import { useRdname } from '@/hooks/rd/useRdname'
 
@@ -35,6 +35,10 @@ const Vendor = () => {
               </dialog>
 
                 {/* Rdintrest end  */}
+              
+                <CustomerRdView />
+
+
             </div>
             <div>
             </div>

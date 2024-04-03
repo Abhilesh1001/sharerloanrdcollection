@@ -6,7 +6,6 @@ import LoanPersonCreate from '@/components/loan/LoanPersonCreate'
 
 const Vendor = () => {
 
-
     return (
         <div className='bg-base-100 h-auto   min-h-screen'>
             <div className='container'>
