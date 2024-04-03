@@ -23,12 +23,13 @@ const Vendor = () => {
                             <AddFormButton onClick={handleHOderView} label={'New'} />
                             <ButtonSave onClick={handleSubmit} label={'Submit'} />
                             <input type="date" value={collectin_data} className='input input-bordered' onChange={handleChangeDate} />
-
-                            {mutation && <div className='w-full flex justify-center my-1'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{mutation.data !== undefined && mutation.data.data.msg}</div></div>}</div>}
                         </div>
+                       
                         <div>
                         </div>
                     </div>
+                    {mutation && <div className='w-full flex justify-center my-1'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{mutation.data !== undefined && mutation.data.data.msg}</div></div>}</div>}
+
                 </div>
                     <div className="col-sm-7 relative text-nowrap overflow-y-auto  bg-base-300 text-base-content shadow-md sm:rounded-lg  h-[80vh]">
                         <table className="w-full text-sm text-left rtl:text-right">

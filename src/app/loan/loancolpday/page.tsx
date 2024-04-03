@@ -1,9 +1,6 @@
 'use client'
 
 import DataTable from '@/components/Rdcoll/DataTable';
-
-import TextInput from '@/components/dummyinput/TextInput';
-import PrBurron from '@/components/button/PrBurron';
 import { useLoancolpday } from '@/hooks/loan/useLoancolpday';
 import ButtonSave from '@/components/button/ButtonSave';
 

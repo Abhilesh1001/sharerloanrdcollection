@@ -17,6 +17,7 @@ interface ProdataType {
     amount_collected:number|null, 
     person_id: number | null;
     remarks : string,
+    days : null | number
 }
 
 interface RdperPersonDsisProps {
@@ -180,9 +181,9 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
                 </div>
                 </>}
           
-          <table className="w-full text-sm text-left rtl:text-right dark:bg-slate-700 text-gray-500 bg-sky-500 dark:text-gray-400">
+          <table className="w-full text-sm text-left rtl:text-right bg-base-300 text-base-content">
 
-                        <thead className='sticky top-0 z-1 text-nowrap bg-sky-800 dark:bg-slate-950 text-gray-50 h-10'>
+                        <thead className='sticky top-0 z-1 text-nowrap  h-10'>
                             <tr>
                                 <th scope="col" className='px-6 py-2'>Date</th>
                                 <th scope="col" className='px-6 py-2'>Days</th>
@@ -193,7 +194,7 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
                                 <th scope="col" className='px-6 py-2'>Ending Balance</th>
                             </tr>
                         </thead>
-                        <tbody className=' text-gray-50 text-center text-nowrap'> 
+                        <tbody className='text-center text-nowrap'> 
                             {newItem.map((item:any,index:number)=>{ 
                                 return  <tr key={index}>
                                 <th scope="row"><DumyInput indum={item.date}/></th>

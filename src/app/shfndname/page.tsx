@@ -16,7 +16,7 @@ const Vendor = () => {
     const {shareholder,setShareHolder,newData,setEnabled,mutation,data,setVid,vid,handleSubmit,sfcreate,change,handleCreate,handleKeyDown,handleChange,handleUPdate,mutationUpdate,updateData} = useShfname()
    
   return (
-    <div className='dark:bg-gray-800 bg-sky-600 h-auto text-gray-50  min-h-screen'>
+    <div className=' h-auto bg-base-100 text-base-content  min-h-screen'>
         <div className='container'>  
         <div className="row my-4">
             <div className="col-sm-4 mt-4">
@@ -55,9 +55,9 @@ const Vendor = () => {
                </form>}
                
             </div>
-            <div className="col-sm-8 relative text-nowrap overflow-y-auto shadow-md dark:bg-gray-900 mt-2 bg-sky-600 sm:rounded-lg  h-[80vh]">
-                    <table className="w-full text-sm text-left rtl:text-right dark:bg-slate-700 text-gray-500 bg-sky-500 dark:text-gray-400">
-                        <thead className='sticky top-0 z-1 bg-sky-800 dark:bg-slate-950 text-gray-50 h-10'>
+            <div className="col-sm-8 relative bg-base-300 text-nowrap overflow-y-auto shadow-md  mt-2  sm:rounded-lg  h-[80vh]">
+                    <table className="w-full text-sm text-left rtl:text-right   ">
+                        <thead className='sticky top-0 z-1 h-10'>
                             <tr>
                                 <th scope="col" className='px-6 py-2'>Holder Id</th>
                                 <th scope="col">Name</th>

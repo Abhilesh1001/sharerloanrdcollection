@@ -121,7 +121,7 @@ export const useLoanamount = () => {
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}shar/loanamount/${vid}`, newTodo, {
+            return await axios.patch(`${baseurl}loan/loanamount/${vid}`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -139,15 +139,16 @@ export const useLoanamount = () => {
 
     async function handleUPdate() {
         const newDatata = {
-            user : userId,
+            usersf : userId,
+            person : loan.loan_person,
             loan_amount: loan.amount,
-            loan_person:loan.loan_person,
             remarks: loan.remarks,
             is_active: loan.is_active,
-            closing_date: loan.closing_date,
             start_date: loan.start_date,
+            closing_date: loan.closing_date,
             duration: loan.duration,
-            interest_rate: loan.interest_rate
+            interest_rate: loan.interest_rate,
+            days :loan.days
         }
 
         mutationUpdate.mutate(newDatata)
@@ -178,7 +179,7 @@ export const useLoanamount = () => {
 
     const mutationIntrest = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}shar/loanamount/${vid}`, {
+            return await axios.get(`${baseurl}loan/loanamount/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -197,7 +198,8 @@ export const useLoanamount = () => {
                     start_date: format(data.data.start_date, 'yyyy-MM-dd'),
                     closing_date: data.data.closing_date === null ? '' : format(data.data.closing_date, 'yyyy-MM-dd'),
                     is_active: data.data.is_active,
-                    interest_rate: data.data.interest_rate
+                    interest_rate: data.data.interest_rate,
+                    days : data.data.days
                 }
             })
         }

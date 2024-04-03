@@ -20,9 +20,6 @@ export const useRdcoldata = () => {
 
     const { baseurl, authToken, userId } = useSelector((state: StateProps) => state.counter)
     const [rdcollection, setRdcollection] = useState<collData[]>([{ user: null, person: null, amount_collected: null, remarks: '', name: '', collection_date: '' }])
-    console.log('rdcoll', rdcollection)
-
-
 
     const [collectin_data,setCollectiondata] = useState(format(new Date, 'yyyy-MM-dd'))
     const handleChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {

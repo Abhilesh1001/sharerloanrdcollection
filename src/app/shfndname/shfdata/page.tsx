@@ -10,7 +10,7 @@ import UpdateBotton from '@/components/button/UpdateButton'
 
 
 const Vendor = () => {
-  const {setEnabled,mutation,data,handleKeyDown,vid,setVid,handleSubmit,sharfund,setShareFund} = useShfdata()
+  const {setEnabled} = useShfdata()
    
 
   return (
