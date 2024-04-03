@@ -17,9 +17,7 @@ interface SfperPersonDsisProps {
 }
 
 const SfperPersonDsis: React.FC<SfperPersonDsisProps>  = (props) => {
-    const dispatch= useDispatch()
-
-  
+    
   return (
     <div>
             <div className='flex bg-base-300'>

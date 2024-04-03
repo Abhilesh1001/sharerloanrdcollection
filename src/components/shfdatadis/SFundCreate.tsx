@@ -14,18 +14,15 @@ import ButtonSave from '../button/ButtonSave'
 
 
 const SFundCreate = () => {
-    const { setEnabled, mutation, data, handleKeyDown, vid, setVid, handleSubmit, sharfund, setShareFund } = useShfdata()
-
+    const {mutation, data, handleKeyDown, vid, setVid, handleSubmit, sharfund, setShareFund } = useShfdata()
 
     return (
         <>
             <div className='flex justify-between'>
-
                 <div>
                     <AddFormButton label={'Create'} />
                     <ButtonChange label={'Change'} />
                 </div>
-
                 <div>
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
@@ -37,10 +34,10 @@ const SFundCreate = () => {
             </div>
             <div>
             </div>
-            <div className='w-full h-4 flex justify-center my-4'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{data !== undefined && data.data.msg}</div></div>}</div>
+            <div className='w-full h-4 flex justify-center my-4'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{data !== undefined && <div>{data.data.msg} Deposite Id No : {data.data.data.shf_id
+}</div> }</div></div>}</div>
             <label htmlFor="Vendor" className="form-label text-sm">Holder Id</label>
             <input required value={vid} type="number" onKeyDown={(e) => handleKeyDown(e)} onChange={(e) => setVid(e.target.value)} className="input input-bordered w-full block" />
-
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="Name" className="form-label text-sm">Name</label>

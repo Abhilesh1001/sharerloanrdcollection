@@ -33,6 +33,7 @@ export interface sharefund {
     amount_debit : null|number,
     name: string,
     particulars:string
+    collection_date : string
 }
 export interface collData {
     user:null|number,

@@ -36,12 +36,14 @@ const ShDataTable = () => {
     const handleTotalColView = async (id: any) => {
 
         try {
-            const res = await axios.get(`${baseurl}shar/shfund/${id}`, {
+            const res = await axios.get(`${baseurl}loan/shfund/${id}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
             })
             console.log(res.data)
+            
+
             setProdata(res.data)
         } catch (error) {
             console.log(error)
@@ -56,7 +58,7 @@ const ShDataTable = () => {
             <table className="w-full text-sm text-left rtl:text-right ">
                 <thead className='sticky top-0 z-1  h-10'>
                     <tr>
-                        <th scope="col" className='px-6 py-2'>Holder Id</th>
+                        <th scope="col" className='px-6 py-2'>Customer Id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Amount Invested</th>
