@@ -2,10 +2,6 @@
 
 import DataTable from '@/components/Rdcoll/DataTable';
 
-import TextInput from '@/components/dummyinput/TextInput';
-import PrBurron from '@/components/button/PrBurron';
-
-import axios from 'axios';
 import { useRdcolpday } from '@/hooks/rd/useRdcolpday';
 import ButtonSave from '@/components/button/ButtonSave';
 
@@ -19,10 +15,10 @@ interface Data {
 
 
 const App: React.FC = () => {
-    const {setDate,date,handleClick,data} = useRdcolpday()
+    const { setDate, date, handleClick, data } = useRdcolpday()
 
     return (
-        <div className='bg-base-100 text-base-content min-h-screen mt-6'>
+        <div className='bg-base-100 text-base-content min-h-screen mt-6 pt-4'>
             <div className='h-3'></div>
             <div className='flex ml-4'>
                 <div className='flex'>
@@ -40,7 +36,18 @@ const App: React.FC = () => {
             {Object.keys(data).length > 0 ? (
                 <DataTable startDate={date.startDate} endDate={date.endDate} data={data} />
             ) : (
-                <div className=''>No data available</div>
+                <div className='flex justify-center mt-10'>
+                    <div className="card w-96 bg-primary text-primary-content">
+                    <div className="card-body">
+                        <h2 className="card-title text-4xl">No Data Avilable</h2>
+                        <p>Chose Date for Check</p>
+                      
+                    </div>
+                </div>
+
+                </div>
+                
+
             )}
 
         </div>

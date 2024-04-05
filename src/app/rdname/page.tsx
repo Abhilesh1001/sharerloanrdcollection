@@ -6,6 +6,7 @@ import Rdintrest from '@/components/rd/Rdintrest'
 import CustomerRdView from '@/components/rd/CustomerRdView';
 
 import { useRdname } from '@/hooks/rd/useRdname'
+import { soundClick } from '@/sound/sound';
 
 const RdpersonTable = dynamic(() => import('@/components/rd/RdpersonTable'));
 
@@ -17,9 +18,9 @@ const Vendor = () => {
         <div className='h-4'></div>
         <div className="my-6">
             <div>
-
               {/* Rd intrest  */}
               <button className="btn btn-success" onClick={() => {
+                soundClick?.play()
                 const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
                 if (modal) {
                   modal.showModal();

@@ -7,7 +7,7 @@ import AddFormButton from '../button/AddFormButton';
 import ButtonSave from '../button/ButtonSave';
 import UpdateBotton from '../button/UpdateButton';
 import ButtonChange from '../button/ButtonChange';
-
+import { soundClick } from '@/sound/sound';
 
 const LoanPersonCreate = () => {
 
@@ -24,7 +24,7 @@ const LoanPersonCreate = () => {
                 <div>
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="btn btn-error">Close</button>
+                        <button onClick={()=>{soundClick?.play()}} className="btn btn-error">Close</button>
                     </form>
 
                 </div>
@@ -42,21 +42,16 @@ const LoanPersonCreate = () => {
             {change === 'create' && <><label htmlFor="Vendor" className="form-label text-sm">Customer Id</label>
 
                 <input required value={vid} type="number" onKeyDown={(e) => handleKeyDown(e)} onChange={(e) => setVid(e.target.value)} className="input input-bordered w-full  block" /></>}
-
-
             {sfcreate === 'create' && <form onSubmit={handleSubmit}>
                 <label htmlFor="Name" className="form-label text-sm">Name</label>
-
-
-                <input value={loanholder.name} type='text' className='input input-bordered w-full  block' onChange={(e) => setLoanholder({ ...loanholder, name: e.target.value })} />
+                <input required value={loanholder.name} type='text' className='input input-bordered w-full  block' onChange={(e) => setLoanholder({ ...loanholder, name: e.target.value })} />
                 <label htmlFor="Phone" className="form-label text-sm ">Phone No</label>
-                <input value={loanholder.phone_no} type='text'   className='input input-bordered w-full  block' onChange={(e) => setLoanholder({ ...loanholder, phone_no: e.target.value })} />
+                <input required value={loanholder.phone_no} type='text'   className='input input-bordered w-full  block' onChange={(e) => setLoanholder({ ...loanholder, phone_no: e.target.value })} />
 
                 <label htmlFor="Email" className="form-label text-sm">Email</label>
-                <input className='input input-bordered w-full  block' type={'email'} value={loanholder.email} onChange={(e) => setLoanholder({ ...loanholder, email: e.target.value })} />
+                <input required className='input input-bordered w-full  block' type={'email'} value={loanholder.email} onChange={(e) => setLoanholder({ ...loanholder, email: e.target.value })} />
                 <label htmlFor="pan" className="form-label text-sm">Pan</label>
-                <input type='text' className='input input-bordered w-full  block mb-4' value={loanholder.pan_no} onChange={(e) => setLoanholder({ ...loanholder, pan_no: e.target.value })} />
-
+                <input required type='text' className='input input-bordered w-full  block mb-4' value={loanholder.pan_no} onChange={(e) => setLoanholder({ ...loanholder, pan_no: e.target.value })} />
                 {change !== 'create' && <ButtonSave label={'Submit'} buttomType={'submit'} />}
             </form>}
         </>

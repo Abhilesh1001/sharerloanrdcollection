@@ -5,7 +5,8 @@ import {useMutation,useQuery} from '@tanstack/react-query'
 import React, { useState } from 'react'
 import {loanholderName} from '@/type/shareholder/shareholde'
 import {getLoanNameData, getRdDataName} from '@/redux/shf/shfslicer'
-
+import { toast } from 'react-toastify'
+import { soundClick,soundError,soundSsuccess } from '@/sound/sound'
 interface MyData {
     data:{
         msg : string,
@@ -31,13 +32,18 @@ export const useLoan=()=>{
           }})} ,
           onSuccess: () => {    
             setLoanholder({name:'',email:'', pan_no:'',phone_no:''})
+            soundSsuccess?.play()
           },  
+          onError:()=>{
+            soundError?.play()
+            toast.error('Fill all Required Fields',{position:'top-left'})
+          }
     })
     const {data}:{data?:MyData} = mutation
     
     const handleSubmit = async( e: React.FormEvent<HTMLFormElement>) =>{
+        soundClick?.play()
         e.preventDefault()
-       
         const newDatata = {
             "usersf":userId,
             "name": loanholder.name,
@@ -65,12 +71,14 @@ export const useLoan=()=>{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: (data) => {
-           
             setLoanholder({name:'',email:'', pan_no:'',phone_no:''})
+            soundSsuccess?.play()
 
             },   
         onError:(error)=>{
+            soundError?.play()
             console.log(error)
+            toast.error('Fill All the required Fields',{position:'top-left'})
         }           
     })
     const {data:updateData}:{data?:MyData} = mutationUpdate
@@ -80,17 +88,20 @@ export const useLoan=()=>{
 
     const handleChange = ()=>{
         setChange(`${change!=='create'?'create':null}`)
+        soundClick?.play()
     }
 
     
 
     const handleCreate =()=>{
+        soundClick?.play()
         setLoanholder({name:'',email:'', pan_no:'',phone_no:''})
         setSfcreate('create')
         setChange('')
     }
   
     async function handleUPdate(){
+        soundClick?.play()
         const newData = {
             usersf : userId,
             name:loanholder.name ,
@@ -103,9 +114,9 @@ export const useLoan=()=>{
     }
 
     const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    
         const value = (e.target as HTMLInputElement).value;
         console.log(value)
-        
         if (e.key === 'Enter') {
             console.log('ok')
             const vid = parseInt(value)
@@ -113,13 +124,14 @@ export const useLoan=()=>{
             mutationLoan.mutate(vid)
         }
     }
-
     const mutationLoan = useMutation<any,any,any,unknown>({
         mutationFn: async (newTodo:loanholderName) => {
           return await axios.get(`${baseurl}loan/person/${vid}`,{headers:{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: (data) => {
+
+            soundSsuccess?.play()
                console.log(data)
             setLoanholder(prev=>{ 
                 return {
@@ -129,9 +141,14 @@ export const useLoan=()=>{
                     pan_no:data.data.pan_no,
                     phone_no:data.data.phone_no
                 }
-              })}              
+
+              })},
+              onError:(error)=>{
+                toast.error('Enter Correct Customer Id',{position:'top-left'})
+                soundError?.play()
+
+              }           
     })
   
-
     return {mutation,data,vid,setVid,loanholder,handleSubmit,setLoanholder,handleKeyDown,handleCreate,handleChange,handleUPdate,change,sfcreate,mutationUpdate,updateData}
 }

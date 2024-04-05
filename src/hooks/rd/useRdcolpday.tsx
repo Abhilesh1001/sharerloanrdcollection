@@ -2,6 +2,8 @@ import { StateProps } from '@/type/type'
 import { useSelector } from 'react-redux'
 import axios from 'axios';
 import React, { useState } from 'react';
+import { soundClick, soundError, soundSsuccess } from '@/sound/sound';
+import { toast } from 'react-toastify';
 
 
 interface Entry {
@@ -23,7 +25,7 @@ export const useRdcolpday=()=>{
     // Your provided data
 
     const handleClick = async () => {
-        console.log(date)
+        soundClick?.play()
         const dateData = {
             start_date: date.startDate,
             end_date: date.endDate,
@@ -36,9 +38,12 @@ export const useRdcolpday=()=>{
                 }
             })
             console.log(res.data)
+            soundSsuccess?.play()
             setData(res.data)
 
         } catch (error) {
+            soundError?.play()
+            toast.error('Enter all require Fileds',{position:'top-left'})
             console.log(error)
         }
     }

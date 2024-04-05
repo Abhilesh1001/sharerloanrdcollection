@@ -2,10 +2,11 @@
 import React, {memo } from 'react'
 import LoanPerTable from '@/components/loan/LoanPerTable'
 import LoanPersonCreate from '@/components/loan/LoanPersonCreate'
+import { soundClick } from '@/sound/sound'
+
 
 
 const Vendor = () => {
-
     return (
         <div className='bg-base-100 h-auto   min-h-screen'>
             <div className='container'>
@@ -17,7 +18,9 @@ const Vendor = () => {
                                 if (modal) {
                                     modal.showModal();
                                 }
-                            }}>Add Person</button>
+                                soundClick?.play()
+
+                            }}>Add Customer</button>
                             <dialog id="my_modal_1" className="modal">
                                 <div className="modal-box">
                                     <LoanPersonCreate />

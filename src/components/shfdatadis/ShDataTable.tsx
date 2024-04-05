@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { StateProps } from '@/type/type'
 import React, { useEffect, useState, memo } from 'react'
 import { shfStateTypr } from '@/type/shareholder/shareholde'
+import { soundClick } from '@/sound/sound'
 
 
 
@@ -56,13 +57,14 @@ const ShDataTable = () => {
         <div className="col-sm-8 relative text-nowrap overflow-y-auto shadow-md  mt-2 bg-base-300 text-base-content sm:rounded-lg  h-[80vh]">
 
             <table className="w-full text-sm text-left rtl:text-right ">
-                <thead className='sticky top-0 z-1  h-10'>
+                <thead className='sticky top-0 z-1  h-10 bg-base-200'>
                     <tr>
                         <th scope="col" className='px-6 py-2'>Customer Id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Amount Invested</th>
                         <th scope="col">Present Value</th>
+                        <th scope="col">View Details</th>
                     </tr>
                 </thead>
                 <tbody className='text-center'>
@@ -73,9 +75,10 @@ const ShDataTable = () => {
                             <td><DumyInput indum={''} /></td>
                             <td><DumyInput indum={items.totalInvested} /></td>
                             <td><DumyInput indum={''} /></td>
-                            <button className="btn btn-sm btn-primary mr-2 " onClick={() => {
+                            <button className="btn btn-sm btn-primary mr-2 w-full" onClick={() => {
                                 const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
                                 handleTotalColView(items.shf_id)
+                                soundClick?.play()
                                 if (modal) {
                                     modal.showModal();
                                 }
@@ -91,10 +94,7 @@ const ShDataTable = () => {
                 <div className="modal-box w-11/12 max-w-5xl">
                     <SfperPersonDsis prodataitem={prodata} />
                     <div className="modal-action">
-                        <form method="dialog">
-                            {/* if there is a button, it will close the modal */}
-                            <button className="btn">Close</button>
-                        </form>
+                        
                     </div>
                 </div>
             </dialog>

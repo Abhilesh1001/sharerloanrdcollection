@@ -1,16 +1,16 @@
 'use client'
 import React, { useEffect, useState, memo } from 'react'
 import SFundCreate from '@/components/shfdatadis/SFundCreate'
-import PrBurron from '@/components/button/PrBurron'
 
 
 import ShDataTable from '@/components/shfdatadis/ShDataTable'
 import { useShfdata } from '@/hooks/shf/useShfdata'
 import UpdateBotton from '@/components/button/UpdateButton'
+import { soundClick } from '@/sound/sound'
 
 
 const Vendor = () => {
-  const { setEnabled } = useShfdata()
+  
 
 
   return (
@@ -18,8 +18,8 @@ const Vendor = () => {
       <div className='container'>
         <div className="row my-4">
           <div className="mt-4">
-            <UpdateBotton onClick={() => setEnabled(true)} label={'View'} />
             <button className="btn btn-success " onClick={() => {
+              soundClick?.play()
               const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
               if (modal) {
                 modal.showModal();
@@ -33,7 +33,7 @@ const Vendor = () => {
                 </div>
               </div>
             </dialog>
-
+x
             <ShDataTable />
 
           </div>

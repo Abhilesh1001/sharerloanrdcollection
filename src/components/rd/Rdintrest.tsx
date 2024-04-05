@@ -7,6 +7,7 @@ import AddFormButton from '../button/AddFormButton';
 import ButtonChange from '../button/ButtonChange';
 import UpdateBotton from '../button/UpdateButton';
 import ButtonSave from '../button/ButtonSave';
+import { soundClick } from '@/sound/sound';
 
 
 const Rdintrest = () => {
@@ -26,7 +27,7 @@ const Rdintrest = () => {
                 <div>
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="btn btn-error">Close</button>
+                        <button className="btn btn-error" onClick={()=>soundClick?.play()}>Close</button>
                     </form>
                 </div>
             </div>

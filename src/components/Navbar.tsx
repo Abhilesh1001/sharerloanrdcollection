@@ -15,6 +15,7 @@ import NavColl from './navcomponent/NavColl'
 import ShareholderMenu from './mainpage/ShareholderMenu'
 
 
+
 export type StateProps = {
     counter: {
         user: string | null,

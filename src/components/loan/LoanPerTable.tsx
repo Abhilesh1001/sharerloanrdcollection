@@ -9,7 +9,7 @@ const LoanPerTable = () => {
     const {loanNewNameData} = useSelector((state:shfStateTypr)=>state.shfSlice)
     console.log(loanNewNameData)
   return (
-    <div className="col-sm-8 relative text-nowrap overflow-y-auto bg-base-100 text-base-content shadow-md  mt-2  sm:rounded-lg  h-[80vh]">
+    <div className="col-sm-8 relative text-nowrap bg-base-300 overflow-y-auto pt-2 text-base-content shadow-md  mt-2  sm:rounded-lg  h-[80vh]">
     <table className="w-full text-sm text-left rtl:text-right   ">
         <thead className='sticky top-0 z-1 bg-base-200'>
             <tr>

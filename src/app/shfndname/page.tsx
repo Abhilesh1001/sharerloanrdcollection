@@ -67,7 +67,7 @@ const Vendor = () => {
                                 <th scope="col">Date</th>
                             </tr>
                         </thead>
-                        <tbody className=' text-gray-50 text-center'> 
+                        <tbody className='  text-center'> 
 
                             {newData?.map((items:shareholderName)=>{
                                 return  <tr key={items.Sh_id}>
