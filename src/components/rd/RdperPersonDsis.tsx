@@ -107,9 +107,9 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
             };
     
             rows.push(data);
-            // Update endingValue with the current row's endingvalue
+         
             endingValue = data.endingvalue;
-            // Update beginningValue for the next iteration
+         
             beginningValue = endingValue;
         });
     
@@ -129,11 +129,11 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'RATE OF INTEREST'} /></div>
-                    <div className='w-full text-center'> <TextInput  value= {interest} onChange={(e)=>handleChange(e.target.value,'rate')} /></div> 
+                    <div className='w-full text-center'> <DumyInput  indum= {interest} /></div> 
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'DURATION (DAYS)'} /></div>
-                    <div className='w-full text-center'> <TextInput  value= {duration} onChange={(e)=>handleChange(e.target.value,'day')} /></div> 
+                    <div className='w-full text-center'> <DumyInput  indum={duration}/></div> 
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'EFFECTIVE INTERST RATE'} /></div>

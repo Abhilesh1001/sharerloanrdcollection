@@ -41,7 +41,6 @@ const App: React.FC = () => {
                     <div className="card-body">
                         <h2 className="card-title text-4xl">No Data Avilable</h2>
                         <p>Chose Date for Check</p>
-                      
                     </div>
                 </div>
 

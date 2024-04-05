@@ -12,6 +12,8 @@ interface Entry {
 }
 
 import axios from 'axios';
+import { soundClick, soundError, soundSsuccess } from '@/sound/sound';
+import { toast } from 'react-toastify';
 
 export const useLoancolpday=()=>{
 
@@ -24,12 +26,14 @@ export const useLoancolpday=()=>{
     // Your provided data
 
     const handleClick = async () => {
+        soundClick?.play()
         console.log(date)
         const dateData = {
             start_date: date.startDate,
             end_date: date.endDate,
         }
         console.log(dateData)
+        
         try {
             const res = await axios.post(`${baseurl}loan/loanDataView`, dateData,{
                 headers : {
@@ -37,10 +41,13 @@ export const useLoancolpday=()=>{
                 }
             })
             console.log(res.data)
+            soundSsuccess?.play()
             setData(res.data)
 
         } catch (error) {
-            console.log(error)
+            
+            soundError?.play()
+            toast.error('Enter all required fileds',{position:'top-right'})
         }
     }
     return {setDate,date,handleClick,data}

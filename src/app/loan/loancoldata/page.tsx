@@ -6,8 +6,6 @@ import { loancollData } from '@/type/shareholder/shareholde'
 import { format, parseISO } from 'date-fns';
 import { useLoancoldata } from '@/hooks/loan/useLoancoldata'
 import RdperPersonDis from '@/components/loan/LoanPersonDisplay'
-import { shfStateTypr } from '@/type/shareholder/shareholde'
-import { getHideData } from '@/redux/shf/shfslicer'
 import AddFormButton from '@/components/button/AddFormButton'
 import ButtonSave from '@/components/button/ButtonSave'
 import { useEffect } from 'react';
@@ -15,7 +13,7 @@ import { useEffect } from 'react';
 
 const Vendor = () => {
 
-    const { handleHOderView, handleSubmit, loancollection, handleChange, mutation, handleclickrdcolallview, data, handleChangeDate, collectin_data } = useLoancoldata()
+    const { handleHOderView, handleSubmit, loancollection, handleChange, mutation, handleclickrdcolallview, data, handleChangeDate, collectin_data,handleDelete } = useLoancoldata()
     console.log('rdcoll', collectin_data)
 
     return (
@@ -65,6 +63,8 @@ const Vendor = () => {
                                                 handleclickrdcolallview(items.loan_person);
                                             }}>Check Collection</button>
                                         </th>
+
+                                        <th><button className='btn btn-error btn-sm' onClick={()=>handleDelete(index)}>Delete</button></th>
                                     </tr>
                                 })}
                             </tbody>
@@ -77,7 +77,7 @@ const Vendor = () => {
                             <div className="modal-action">
                                 <form method="dialog">
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn mb-2">Close</button>
+                                    <button className="btn btn-error mb-2">Close</button>
                                 </form>
                             </div>
                             <RdperPersonDis prodataitem={data} />

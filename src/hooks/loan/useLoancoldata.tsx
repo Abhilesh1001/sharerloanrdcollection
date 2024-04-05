@@ -6,6 +6,8 @@ import { StateProps } from '@/type/type'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { loancollData } from '@/type/shareholder/shareholde'
 import { format, parseISO } from 'date-fns'
+import { soundClick, soundError, soundSsuccess } from '@/sound/sound'
+import { toast } from 'react-toastify'
 
 interface MyData {
     data: {
@@ -32,6 +34,7 @@ export const useLoancoldata = () => {
 
     const handleHOderView = async () => {
         //gjgjhg 
+        soundClick?.play()
         setCollectiondata(format(new Date, 'yyyy-MM-dd'))
         try {
             const res = await axios.get(`${baseurl}loan/loanamount`, {
@@ -40,14 +43,12 @@ export const useLoancoldata = () => {
                 }
             })
             console.log(res)
-
+            soundSsuccess?.play()
             const activeLaon = res.data.filter((item: any) => {
                 if (item.is_active) {
                     return item
                 }
             })
-
-
             const dataCol = activeLaon.map((items: any) => {
                 const neData = {
                     loan_person: items.loan_id,
@@ -73,16 +74,19 @@ export const useLoancoldata = () => {
             })
         },
         onSuccess: () => {
+            soundSsuccess?.play()
             setLoancollection([{ user: null, loan_person: null, amount_collected: null, remarks: '', name: '' }])
         
         },
         onError: (error) => {
-            console.log(error)
+            soundError?.play()
+            toast.error('Enter all required Fields',{position:'top-right'})
         }
     })
 
 
     const handleSubmit = async () => {
+
         const data = loancollection.map((item) => {
             const newData = {
                 usersf: userId,
@@ -93,14 +97,14 @@ export const useLoancoldata = () => {
             }
             return newData
         })
-        // console.log(data)
+       
         mutation.mutate(data)
 
     }
 
 
     const handleChange = (value: string | number, key: keyof loancollData, index: number) => {
-        console.log(value, key)
+        
         const freData: any = [...loancollection]
         freData[index][key] = value
         setLoancollection(freData)
@@ -125,12 +129,25 @@ export const useLoancoldata = () => {
     console.log(data, 'data')
 
     const handleclickrdcolallview = (id: number | null) => {
-
+        soundClick?.play()
         setEnable(true)
         setId(id)
 
     }
 
+    function handleDelete(index:number){
+        soundClick?.play()
+        const newData = [...loancollection]
+        const filterData:any =  newData.filter((item:loancollData,indexes)=>{
+            if(index!==indexes){
+                return item
+            }
 
-    return { handleHOderView, handleSubmit, loancollection, handleChange, mutation, handleclickrdcolallview, data, handleChangeDate, collectin_data }
+        })
+        setLoancollection(filterData)
+        
+    }
+
+
+    return { handleHOderView, handleSubmit, loancollection, handleChange, mutation, handleclickrdcolallview, data, handleChangeDate, collectin_data ,handleDelete }
 }

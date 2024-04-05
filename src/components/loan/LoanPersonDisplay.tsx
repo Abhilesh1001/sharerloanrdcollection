@@ -161,15 +161,15 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'PRINCIPAL AMOUNT '} /></div>
-                    <div className='w-full text-center'> <TextInput  value= {loan_amount} onChange={(e)=>handleChange(e.target.value,'rate')} /></div> 
+                    <div className='w-full text-center'> <DumyInput  indum= {loan_amount}/></div> 
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'RATE OF INTEREST'} /></div>
-                    <div className='w-full text-center'> <TextInput  value= {interest} onChange={(e)=>handleChange(e.target.value,'rate')} /></div> 
+                    <div className='w-full text-center'> <DumyInput indum= {interest}/></div> 
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'LOAN PERIOD (DAYS)'} /></div>
-                    <div className='w-full text-center'> <TextInput  value= {duration} onChange={(e)=>handleChange(e.target.value,'day')} /></div> 
+                    <div className='w-full text-center'> <DumyInput  indum= {duration}/></div> 
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'EFFECTIVE RATE'} /></div>

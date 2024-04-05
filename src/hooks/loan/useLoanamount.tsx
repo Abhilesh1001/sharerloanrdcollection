@@ -5,6 +5,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { loanCreateData } from '@/components/dataAll/data'
 import { format, parseISO } from 'date-fns';
+import { soundClick, soundError, soundSsuccess } from '@/sound/sound'
+import { toast } from 'react-toastify'
 
 
 interface MyData {
@@ -50,12 +52,18 @@ export const useLoanamount = () => {
             })
         },
         onSuccess: () => {
+            soundSsuccess?.play()
             setLoan(loanCreateData)
         },
+        onError:()=>{
+            soundError?.play()
+            toast.error('Enter all Required Fields',{position:'top-left'})
+        }
     })
     const { data }: { data?: MyData } = mutation
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        soundClick?.play()
         const newDatata = {
             usersf: userId,
             person: loan.loan_person,
@@ -97,6 +105,7 @@ export const useLoanamount = () => {
             })
         },
         onSuccess: (data) => {
+            soundSsuccess?.play()
             console.log(data.data)
             setLoan((prev) => {
                 return {
@@ -106,11 +115,16 @@ export const useLoanamount = () => {
                 }
             })
         },
+        onError:()=>{
+            toast.error('Enter Correct Customer ID No',{position:'top-left'})
+            soundError?.play()
+        }
     })
     const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLInputElement).value;
         console.log(value)
         if (e.key === 'Enter') {
+            soundClick?.play()
             console.log('ok')
             const vid = parseInt(value)
             console.log(vid)
@@ -129,15 +143,18 @@ export const useLoanamount = () => {
         },
         onSuccess: () => {
             setLoan(loanCreateData)
-
-        },
+            soundSsuccess?.play()
+        },      
         onError: (error) => {
             console.log(error)
+            soundError?.play()
+            toast.error('Enter all Required Fields',{position:'top-left'})
         }
     })
 
 
     async function handleUPdate() {
+        soundClick?.play()
         const newDatata = {
             usersf : userId,
             person : loan.loan_person,
@@ -150,7 +167,6 @@ export const useLoanamount = () => {
             interest_rate: loan.interest_rate,
             days :loan.days
         }
-
         mutationUpdate.mutate(newDatata)
 
     }
@@ -159,10 +175,12 @@ export const useLoanamount = () => {
     const handleCreate = () => {
         setSfcreate('create')
         setChange('')
+        soundClick?.play()
     }
 
     const handleChange = () => {
         setChange(`${change !== 'create' ? 'create' : null}`)
+        soundClick?.play()
     }
 
 
@@ -170,6 +188,7 @@ export const useLoanamount = () => {
         const value = (e.target as HTMLInputElement).value;
         console.log('Entewr rdintrest')
         if (e.key === 'Enter') {
+            soundClick?.play()  
             console.log('ok')
             const vid = parseInt(value)
             e.preventDefault();
@@ -186,6 +205,7 @@ export const useLoanamount = () => {
             })
         },
         onSuccess: (data) => {
+            soundSsuccess?.play()
             console.log(data.data, '..........')
             setLoan(prev => {
                 return {
@@ -202,6 +222,10 @@ export const useLoanamount = () => {
                     days : data.data.days
                 }
             })
+        },
+        onError:()=>{
+            soundError?.play()
+            toast.error('Enter Correct Loand ID No',{position:'top-left'})
         }
     })
 

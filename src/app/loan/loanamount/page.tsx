@@ -6,6 +6,7 @@ import { format, parseISO } from 'date-fns';
 import { useLoanamount } from '@/hooks/loan/useLoanamount'
 import LoanAmountCreation from '@/components/loan/LoanAmountCreation'
 import UpdateBotton from '@/components/button/UpdateButton';
+import { soundClick } from '@/sound/sound';
 
 
 
@@ -38,6 +39,7 @@ const Vendor = () => {
                         <div>
                             <button className="btn btn-success mr-2 " onClick={() => {
                                 const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
+                                soundClick?.play()
                                 if (modal) {
                                     modal.showModal();
                                 }

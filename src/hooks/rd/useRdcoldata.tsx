@@ -8,6 +8,8 @@ import { format,parseISO } from 'date-fns'
 
 
 import React, { useEffect, useState } from 'react'
+import { soundClick, soundError, soundSsuccess } from '@/sound/sound'
+import { toast } from 'react-toastify'
 
 interface MyData {
     data: {
@@ -25,12 +27,10 @@ export const useRdcoldata = () => {
     const handleChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCollectiondata(e.target.value);
     };
-
-
-
-
+   
 
     const handleHOderView = async () => {
+        soundClick?.play()
         try {
             const res = await axios.get(`${baseurl}loan/rdintrest`, {
                 headers: {
@@ -44,6 +44,7 @@ export const useRdcoldata = () => {
                 if(items.is_active){
                     return items
                 }
+
                
         })
 
@@ -57,10 +58,11 @@ export const useRdcoldata = () => {
                     return neData
             })
 
-
-
             setRdcollection(dataCol)
+            soundSsuccess?.play()
+
         } catch (error) {
+
             console.log(error)
         }
     }
@@ -78,12 +80,13 @@ export const useRdcoldata = () => {
         },
         onError: (error) => {
             console.log(error)
+            soundError?.play()
+            toast.error('Fill all required Fields',{position:'top-left'})
         }
     })
 
     const handleSubmit = async () => {
-
-        
+        soundClick?.play()
         const newData = rdcollection.map((items) => {
             const data = {
                 usersf: userId,
@@ -111,14 +114,13 @@ export const useRdcoldata = () => {
 
 
     const fetchData = async () => {
-        console.log('ok', Id)
+        // console.log('ok', Id)
         setEnable(false)
         const res = await axios.get(`${baseurl}loan/rdcollection/${Id}`, {
             headers: {
                 Authorization: `Bearer ${authToken?.access}`
             }
         })
-
         console.log(res.data)
         return res.data
     }
@@ -127,10 +129,30 @@ export const useRdcoldata = () => {
     console.log(data, 'data')
 
     const handleclickrdcolallview = (id: number | null) => {
+        soundClick?.play()
         setEnable(true)
         setId(id)
 
     }
 
-    return { handleHOderView, handleSubmit, rdcollection, handleChange, mutation, handleclickrdcolallview, data,collectin_data,handleChangeDate }
+
+    function handleDelete(index:number){
+        console.log('ok')
+        soundClick?.play()
+        const newData = [...rdcollection]
+        console.log(index)
+        const filrtenewData:any =  newData.filter((item:collData,indexs)=>{
+           
+            if(index!==indexs){
+                return item
+            }
+        })
+
+        setRdcollection(filrtenewData)
+    }
+
+
+
+
+    return { handleHOderView, handleSubmit, rdcollection, handleChange, mutation, handleclickrdcolallview, data,collectin_data,handleChangeDate,handleDelete }
 }

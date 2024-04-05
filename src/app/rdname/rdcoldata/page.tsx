@@ -7,12 +7,12 @@ import RdperPersonDis from '@/components/rd/RdperPersonDsis'
 import ButtonSave from '@/components/button/ButtonSave'
 import AddFormButton from '@/components/button/AddFormButton'
 import { useMemo,memo, useState, useEffect } from 'react'
+import { soundClick } from '@/sound/sound'
 
 
 
 const Vendor = () => {
-    const { handleHOderView, handleSubmit, rdcollection, handleChange, mutation, handleclickrdcolallview, data,handleChangeDate,collectin_data } = useRdcoldata()
-
+    const { handleHOderView, handleSubmit, rdcollection, handleChange, mutation, handleclickrdcolallview, data,handleChangeDate,collectin_data,handleDelete } = useRdcoldata()
 
     return (
         <div className=' bg-base-100 text-base-content h-auto  min-h-screen'>
@@ -31,15 +31,16 @@ const Vendor = () => {
                     {mutation && <div className='w-full flex justify-center my-1'>{mutation.isPending && <Loading />} {mutation.isSuccess && <div><div>{mutation.data !== undefined && mutation.data.data.msg}</div></div>}</div>}
 
                 </div>
-                    <div className="col-sm-7 relative text-nowrap overflow-y-auto  bg-base-300 text-base-content shadow-md sm:rounded-lg  h-[80vh]">
+                    <div className="col-sm-8 relative text-nowrap overflow-y-auto  bg-base-300 text-base-content shadow-md sm:rounded-lg  h-[80vh]">
                         <table className="w-full text-sm text-left rtl:text-right">
                             <thead className='sticky top-0 z-1  h-10'>
                                 <tr>
-                                    <th scope="col" className='px-6 py-2'>RD No</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Collection Amount</th>
-                                    <th scope="col">Remarks</th>
-                                    <th scope="col">RD Collection</th>
+                                    <th className='pl-4'>RD No</th>
+                                    <th >Name</th>
+                                    <th >Collection Amount</th>
+                                    <th >Remarks</th>
+                                    <th >RD Collection</th>
+                                    <th >Delete</th>
                                 </tr>
                             </thead>
                             <tbody className='  text-center'>
@@ -48,7 +49,7 @@ const Vendor = () => {
                                         <th scope="row"><DumyInput indum={items.person !== undefined ? items.person : null} /></th>
                                         
                                         <td><DumyInput indum={items.name} /></td>
-                                        <td><input className='input input-bordered input-sm ' type={'number'} value={items.amount_collected==null?'':items.amount_collected} onChange={(e) => handleChange(Number(e.target.value), 'amount_collected', index)} /></td>
+                                        <td><input className='input input-bordered input-sm' type={'number'} value={items.amount_collected==null?'':items.amount_collected} onChange={(e) => handleChange(Number(e.target.value), 'amount_collected', index)} /></td>
 
                                         <td><input className='input input-bordered input-sm' type='text' value={items.remarks} onChange={(e) => handleChange(e.target.value, 'remarks', index)} /></td>
                                         <th>
@@ -60,6 +61,7 @@ const Vendor = () => {
                                                 handleclickrdcolallview(items.person);
                                             }}>Check Collection</button>
                                         </th>
+                                        <th><button type='button' className='btn btn-error btn-sm' onClick={()=>handleDelete(index)}>Delete</button></th>
                                     </tr>
                                 })}
                             </tbody>
@@ -69,7 +71,7 @@ const Vendor = () => {
                             <div className="modal-action">
                                 <form method="dialog">
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn mb-2">Close</button>
+                                    <button className="btn mb-2 btn-error" onClick={()=>soundClick?.play()}>Close</button>
                                 </form>
                             </div>
                             <RdperPersonDis prodataitem={data} />

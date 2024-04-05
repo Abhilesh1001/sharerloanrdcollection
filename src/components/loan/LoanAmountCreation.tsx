@@ -11,6 +11,7 @@ import AddFormButton from '../button/AddFormButton'
 import UpdateBotton from '../button/UpdateButton'
 import ButtonSave from '../button/ButtonSave'
 import ButtonChange from '../button/ButtonChange'
+import { soundClick } from '@/sound/sound'
 
 
 interface loanDetails {
@@ -31,7 +32,7 @@ const LoanAmountCreation = () => {
 
     const {  mutation,setVid, handleSubmit, setLoan, handleKeyDown, loan, vid,handleUPdate, change, handleCreate, handleChange, sfcreate, handleKeyDownLoanId, mutationUpdate } = useLoanamount()
 
-    console.log(mutationUpdate?.data, 'mutationupdate')
+    // console.log(mutationUpdate?.data, 'mutationupdate')
 
 
     return (
@@ -46,7 +47,7 @@ const LoanAmountCreation = () => {
                 <div>
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="btn btn-error">Close</button>
+                        <button className="btn btn-error" onClick={()=>soundClick?.play()}>Close</button>
                     </form>
                 </div>
 

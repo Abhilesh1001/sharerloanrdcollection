@@ -26,7 +26,17 @@ const App: React.FC = () => {
             {Object.keys(data).length > 0 ? (
                 <DataTable startDate={date.startDate} endDate={date.endDate} data={data} />
             ) : (
-                <div className=' text-gray-50'>No data available</div>
+
+                <div className='flex justify-center mt-10'>
+                    <div className="card w-96 bg-primary text-primary-content">
+                    <div className="card-body">
+                        <h2 className="card-title text-4xl">No Data Avilable</h2>
+                        <p>Select Date for Check</p>
+                    </div>
+                </div>
+
+                </div>
+        
             )}
 
         </div>
