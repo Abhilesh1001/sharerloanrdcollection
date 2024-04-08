@@ -1,11 +1,9 @@
 'use client'
 
-import PrBurron from '@/components/button/PrBurron'
 import DumyInput from '@/components/dummyinput/DumyInput'
 import { format, parseISO } from 'date-fns';
 import { useLoanamount } from '@/hooks/loan/useLoanamount'
 import LoanAmountCreation from '@/components/loan/LoanAmountCreation'
-import UpdateBotton from '@/components/button/UpdateButton';
 import { soundClick } from '@/sound/sound';
 
 

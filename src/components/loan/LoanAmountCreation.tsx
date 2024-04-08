@@ -1,9 +1,6 @@
 import React from 'react'
 
-
 import Loading from '@/components/loading/Loading'
-import PrBurron from '@/components/button/PrBurron'
-import TextInput from '@/components/dummyinput/TextInput'
 import DumyInput from '@/components/dummyinput/DumyInput'
 import { format, parseISO } from 'date-fns';
 import { useLoanamount } from '@/hooks/loan/useLoanamount'
