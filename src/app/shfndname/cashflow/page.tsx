@@ -21,7 +21,7 @@ const Page = () => {
 
     
     const { data } = useQuery({ queryKey: ['cashflow'], queryFn: fetchData})
-    console.log(data)
+    console.log('datacashflow',data)
 
 
     let adddata: any = []
@@ -31,7 +31,7 @@ const Page = () => {
             if (key.split('_')[1] === 'share') {
                 let newadddata = {
                     [key]: {
-                        'journal': `Capital introduce by ${item[key].name}`,
+                        'journal': `Share Fund :- ${item[key].name}`,
                         'amount_debit': item[key].amount_Debit,
                         'amount_credit': item[key].amount_credit,
                     }
@@ -63,7 +63,7 @@ const Page = () => {
             if (key.split('_')[1] === 'staff') {
                 let newadddata = {
                     [key]: {
-                        'journal': `Staff Payment ${item[key].name} and ID ${item[key].person_id}`,
+                        'journal': `Staff Payment :- ${item[key].name} and ID ${item[key].person_id}`,
                         'amount_debit': item[key].amount_Debit,
                         'amount_credit': null,
                     }
@@ -73,18 +73,35 @@ const Page = () => {
             if (key.split('_')[1] === 'particulars') {
                 let newadddata = {
                     [key]: {
-                        'journal': `${item[key].particular}}`,
+                        'journal': `Expenses :- ${item[key].particular}`,
                         'amount_debit': item[key].amount_Debit,
                         'amount_credit': item[key].amount_credit,
                     }
                 }
                 adddata.push(newadddata)
             }
+            if (key.split('_')[1] === 'asset') {
+                let newadddata = {
+                    [key]: {
+                        'journal': `Asset :- ${item[key].asetname}`,
+                        'amount_debit': item[key].amount_Debit,
+                        'amount_credit': null,
+                    }
+                }
+                adddata.push(newadddata)
+            }
+            if (key.split('_')[1] === 'fd') {
+                let newadddata = {
+                    [key]: {
+                        'journal': `Fixed Deposite :- ${item[key].person_name}`,
+                        'amount_debit': item[key].amount_Debit,
+                        'amount_credit': item[key].amount_credit
+                    }
+                }
+                adddata.push(newadddata)
+            }
         }
 
-        const res = {
-
-        }
     })
 
 

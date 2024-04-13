@@ -93,7 +93,7 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
     
         newRenswreddata.forEach((items: any) => {
             // Calculate interest
-            interest = Number(beginningValue) * Number(inter) * 0.01 / Number(dura);
+            interest = Number(beginningValue) * Number(inter) * 0.01 / Number(365);
             principle =  Number(items.emi) - Number(interest.toFixed(2))
             
             const data = {
@@ -145,7 +145,7 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
         //  EMI using PMT formula
         const emi = (pv * dailyRate) / (1 - Math.pow(1 + dailyRate, -nper));
     
-        return emi.toFixed(2); 
+        return emi.toFixed(4); 
     } 
     const perDayEMI = calculatePerDayEMI(interest, duration, loan_amount);
    

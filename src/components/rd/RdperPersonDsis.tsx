@@ -95,14 +95,14 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
     
         newRenswreddata.forEach((items: any) => {
             // Calculate interest
-            interest = beginningValue * Number(inter) * 0.01 / Number(dura);
+            interest = beginningValue * Number(inter) * 0.01 / Number(365);
     
             const data = {
                 date: items.date,
                 days: items.days,
                 begningvalue: beginningValue,
                 rd_installment: items.rd_installment,
-                intrest: interest.toFixed(9),
+                intrest: interest.toFixed(3),
                 endingvalue: beginningValue + Number(items.rd_installment) + Number(interest)
             };
     
@@ -137,7 +137,7 @@ const RdperPersonDis: React.FC<RdperPersonDsisProps>  = (props) => {
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'EFFECTIVE INTERST RATE'} /></div>
-                    <div className='w-full text-center'><DumyInput  indum= {interest!==null && duration ? (interest*0.01)/duration :''} /></div> 
+                    <div className='w-full text-center'><DumyInput  indum= {interest!==null && duration ? (interest*0.01)/365 :''} /></div> 
                 </div>
                 <div className="flex">
                     <div className='w-full text-center'><DumyInput indum={'RD PER DAY'} /></div>
