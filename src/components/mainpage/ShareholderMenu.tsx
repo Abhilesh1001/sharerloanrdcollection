@@ -35,6 +35,7 @@ const ShareholderMenu = () => {
         <Link href={'/expense/asset'} onClick={()=>handleClick('Asset')}>⭐ Asset</Link>
         <Link href={'/expense/staffsalary'} onClick={()=>handleClick('Staff Salary')}>⭐ Staff Salary</Link>
         <Link href={'/expense/fixdeposite'} onClick={()=>handleClick('Fixed Deposite')}>⭐ Fixed Deposite</Link>
+        <Link href={'/expense/profitloss'} onClick={()=>handleClick('Profit and Loss Statement')}>⭐ Profit Loss</Link>
     </ul>  
 
     <div className='cursor-pointer' onClick={()=>dispatch(getHidden({...hidden ,rdpername : `${hidden.rdpername==='hidden'?'flex':'hidden'}`}))}>📁 Rd Create</div>  

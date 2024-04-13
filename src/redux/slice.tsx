@@ -25,13 +25,6 @@ const initialState: CounterState = {
   userId:null,
   mainheader: 'mainPage',
   hidden : {
-    hiddenmaterial:"hidden",
-    hiddenPr:"hidden",
-    hiddenPo:"hidden",
-    hiddenGRN:"hidden",
-    hiddenDumps:"hidden",
-    hiddenVendor:"hidden",
-    hiddenDelivery:"hidden",
     hiddenFundName:"hidden",
     capitalDis :'hidden',
     rdpername: 'hidden',

@@ -140,13 +140,6 @@ export interface prmainData {
 
 
 export interface hiddenType {
-    hiddenmaterial:string,
-    hiddenPr:string,
-    hiddenPo:string,
-    hiddenGRN:string,
-    hiddenDumps:string,
-    hiddenVendor:string,
-    hiddenDelivery:string,
     hiddenFundName:string,
     capitalDis : string,
     rdpername :string,
