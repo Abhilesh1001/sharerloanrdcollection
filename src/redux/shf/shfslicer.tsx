@@ -12,7 +12,7 @@ interface counterType{
 const initialState: counterType = {
     hide :'hidden',
     rdNewData : [{name:'',email:'', pan_no:'',phone_no:''}],
-    loanNewNameData: [{name:'',email:'', pan_no:'',phone_no:''}]
+    loanNewNameData: [{name:'',email:'', pan_no:'',phone_no:'',addhar:'',address:''}]
 }
 
 
