@@ -22,7 +22,7 @@ const Vendor = () => {
 
                             }}>Add Customer</button>
                             <dialog id="my_modal_1" className="modal">
-                                <div className="modal-box">
+                                <div className="modal-box w-11/12 max-w-5xl">
                                     <LoanPersonCreate />
                                     <div className="modal-action">
                                        

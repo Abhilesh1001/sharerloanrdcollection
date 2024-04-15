@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 
 
 export const metadata: Metadata = {
-  title: 'Loan : Loan Create / Update / View',
-  description: ' Loan Provided to Person',
+  title: 'Person : Person Create / Update / View',
+  description: 'Crete Person',
 }
 
 export default function RootLayout({

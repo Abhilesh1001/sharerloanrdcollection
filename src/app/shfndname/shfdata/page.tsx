@@ -12,7 +12,6 @@ import { soundClick } from '@/sound/sound'
 const Vendor = () => {
   
 
-
   return (
     <div className=' h-auto bg-base-100 text-base-100  min-h-screen'>
       <div className='container'>

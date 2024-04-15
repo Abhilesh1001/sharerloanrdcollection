@@ -19,9 +19,8 @@ export const useLoan=()=>{
 
     const {baseurl,authToken,userId} = useSelector((state:StateProps)=>state.counter)
     const dispatch = useDispatch()
-    const [loanholder,setLoanholder] = useState<loanholderName>({name:'',email:'', pan_no:'',phone_no:''})
+    const [loanholder,setLoanholder] = useState<loanholderName>({name:'',email:'', pan_no:'',phone_no:'',addhar:'',address:''})
     const [vid,setVid]= useState<string>('')
-    const [sfcreate, setSfcreate] = useState('create')
     const [change, setChange] = useState('change')
 
     // create data 
@@ -31,15 +30,16 @@ export const useLoan=()=>{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: () => {    
-            setLoanholder({name:'',email:'', pan_no:'',phone_no:''})
+            setLoanholder({name:'',email:'', pan_no:'',phone_no:'',addhar:'',address:''})
             soundSsuccess?.play()
           },  
-          onError:()=>{
+          onError:(error)=>{
+            console.log(error)
             soundError?.play()
             toast.error('Fill all Required Fields',{position:'top-left'})
           }
     })
-    const {data}:{data?:MyData} = mutation
+    console.log(mutation.data)
     
     const handleSubmit = async( e: React.FormEvent<HTMLFormElement>) =>{
         soundClick?.play()
@@ -47,9 +47,11 @@ export const useLoan=()=>{
         const newDatata = {
             "usersf":userId,
             "name": loanholder.name,
-            "email": loanholder.email,
-            "pan_no": loanholder.pan_no, 
-            "phone_no": loanholder.phone_no
+            "email": loanholder.email===''?'na@gmail.com':loanholder.email,
+            "pan_no": loanholder.pan_no===''?'na':loanholder.pan_no, 
+            "phone_no": loanholder.phone_no,
+            "address": loanholder.address,
+            "adharcard": loanholder.addhar===''?'na':loanholder.addhar
             }
             console.log(newDatata,'newDAta')
 
@@ -71,7 +73,7 @@ export const useLoan=()=>{
             Authorization:`Bearer ${authToken?.access}`
           }})} ,
           onSuccess: (data) => {
-            setLoanholder({name:'',email:'', pan_no:'',phone_no:''})
+            setLoanholder({name:'',email:'', pan_no:'',phone_no:'',addhar:'',address:''})
             soundSsuccess?.play()
 
             },   
@@ -83,7 +85,7 @@ export const useLoan=()=>{
     })
     const {data:updateData}:{data?:MyData} = mutationUpdate
 
-    const {data:newData,error:errors} = useQuery({ queryKey: ['loanname',data,mutationUpdate,mutation], queryFn: fetchTodoList })
+    const {data:newData,error:errors} = useQuery({ queryKey: ['loanname',mutationUpdate.data,mutation.data], queryFn: fetchTodoList })
 
 
     const handleChange = ()=>{
@@ -95,8 +97,7 @@ export const useLoan=()=>{
 
     const handleCreate =()=>{
         soundClick?.play()
-        setLoanholder({name:'',email:'', pan_no:'',phone_no:''})
-        setSfcreate('create')
+        setLoanholder({name:'',email:'', pan_no:'',phone_no:'',addhar:'',address:''})
         setChange('')
     }
   
@@ -139,7 +140,9 @@ export const useLoan=()=>{
                     name:data.data.name,
                     email: data.data.email,
                     pan_no:data.data.pan_no,
-                    phone_no:data.data.phone_no
+                    phone_no:data.data.phone_no,
+                    addhar:data.data.adharcard,
+                    address :data.data.address
                 }
 
               })},
@@ -150,5 +153,5 @@ export const useLoan=()=>{
               }           
     })
   
-    return {mutation,data,vid,setVid,loanholder,handleSubmit,setLoanholder,handleKeyDown,handleCreate,handleChange,handleUPdate,change,sfcreate,mutationUpdate,updateData}
+    return {mutation,vid,setVid,loanholder,handleSubmit,setLoanholder,handleKeyDown,handleCreate,handleChange,handleUPdate,change,mutationUpdate,updateData}
 }
