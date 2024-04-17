@@ -1,7 +1,6 @@
 
 import DumyInput from '../dummyinput/DumyInput';
-import {useSelector,useDispatch} from 'react-redux'
-import TextInput from '../dummyinput/TextInput';
+
 import { format,parseISO,addDays } from 'date-fns'
 
 interface ProdataType {

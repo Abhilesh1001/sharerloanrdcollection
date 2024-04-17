@@ -104,11 +104,13 @@ export const useLoan=()=>{
     async function handleUPdate(){
         soundClick?.play()
         const newData = {
-            usersf : userId,
-            name:loanholder.name ,
-            phone_no:loanholder.phone_no, 
-            email: loanholder.email,
-            pan_no: loanholder.pan_no,
+            "usersf":userId,
+            "name": loanholder.name,
+            "email": loanholder.email===''?'na@gmail.com':loanholder.email,
+            "pan_no": loanholder.pan_no===''?'na':loanholder.pan_no, 
+            "phone_no": loanholder.phone_no,
+            "address": loanholder.address,
+            "adharcard": loanholder.addhar===''?'na':loanholder.addhar
         }
         mutationUpdate.mutate(newData)
 
