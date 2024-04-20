@@ -85,6 +85,7 @@ export type shfStateTypr = {
         hide : string,
         rdNewData : rdholderName[]
         loanNewNameData:loanholderName[]
+        csvFileRdcol : any
     }   
 }
 

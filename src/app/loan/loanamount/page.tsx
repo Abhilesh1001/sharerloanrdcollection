@@ -5,7 +5,7 @@ import { format, parseISO } from 'date-fns';
 import { useLoanamount } from '@/hooks/loan/useLoanamount'
 import LoanAmountCreation from '@/components/loan/LoanAmountCreation'
 import { soundClick } from '@/sound/sound';
-
+import { CSVLink } from "react-csv";
 
 
 
@@ -27,13 +27,32 @@ interface loanDetails {
 
 const Vendor = () => {
 
-    const { newData } = useLoanamount()
+    const { newData:data } = useLoanamount()
+
+
+    
+  let csvData: any = []
+
+  if (data) {
+    const newData = data?.map((items: loanDetails) => {
+      return [items.loan_id,items.person_id, items.person_name,items.loan_amount,items.interest_rate,format(items.start_date,'dd-MM-yyyy'),items.is_active===true?'active':format(items.closing_date,'dd-MM-yyyy'),items.is_active===true?'active':'close',items.remarks]
+    })
+
+    csvData = [
+      ["Lone No", "Customer Id", "Customer Name", "Loan Amount", "Loan Intrest","Loan Opening Date", "Loan Close Date", "Loan Status",'Remarks'],
+      ...newData
+    ];
+  }
+
 
     return (
         <div className='text-base-content bg-base-100 h-auto   min-h-screen'>
             <div className='container'>
                 <div className="row my-4">
                     <div className="mt-4">
+
+                        <div className='flex'>
+                        <button className='btn btn-secondary mr-2'><CSVLink filename={'LoanInt-file.csv'} data={csvData}>Export Excel</CSVLink></button>
                         <div>
                             <button className="btn btn-success mr-2 " onClick={() => {
                                 const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
@@ -52,6 +71,10 @@ const Vendor = () => {
                                 </div>
                             </dialog>
                         </div>
+
+                        </div>
+                  
+                        
                         <div>
                         </div>
 
@@ -73,7 +96,7 @@ const Vendor = () => {
                                 </tr>
                             </thead>
                             <tbody className='text-center'>
-                                {newData?.map((items: loanDetails) => {
+                                {data?.map((items: loanDetails) => {
                                     return <tr key={items.loan_id}>
                                         <th scope="row"><DumyInput indum={items.loan_id !== undefined ? items.loan_id : null} /></th>
                                         <td><DumyInput indum={items.person_id} /></td>

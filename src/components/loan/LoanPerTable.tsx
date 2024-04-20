@@ -11,7 +11,7 @@ import { soundClick, soundSsuccess } from '@/sound/sound';
 const LoanPerTable = () => {
     const { loanNewNameData } = useSelector((state: shfStateTypr) => state.shfSlice)
     const {baseurl,authToken,userId} = useSelector((state:StateProps)=>state.counter)
-    console.log(loanNewNameData)
+   
     const [data,setData] = useState({address:'',email:'',name:'',pan_no:'',person_id:null,phone_no:'',time:'',usersf:null})
     const handleclickrdcolallview= async (id:any)=>{
         soundClick?.play()
@@ -26,6 +26,10 @@ const LoanPerTable = () => {
         }
        
     }
+
+
+
+
     return (
         <div className="col-sm-10 relative text-nowrap bg-base-300 overflow-y-auto pt-2 text-base-content shadow-md  mt-2  sm:rounded-lg  h-[80vh]">
             <table className="w-full text-sm text-left rtl:text-right   ">

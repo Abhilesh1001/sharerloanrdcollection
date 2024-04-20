@@ -7,7 +7,7 @@ import RdperPersonDis from '@/components/rd/RdperPersonDsis'
 import ButtonSave from '@/components/button/ButtonSave'
 import AddFormButton from '@/components/button/AddFormButton'
 import { useMemo,memo, useState, useEffect } from 'react'
-import { soundClick } from '@/sound/sound'
+
 
 
 
@@ -69,10 +69,7 @@ const Vendor = () => {
                     <dialog id="my_modal_2" className="modal">
                         <div className="modal-box w-11/12 max-w-5xl bg-base-100 text-base-content mt-0">
                             <div className="modal-action">
-                                <form method="dialog">
-                                    {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn mb-2 btn-error" onClick={()=>soundClick?.play()}>Close</button>
-                                </form>
+                               
                             </div>
                             <RdperPersonDis prodataitem={data} />
                         </div>

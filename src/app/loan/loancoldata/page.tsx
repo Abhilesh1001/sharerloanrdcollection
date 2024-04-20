@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 const Vendor = () => {
 
     const { handleHOderView, handleSubmit, loancollection, handleChange, mutation, handleclickrdcolallview, data, handleChangeDate, collectin_data,handleDelete } = useLoancoldata()
-    console.log('rdcoll', collectin_data)
+    
 
     return (
         <div className='bg-base-100 min-h-screen'>
@@ -75,10 +75,7 @@ const Vendor = () => {
                     <dialog id="my_modal_2" className="modal">
                         <div className="modal-box w-11/12 max-w-5xl  mt-0">
                             <div className="modal-action">
-                                <form method="dialog">
-                                    {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn btn-error mb-2">Close</button>
-                                </form>
+                                
                             </div>
                             <RdperPersonDis prodataitem={data} />
                         </div>

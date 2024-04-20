@@ -204,7 +204,24 @@ export const useRdintrest = () => {
   })
 
 
+  
+  async function fetchData(){
+    const res = await axios.get(`${baseurl}loan/rdintrest`,{headers:{
+        Authorization:`Bearer ${authToken?.access}`
+    }})
+
+    return res.data
+}
+
+const {data} = useQuery({queryKey:['customerrdpaln'],queryFn:fetchData})
 
 
-  return { mutation, setVid, vid, handleSubmit, rdintrest, setrdintrest, handleUPdate, change, handleCreate, handleChange, sfcreate, handleKeyDown, updateData, mutationUpdate, handleKeyDownIntrest }
+
+
+
+
+
+
+
+  return { mutation, setVid, vid, handleSubmit, rdintrest, setrdintrest, handleUPdate, change, handleCreate, handleChange, sfcreate, handleKeyDown, updateData, mutationUpdate, handleKeyDownIntrest,data }
 }

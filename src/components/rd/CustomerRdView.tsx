@@ -5,8 +5,9 @@ import {useSelector,useDispatch} from 'react-redux'
 import {StateProps} from '@/type/type'
 import DumyInput from '../dummyinput/DumyInput'
 import { format,parseISO } from 'date-fns'
+import { useRdintrest } from '@/hooks/rd/useRdintrest'
 
-interface CustomerRdPlan{
+export interface CustomerRdPlan{
     rd_id ?: number|null ,
     person_name: string,
     person_id: number|null,
@@ -20,18 +21,7 @@ interface CustomerRdPlan{
 const CustomerRdView = () => {
     const {baseurl,authToken,userId} = useSelector((state:StateProps)=>state.counter)
 
-
-    async function fetchData(){
-        const res = await axios.get(`${baseurl}loan/rdintrest`,{headers:{
-            Authorization:`Bearer ${authToken?.access}`
-        }})
-
-        return res.data
-    }
-
-    const {data} = useQuery({queryKey:['customerrdpaln'],queryFn:fetchData})
-
-    console.log(data)
+    const {data} = useRdintrest()
 
 
   return (

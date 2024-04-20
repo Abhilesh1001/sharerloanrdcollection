@@ -5,7 +5,8 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { StateProps } from '@/type/type'
 import DumyInput from '@/components/dummyinput/DumyInput'
-    
+import { CSVLink } from "react-csv";
+
 const Page = () => {
     const { baseurl, authToken, userId } = useSelector((state: StateProps) => state.counter)
     const [enable, setenable] = useState(false)
@@ -19,9 +20,9 @@ const Page = () => {
         return res.data
     }
 
-    
-    const { data } = useQuery({ queryKey: ['cashflow'], queryFn: fetchData})
-    console.log('datacashflow',data)
+
+    const { data } = useQuery({ queryKey: ['cashflow'], queryFn: fetchData })
+    console.log('datacashflow', data)
 
 
     let adddata: any = []
@@ -112,15 +113,15 @@ const Page = () => {
     function requiredDataMain() {
         let prevBalance: number = 0;
         const rows: any[] = [];
-    
-         adddata.forEach((item: any) => {
+
+        adddata.forEach((item: any) => {
             const date = Object.keys(item)[0].split('_')[0];
             const amountDebit = item[Object.keys(item)[0]].amount_debit || 0;
             const amountCredit = item[Object.keys(item)[0]].amount_credit || 0;
-    
+
             const balance = prevBalance + Number(amountCredit) - Number(amountDebit);
             prevBalance = balance;
-    
+
             const data = {
                 'date': date,
                 'journal': item[Object.keys(item)[0]].journal,
@@ -128,24 +129,43 @@ const Page = () => {
                 'amount_credit': amountCredit,
                 'balance': balance
             };
-    
+
             rows.push(data);
             return data;
         });
-    
+
         return rows;
     }
-    
+
     const cashflowData = requiredDataMain()
     console.log(cashflowData)
-    
+
+    // csv file 
+
+    let csvData: any = []
+    if (cashflowData) {
+        const newData = cashflowData?.map((item: any) => {
+            return [item.date, item.journal, item.amount_debit, item.amount_credit, item.balance]
+        })
+
+        csvData = [
+            ["Date", "Journal", "Debit", "Credit", "Balance"],
+            ...newData
+        ];
+    }
+
+
     return (
         <div className=' h-auto bg-base-100 text-base-content min-h-screen'>
             <div className="container">
                 <div className='h-6'></div>
+                <div className='flex mt-4'>
+                    <button className='btn btn-success mr-2' onClick={handleClick}>ViewData</button>
+                    <button className='btn btn-secondary mr-2'><CSVLink filename={'CashFlow-file.csv'} data={csvData}>Export Excel</CSVLink></button>
+                </div>
 
-                <button className=' mt-4 btn btn-success' onClick={handleClick}>ViewData</button>
                 <div className=' ml-2 mr-2 mt-4 h-[70vh] bg-base-300 overflow-auto w-[50vw] text-nowrap my-2 relative overflow-y-auto shadow-md  sm:rounded-lg'>
+
                     <table className="w-full text-sm text-left rtl:text-right">
                         <thead className='sticky top-0 z-1  h-10 bg-base-200'>
                             <tr >

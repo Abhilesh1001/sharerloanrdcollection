@@ -12,9 +12,7 @@ import { StateProps } from '@/type/type'
 import React, { useEffect, useState, memo } from 'react'
 import { shfStateTypr } from '@/type/shareholder/shareholde'
 import { soundClick } from '@/sound/sound'
-
-
-
+import { CSVLink } from "react-csv";
 
 interface prodatatype {
     Sh_id: string,
@@ -27,7 +25,7 @@ interface prodatatype {
 
 const ShDataTable = () => {
 
-    const { newData } = useShfdata()
+    const { newData:data } = useShfdata()
 
     const { baseurl, authToken, userId } = useSelector((state: StateProps) => state.counter)
     const dispatch = useDispatch()
@@ -35,7 +33,6 @@ const ShDataTable = () => {
     const [prodata, setProdata] = useState<prodatatype[]>([{ sh_name: '', Sh_id: '', shf_id: null, amount_credit: null, amount_Debit: null, time: '' }])
 
     const handleTotalColView = async (id: any) => {
-
         try {
             const res = await axios.get(`${baseurl}loan/shfund/${id}`, {
                 headers: {
@@ -53,7 +50,24 @@ const ShDataTable = () => {
     }
 
 
+
+    let csvData: any = []
+
+        if (data) {
+            const newData = data?.map((item: shareholderFund) => {
+                return [item.shf_id, item.name, item.name, '',item.totalInvested,'']
+            })
+
+            csvData = [
+                ["Customer ID", "Name", "Quantity", "Amount Invested", "Present Value"],
+                ...newData
+            ];
+        }
+
     return (
+        <>
+          <button className='btn btn-secondary mr-2'><CSVLink filename={'Customer-file.csv'} data={csvData}>Export Excel</CSVLink></button>
+    
         <div className="col-sm-8 relative text-nowrap overflow-y-auto shadow-md  mt-2 bg-base-300 text-base-content sm:rounded-lg  h-[80vh]">
 
             <table className="w-full text-sm text-left rtl:text-right ">
@@ -68,7 +82,7 @@ const ShDataTable = () => {
                     </tr>
                 </thead>
                 <tbody className='text-center'>
-                    {newData?.map((items: shareholderFund) => {
+                    {data?.map((items: shareholderFund) => {
                         return <tr key={items.shf_id}>
                             <th scope="row"><DumyInput indum={items.shf_id} /></th>
                             <td><DumyInput indum={items.name} /></td>
@@ -99,6 +113,7 @@ const ShDataTable = () => {
                 </div>
             </dialog>
         </div>
+        </>
     )
 }
 

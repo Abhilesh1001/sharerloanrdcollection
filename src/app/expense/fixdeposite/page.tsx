@@ -1,14 +1,11 @@
 'use client'
 
-import PrBurron from '@/components/button/PrBurron'
 import DumyInput from '@/components/dummyinput/DumyInput'
 import { format, parseISO } from 'date-fns';
-import { useLoanamount } from '@/hooks/loan/useLoanamount'
 import { useFixedDeposite } from '@/hooks/particular/useFixedDeposite';
-import UpdateBotton from '@/components/button/UpdateButton';
 import { soundClick } from '@/sound/sound';
 import FixedDepositeCreations from '@/components/particular/FixedDepositeCreations';
-
+import { CSVLink } from "react-csv";
 
 interface FixedDepositeType {
   fd_id?: null | number
@@ -28,12 +25,28 @@ interface FixedDepositeType {
 const FixedDeposite = () => {
   const {newData} = useFixedDeposite()
 
+  let csvData: any = []
+
+  if (newData) {
+      const newDataNew = newData?.map((item: FixedDepositeType) => {
+          return [item.fd_id,item.person_id,item.person_name,item.amount_credit,item.amount_Debit,item.interest_rate,format(item.start_date,'dd-MM-yyyy'),item.is_active===true?'active':format(item.closing_date,'dd-MM-yyyy'),item.is_active===true?'active':'close']
+      })
+
+      csvData = [
+          ["FD No","Customer Id","Customer Name","FD Deposite Amount","FD Debit","FD Intrest","Start Date","Close Date","Status"],
+          ...newDataNew
+      ];
+  }
+
+
+
   return (
     <div className='text-base-content bg-base-100 h-auto   min-h-screen'>
             <div className='container'>
                 <div className="row my-4">
                     <div className="mt-4">
                         <div>
+                        <button className='btn btn-secondary mr-2'><CSVLink filename={'FixedDeposite-file.csv'} data={csvData}>Export Excel</CSVLink></button>
                             <button className="btn btn-success mr-2 " onClick={() => {
                                 const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
                                 soundClick?.play()
@@ -81,7 +94,7 @@ const FixedDeposite = () => {
                                         <td><DumyInput indum={items.amount_credit} />{ }</td>
                                         <td><DumyInput indum={items.interest_rate} />{ }</td>
                                         <td><DumyInput indum={(items.start_date !== undefined )? format(parseISO(items.start_date), 'dd-MM-yyyy') : ''} /></td>
-                                        <td><DumyInput indum={items.closing_date !== undefined && items.closing_date !== null ? !items.is_active && format(parseISO(items.closing_date), 'dd-MM-yyyy') : ''} /></td>
+                                        <td><DumyInput indum={items.closing_date !== undefined && items.closing_date !== null ? !items.is_active && format(parseISO(items.closing_date), 'dd-MM-yyyy') : 'active'} /></td>
                                         
                                         <td><DumyInput indum={`${items.is_active ? 'Active' : 'Close'}`} /></td>
                                     </tr>

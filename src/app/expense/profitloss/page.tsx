@@ -8,6 +8,7 @@ import DumyInput from '@/components/dummyinput/DumyInput';
 import { soundSsuccess,soundClick,soundError } from '@/sound/sound';
 import { toast } from 'react-toastify';
 import Loading from '@/components/loading/Loading';
+import { CSVLink } from 'react-csv';
 
 interface dataType {
     asset: number | null,
@@ -70,11 +71,26 @@ const ProfitLoss = () => {
 
     }
 
+
+    let csvData: any = []
+    if (data) {
+        
+        csvData = [
+            ["RD Intrest","Loan Intrest","Assets","FD credit","FD Debit","Expense Debit","Expense Credit","Staff Salary"],
+           [data.rd,data.loan,data.asset,data.fd.fd_credit,data.fd.fd_debit,data.expense.expensedebit,data.expense.expense_credit,data.staff]
+        ];
+    }
+
+
+
     return (
         <div className='bg-base-100 text-base-content pt-4 min-h-screen mt-6'>
             <div className='h-3'></div>
             <div className='flex ml-4'>
                 <div className='flex'>
+                    
+              
+
                     <label htmlFor="" className='text-nowrap pt-2  mr-2' >Start Date</label>
                     <input type="date" onChange={(e) => setDate({ ...date, start_date: e.target.value })} className="input input-bordered" />
                 </div>
@@ -84,6 +100,7 @@ const ProfitLoss = () => {
                 </div>
                 <ButtonSave label={'submit'} onClick={handleClick} />
                 {loading && <Loading />}
+                <button className='btn btn-secondary mr-2'><CSVLink filename={'ProfitLoss-file.csv'} data={csvData}>Export Excel</CSVLink></button>
             </div>
             <div className="col-sm-10 ml-10 relative bg-base-300 text-nowrap overflow-y-auto shadow-md bd-base-300  mt-2  sm:rounded-lg">
                 <table className='w-full text-sm text-left rtl:text-right'>

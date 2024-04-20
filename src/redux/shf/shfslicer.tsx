@@ -3,16 +3,17 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import {loanholderName, rdholderName} from '@/type/shareholder/shareholde'
 
-interface counterType{
+export interface counterType{
     hide :string,
     rdNewData: rdholderName[],
     loanNewNameData: loanholderName[]
+
 } 
 
 const initialState: counterType = {
     hide :'hidden',
     rdNewData : [{name:'',email:'', pan_no:'',phone_no:''}],
-    loanNewNameData: [{name:'',email:'', pan_no:'',phone_no:'',addhar:'',address:''}]
+    loanNewNameData: [{name:'',email:'', pan_no:'',phone_no:'',addhar:'',address:''}],
 }
 
 
@@ -28,7 +29,7 @@ export const shfSlice = createSlice({
     },
     getLoanNameData : (state,action:PayloadAction<loanholderName[]>)=>{
         state.loanNewNameData = action.payload
-    }
+    },
 }
    
 })
