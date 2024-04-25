@@ -11,8 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Procurement Management : Share Holder Fund',
-  description: 'Procurement Managemanet System',
+  title: 'ShareHolder RD Loan Collection',
+  description: 'ShareHolder RD Loan Collection',
 }
 
 export default function RootLayout({
