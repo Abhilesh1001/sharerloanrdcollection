@@ -91,6 +91,7 @@ export const useFixedDeposite = () => {
             amount_credit: fixdeposite.amount_credit,
             start_date :fixdeposite.start_date,
             closing_date: fixdeposite.closing_date,
+            collection_date:fixdeposite.start_date,
             duration:fixdeposite.duration,
             interest_rate : fixdeposite.interest_rate,
             is_active: fixdeposite.is_active

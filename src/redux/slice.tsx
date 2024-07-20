@@ -12,13 +12,14 @@ export interface CounterState {
   mainheader :string,
   hidden : hiddenType,
   alerthidden : string
-}
+} 
 
 const initialState: CounterState = {
   // https://abhileshmaterial.pythonanywhere.com/
   // http://127.0.0.1:8000/
   // https://abhileshsharefund.pythonanywhere.com/
-  baseurl : 'https://abhileshsharefund.pythonanywhere.com/',
+  //http://www.abhilesh.online/
+  baseurl : 'https://www.abhilesh.online/',
   logindata : {},
   authToken : null,
   user : "",

@@ -26,7 +26,7 @@ const Asset = () => {
 
   if (data) {
       const newData = data?.map((item: assetType) => {
-          return [item.asset_no,item.asset_name,item.amount_Debit,format(item.debit_date,'dd-MM-yyyy'),item.usersf]
+          return [item?.asset_no,item?.asset_name,item?.amount_Debit,item?.debit_date,item.usersf]
       })
 
       csvData = [
