@@ -21,7 +21,7 @@ const Button = () => {
     <div> 
       <form onSubmit={handleSubmit}>
         {loading && <Loading />}
-                <label htmlFor="email" className='block'>Email</label>
+                <label htmlFor="email" className='block'>Enter Email</label>
                 <input type="email" value={data.email} required name='email'  onChange={(e) => dispatch({ type: "EMAIL", value: e.target.value })} placeholder="email" className="input input-bordered w-80 my-2" />
                 <label htmlFor="email" className='block'>Password</label>
                 <input type="password" value={data.password}  onChange={(e) => dispatch({ type: "PASSWORD", value: e.target.value })}  required name='password' placeholder="password" className="input input-bordered w-80 mb-4 my-2" />
