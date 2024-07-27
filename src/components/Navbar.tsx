@@ -2,7 +2,7 @@
 import React, { useEffect, useState, memo } from 'react'
 import Link from 'next/link'
 import { useLogin } from '@/hooks/login/useLogin'
-import { getMainheader } from '@/redux/slice'
+import { getAdmin, getMainheader } from '@/redux/slice'
 import './style.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAuthToken } from '@/redux/slice'
@@ -13,7 +13,6 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import NavColl from './navcomponent/NavColl'
 import ShareholderMenu from './mainpage/ShareholderMenu'
-
 
 
 export type StateProps = {
@@ -71,7 +70,7 @@ const Navbar = () => {
                         Authorization: `Bearer ${authToken?.access}`
                     }
                 })
-
+                dispatch(getAdmin(data.data.is_admin))
             } catch (error) {
                 console.log('errro', error)
                 toast.error('Your sesson has expired Please Login', { position: 'top-center' })

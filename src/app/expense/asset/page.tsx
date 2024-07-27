@@ -8,8 +8,6 @@ import { format,parseISO } from 'date-fns'
 import { CSVLink } from "react-csv";
 
 
-
-
 interface assetType {
   asset_no?: null | number
   asset_name: string,
@@ -50,6 +48,7 @@ const Asset = () => {
                   modal.showModal();
                 }
               }}>Add Assets</button>
+              
               <dialog id="my_modal_1" className="modal">
                 <div className="modal-box ">
 

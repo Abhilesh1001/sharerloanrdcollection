@@ -8,17 +8,18 @@ export interface CounterState {
   logindata :{},
   authToken: { refresh: string; access: string }| null,
   user : string,
-  userId : number|null,
+  userId : number|null, 
   mainheader :string,
-  hidden : hiddenType,
+  hidden : hiddenType,  
   alerthidden : string
+  is_admin : boolean,
 } 
 
 const initialState: CounterState = {
   // https://abhileshmaterial.pythonanywhere.com/
   // http://127.0.0.1:8000/
   // https://abhileshsharefund.pythonanywhere.com/
-  //http://www.abhilesh.online/
+  //https://www.abhilesh.online/
   baseurl : 'https://www.abhilesh.online/',
   logindata : {},
   authToken : null,
@@ -36,7 +37,8 @@ const initialState: CounterState = {
     issuematerial : 'hidden'
   
   },
-  alerthidden :'hidden'
+  alerthidden :'hidden',
+  is_admin : false,
 }
 
 export const counterSlice = createSlice({
@@ -70,6 +72,9 @@ export const counterSlice = createSlice({
     },
     getHidden : (state,action:PayloadAction<hiddenType>)=>{
       state.hidden =action.payload
+    },
+    getAdmin : (state,action:PayloadAction<boolean>)=>{
+      state.is_admin = action.payload
     }
     
   },
@@ -77,6 +82,6 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getLogindata,getAuthToken,getUser,clearAuthToken,clearUser,getUserId,clearUserId,getMainheader,getHidden} = counterSlice.actions
+export const { getLogindata,getAuthToken,getUser,clearAuthToken,clearUser,getUserId,clearUserId,getMainheader,getHidden,getAdmin} = counterSlice.actions
 
 export default counterSlice.reducer

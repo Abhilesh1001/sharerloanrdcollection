@@ -7,6 +7,9 @@ import { soundClick, soundError, soundSsuccess } from '@/sound/sound'
 import { getMainheader } from '@/redux/slice'
 import Link from 'next/link';
 
+
+
+
 export type StateProps = {
     counter: {
         user: string | null,
@@ -14,14 +17,15 @@ export type StateProps = {
         authToken: {
             access: string
         }
-        baseurl: string
+        baseurl: string,
+        is_admin :boolean
     }
 }
 
 const NavColl = () => {
     const dispatch = useDispatch()
     const { handleLogout } = useLogin()
-    const { user } = useSelector((state: StateProps) => state.counter)
+    const { user,is_admin } = useSelector((state: StateProps) => state.counter)
 
 
     const router = useRouter()
@@ -43,6 +47,15 @@ const NavColl = () => {
                 </div>
 
             </li>
+            {is_admin && <li className="py-2 lg:py-0 ">
+                    <Link
+                    className="text-sm "
+                    href={'/admin'}
+                >
+                  Admin
+                </Link>
+            </li>}
+
             <li className="py-2 lg:py-0 ">
                 <a
                     className="text-sm "
