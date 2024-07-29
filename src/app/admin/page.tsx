@@ -1,35 +1,21 @@
 "use client"
 import React from 'react'
-import axios from 'axios'
-import { UseSelector } from 'react-redux'
-import { useQuery, useMutation } from '@tanstack/react-query'
-import { useSelector } from 'react-redux'
-import { StateProps } from '@/type/type'
+
 import DumyInput from '@/components/dummyinput/DumyInput'
 import AddPermission from '@/components/admin/AddPermission'
 import ViewPermisson from '@/components/admin/ViewPermisson'
+import { useAdmin } from '@/hooks/admin/useAdmin'
+
+
 
 
 
 
 const Admin = () => {
 
-    const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
+    const {data} = useAdmin()
 
-    const getTodos = async () => {
-
-        const res = await axios.get(`${baseurl}cus/api/permissions/`, {
-            headers: {
-                Authorization: `Bearer ${authToken?.access}`
-            }
-        })
-        return res.data
-
-
-    }
-
-    const { data } = useQuery({ queryKey: ['apipermission'], queryFn: getTodos })
-    
+     
 
     return (
         <div className='text-base-content bg-base-100 h-auto   min-h-screen'>
@@ -48,12 +34,11 @@ const Admin = () => {
               }}>Add Permission</button>
               
               <dialog id="my_modal_1" className="modal">
-                <div className="modal-box ">
+                <div className="modal-box w-11/12 max-w-5xl">
 
                   <div className="modal-action mt-0">
                   </div>
                   <AddPermission />
-                 
                  
                 </div>
               </dialog>
@@ -69,7 +54,7 @@ const Admin = () => {
               }}>Avilable Permission</button>
               
               <dialog id="my_modal_2" className="modal">
-                <div className="modal-box ">
+                <div className="modal-box w-11/12 max-w-5xl">
 
                   <div className="modal-action mt-0">
                   </div>
