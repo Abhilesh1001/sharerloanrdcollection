@@ -13,7 +13,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import NavColl from './navcomponent/NavColl'
 import ShareholderMenu from './mainpage/ShareholderMenu'
-
+import DrawerAdmin from './navcomponent/DrawerAdmin'
 
 export type StateProps = {
     counter: {
@@ -22,14 +22,15 @@ export type StateProps = {
         authToken: {
             access: string
         }
-        baseurl: string
+        baseurl: string,
+        is_admin : boolean
     }
 }
 
 
 const Navbar = () => {
     const dispatch = useDispatch()
-    const { user, mainheader, authToken, baseurl } = useSelector((state: StateProps) => state.counter)
+    const { user, mainheader, authToken, baseurl,is_admin } = useSelector((state: StateProps) => state.counter)
     const data = { email: '', password: '' }
     const { handleLogout } = useLogin(data)
     const { handleClickMenu, hiddenmenu } = useMenu()
@@ -114,13 +115,18 @@ const Navbar = () => {
             </div>
 
 
+
+
+           
+
+
             <div className="dropdown dropdown-end mr-10  md:hidden">
                 <div tabIndex={0} role="button" className="btn m-1">
                     <IoMdMenu className='text-2xl cursor-pointer flex' />
                 </div>
 
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-60">
-                <NavColl />
+                    <NavColl />
                 </ul>
             </div>
 
@@ -128,10 +134,24 @@ const Navbar = () => {
                 <nav>
                     <ul className="text-xl text-center items-center gap-x-5 md:gap-x-4 lg:text-lg lg:flex  lg:pt-0">
 
-                    <NavColl />
+                        <NavColl />
                     </ul>
                 </nav>
             </div>
+
+
+            <div>
+
+                 {/* Drawer  */}
+
+            {is_admin && <DrawerAdmin />}
+
+
+            {/* end Drawer  */}
+            </div>
+
+
+
         </nav>
     )
 }

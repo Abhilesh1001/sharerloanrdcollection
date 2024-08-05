@@ -11,14 +11,19 @@ import { useAdmin } from '@/hooks/admin/useAdmin'
 
 
 
+
+
+
 const Admin = () => {
 
-    const {data} = useAdmin()
+    const {data }:any = useAdmin()
 
      
 
     return (
         <div className='text-base-content bg-base-100 h-auto   min-h-screen'>
+
+
 
             <div className="container mt-6">
                 <div className='h-6'></div>
@@ -64,15 +69,6 @@ const Admin = () => {
                 </div>
               </dialog>
 
-
-
-
-
-
-
-
-
-
                 <div className=' ml-2 mr-2 mt-4 h-[70vh] bg-base-300 overflow-auto w-[50vw] text-nowrap my-2 relative overflow-y-auto shadow-md  sm:rounded-lg'>
 
                     <table className="w-full text-sm text-left rtl:text-right">
@@ -109,9 +105,7 @@ const Admin = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
-
-
+            </div> 
 
 
 
