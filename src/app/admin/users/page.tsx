@@ -1,4 +1,5 @@
 'use client'
+import AddUserModal from '@/components/admin/users/AddUserModal'
 import DumyInput from '@/components/dummyinput/DumyInput'
 import { StateProps } from '@/type/type'
 import { useQuery } from '@tanstack/react-query'
@@ -92,7 +93,40 @@ const Users = () => {
   return (
     <div className="text-base-content bg-base-100 h-auto min-h-screen">
       <div className="ml-80 my-6 mr-20">
-        <div className="p-10"></div>
+
+
+     
+
+        
+
+        <div className="p-2"></div>
+        <button className="btn btn-success mr-2 " onClick={() => {
+                const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
+                
+                if (modal) {
+                  modal.showModal();
+                }
+              }}>Add Users</button>
+              
+              <dialog id="my_modal_1" className="modal">
+                <div className="modal-box w-11/12 max-w-5xl ">
+
+                  <div className="modal-action mt-0">
+                  </div>
+                  <AddUserModal />
+                </div>
+              </dialog>
+
+
+              <div className='row'>
+                <div className="col-sm-6">
+
+                </div>
+                <div className="col-sm-6">
+                  
+                </div>
+              </div>
+        
         <table className="w-full text-sm text-left rtl:text-right">
           <thead className="sticky top-0 z-1 bg-base-200">
             <tr>
@@ -103,7 +137,6 @@ const Users = () => {
               <th scope="col">Admin</th>
               <th scope="col">Superuser</th>
               <th scope="col">TC</th>
-              <th scope="col">Change</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
@@ -158,11 +191,6 @@ const Users = () => {
                   ) : (
                     <DumyInput indum={items.tc ? 'Active' : 'Inactive'} />
                   )}
-                </td>
-                <td>
-                  <button onClick={() => handleChange(items.id)} className="btn btn-sm btn-warning">
-                    Change  
-                  </button>
                 </td>
                 <td>
                   <button className="btn btn-sm btn-error">Delete</button>
