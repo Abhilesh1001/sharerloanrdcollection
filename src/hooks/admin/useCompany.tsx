@@ -8,41 +8,21 @@ import { toast } from 'react-toastify'
 import { format } from 'date-fns'
 
 
-export interface userType{
-    id ?:number|null,
-    email : string,
-    is_superuser : boolean,
+export interface companyType{
+    id?: null | number
     name : string,
-    tc : boolean,
-    is_active : boolean,
-    is_admin : boolean,
-    company : number|null,
-    password ?: string
+    company_code : null | number
   }
   
   
 
 
 
-export const useAdmin =()=>{
+export const useCompany =()=>{
 
     const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
 
-    const getTodos = async () => {
-
-        const res = await axios.get(`${baseurl}cus/api/permissions/`, {
-            headers: {
-                Authorization: `Bearer ${authToken?.access}`
-            }
-        })
-        return res.data
-
-
-    }
-
-    const { data } = useQuery({ queryKey: ['apipermission'], queryFn: getTodos })
-
-    const [userData,setUserData] = useState<userType>({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :''})
+    const [companyData,setCompanyData] = useState<companyType>({id:null,name:'',company_code:null})
    
     const [vid, setVid] = useState<string>('')
     const [change, setChange] = useState('change')
@@ -51,7 +31,7 @@ export const useAdmin =()=>{
     // create data 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo) => {
-            return await axios.post(`${baseurl}adminpanel/users/`, newTodo, {
+            return await axios.post(`${baseurl}adminpanel/companies/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -60,7 +40,7 @@ export const useAdmin =()=>{
         onSuccess: (data) => {
             soundSsuccess?.play()
             console.log(data)
-            setUserData(userData)
+            setCompanyData(companyData)
         },
         onError:(error)=>{
             soundError?.play()
@@ -74,13 +54,9 @@ export const useAdmin =()=>{
         e.preventDefault()
         soundClick?.play()
         const newDatata = {
-            email:userData.email,
-            is_superuser: userData.is_superuser,
-            name : userData.name,
-            tc : userData.tc,
-            is_active : userData.is_active,
-            password : userData.password,
-            company : userData.company
+            name : companyData.name,
+            company_code : companyData.company_code
+            
         }
         
         console.log(newDatata,'ok')
@@ -91,7 +67,7 @@ export const useAdmin =()=>{
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}adminpanel/users/${vid}/`, newTodo, {
+            return await axios.patch(`${baseurl}adminpanel/companies/${vid}/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -99,7 +75,7 @@ export const useAdmin =()=>{
         },
         onSuccess: (data) => {
             console.log(data)
-            setUserData({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :''})
+            setCompanyData({id:null,name:'',company_code:null})
             soundSsuccess?.play()
         },      
         onError: (error) => {
@@ -122,13 +98,9 @@ export const useAdmin =()=>{
         soundClick?.play()
 
         const newDatata = {
-            id: userData.id,
-            email:userData.email,
-            is_superuser: userData.is_superuser,
-            name : userData.name,
-            tc : userData.tc,
-            is_active : userData.is_active,
-            company : userData.company
+            id: companyData.id,
+            name:companyData.name,
+            company_code :companyData.company_code
         }
         
      
@@ -163,7 +135,7 @@ export const useAdmin =()=>{
 
     const mutationUserInsert = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}adminpanel/users/${vid}`, {
+            return await axios.get(`${baseurl}adminpanel/companies/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -172,15 +144,11 @@ export const useAdmin =()=>{
         onSuccess: (data) => {
             soundSsuccess?.play()
             console.log(data.data, '..........')
-            setUserData(prev => {
+            setCompanyData(prev => {
                 return {
                     ...prev,
-                    email:data.data.email,
-                    is_superuser: data.data.is_superuser,
-                    name : data.data.name,
-                    tc : data.data.tc,
-                    is_active : data.data.is_active,
-                    company : data.data.company
+                    name:data.data.name,
+                    company_code :data.data.company_code
                 }
             })
         },
@@ -196,5 +164,5 @@ export const useAdmin =()=>{
 
 
 
-    return {DataView,change,handleCreate,handleChange,handleUPdate,mutation,mutationUpdate,handleSubmit,handleKeyDownLoanId,vid,setVid,userData,setUserData,data}
+    return {DataView,change,handleCreate,handleChange,handleUPdate,mutation,mutationUpdate,handleSubmit,handleKeyDownLoanId,vid,setVid,companyData,setCompanyData}
 }
