@@ -29,11 +29,6 @@ const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
 
 
-
-
-
-
-
   const getTodos = async () => {
 
     const res = await axios.get(`${baseurl}adminpanel/users`, {
