@@ -7,13 +7,6 @@ import ViewPermisson from '@/components/admin/ViewPermisson'
 import { useAdmin } from '@/hooks/admin/useAdmin'
 
 
-
-
-
-
-
-
-
 const Admin = () => {
 
     const {data }:any = useAdmin()
