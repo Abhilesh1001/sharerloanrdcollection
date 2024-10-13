@@ -28,5 +28,5 @@ export function middleware(request:NextRequest) {
  
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/','/signup','/login','/loan/:path*','/rdname/:path*','/shfndname/:patn*'],
+  matcher: ['/','/signup','/login','/loan/:path*','/rdname/:path*','/shfndname/:path*'],
 }

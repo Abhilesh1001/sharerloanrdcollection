@@ -64,6 +64,10 @@ const AddUserModal = () => {
               <label htmlFor="Password" className="form-label text-sm">Password</label>
               <input type="password" className='input input-bordered w-full block mb-4' value={userData.password} onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
             </div>
+            <div>
+              <label htmlFor="Password" className="form-label text-sm">ReEnter Password</label>
+              <input type="password" className='input input-bordered w-full block mb-4' value={userData.password2} onChange={(e) => setUserData({ ...userData, password2: e.target.value })} />
+            </div>
           </div>
 
           <div className="col-sm-6">

@@ -17,7 +17,8 @@ export interface userType{
     is_active : boolean,
     is_admin : boolean,
     company : number|null,
-    password ?: string
+    password ?: string,
+    password2?:string
   }
   
   
@@ -42,16 +43,17 @@ export const useAdmin =()=>{
 
     const { data } = useQuery({ queryKey: ['apipermission'], queryFn: getTodos })
 
-    const [userData,setUserData] = useState<userType>({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :''})
+    const [userData,setUserData] = useState<userType>({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :'',password2:''    })
    
     const [vid, setVid] = useState<string>('')
     const [change, setChange] = useState('change')
 
 
+
     // create data 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo) => {
-            return await axios.post(`${baseurl}adminpanel/users/`, newTodo, {
+            return await axios.post(`${baseurl}cus/authreg/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -80,6 +82,7 @@ export const useAdmin =()=>{
             tc : userData.tc,
             is_active : userData.is_active,
             password : userData.password,
+            password2:userData.password2,
             company : userData.company
         }
         
@@ -129,6 +132,7 @@ export const useAdmin =()=>{
             tc : userData.tc,
             is_active : userData.is_active,
             company : userData.company
+
         }
         
      
