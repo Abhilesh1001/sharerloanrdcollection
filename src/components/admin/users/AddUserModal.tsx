@@ -24,12 +24,12 @@ const AddUserModal = () => {
   return (
     <div>
 
-
       <div className='flex justify-between'>
         <div>
-          <AddFormButton onClick={handleCreate} label={'Create'} />
+          {/* <AddFormButton onClick={handleCreate} label={'Create'} /> */}
           <ButtonChange onClick={handleChange} label={'Change'} />
           {change === 'create' && <UpdateBotton onClick={handleUPdate} label={'Update'} />}
+          {change !== 'create' && <ButtonSave label={'Submit'} buttomType={'button'} onClick={handleSubmit} />}
         </div>
 
         <div>
@@ -48,7 +48,7 @@ const AddUserModal = () => {
 
 
 
-      <form onSubmit={handleSubmit}>
+      <div>
         <div className="row">
           <div className="col-sm-6">
             {change === 'create' && <><label htmlFor="Name" className="form-label text-sm">User ID</label>
@@ -106,9 +106,9 @@ const AddUserModal = () => {
 
         </div>
 
-        {change !== 'create' && <ButtonSave label={'Submit'} buttomType={'submit'} />}
+        
 
-      </form>
+      </div>
 
 
     </div>

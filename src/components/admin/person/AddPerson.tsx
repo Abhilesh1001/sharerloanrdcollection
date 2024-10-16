@@ -19,13 +19,12 @@ const AddPerson = () => {
 
   return (
     <div>
-
-
             <div className='flex justify-between'>
                 <div>
-                    <AddFormButton onClick={handleCreate} label={'Create'} />
+                    {/* <AddFormButton onClick={handleCreate} label={'Create'} /> */}
                     <ButtonChange onClick={handleChange} label={'Change'} />
                     {change === 'create' && <UpdateBotton onClick={handleUPdate} label={'Update'} />}
+                    {change !== 'create' && <ButtonSave label={'Submit'} css='my-4' buttomType={'button'} onClick={handleSubmit}/>}
                 </div>
 
                 <div>
@@ -63,7 +62,7 @@ const AddPerson = () => {
 
                         <label htmlFor="dateofbirth" className="form-label text-sm ">Adhar No</label>
                         <input type='text' className='input input-bordered w-full block' value={personData.adharcard} onChange={(e) => setPersonData({ ...personData, adharcard: e.target.value })} />
-                        {change !== 'create' && <ButtonSave label={'Submit'} css='my-4' buttomType={'submit'} />}
+                       
 
                     </div>
 

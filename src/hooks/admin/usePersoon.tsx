@@ -79,8 +79,8 @@ export const usePerson = () => {
     })
 
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const handleSubmit = async () => {
+       
         soundClick?.play()
         const newDatata = {
             name: personData.name,

@@ -70,10 +70,10 @@ export const useAdmin =()=>{
             toast.error('Enter all Required Fields',{position:'top-left'})
         }
     })
-    
+        
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const handleSubmit = async () => {
+       
         soundClick?.play()
         const newDatata = {
             email:userData.email,

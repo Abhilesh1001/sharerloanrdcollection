@@ -100,3 +100,4 @@ export type rdintresttype = {
     duration:null|number,
     intrestrate:null|number  
 }
+

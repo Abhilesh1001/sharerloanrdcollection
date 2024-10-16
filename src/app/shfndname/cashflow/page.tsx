@@ -61,6 +61,17 @@ const Page = () => {
                 adddata.push(newadddata)
             }
 
+            if (key.split('_')[1] === 'rdcoll') {
+                let newadddata = {
+                    [key]: {
+                        'journal': `RD Collection`,
+                        'amount_debit': null,
+                        'amount_credit': item[key],
+                    }
+                }
+                adddata.push(newadddata)
+            }
+
             if (key.split('_')[1] === 'staff') {
                 let newadddata = {
                     [key]: {
@@ -84,7 +95,7 @@ const Page = () => {
             if (key.split('_')[1] === 'asset') {
                 let newadddata = {
                     [key]: {
-                        'journal': `Asset :- ${item[key].asetname}`,
+                        'journal': `Asset :- ${item[key].asset_name}`,
                         'amount_debit': item[key].amount_Debit,
                         'amount_credit': null,
                     }
@@ -99,6 +110,7 @@ const Page = () => {
                         'amount_credit': item[key].amount_credit
                     }
                 }
+         
                 adddata.push(newadddata)
             }
         }

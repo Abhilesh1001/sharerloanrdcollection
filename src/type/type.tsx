@@ -150,4 +150,52 @@ export interface hiddenType {
     issuematerial : string
   }
 
+  export interface assetType {
+    asset_no?: null|number,
+    time?: string,
+    asset_name : string,
+    usersf?: number | null
+    amount_Debit :  number | null 
+    debit_date : string 
+     
+
+  }
   
+  export interface FixedDepositeType {
+    fd_id?: null | number
+    person_id?: null|number,
+    person_name? : string,
+    usersf?: null |  number,
+    amount_Debit: null | number,
+    amount_credit: null | number,
+    start_date :string,
+    closing_date: string,
+    duration: null | number,
+    interest_rate : null | number,
+    is_active: boolean,
+    person?:null|number,
+    collection_date : string
+  
+  }
+  export interface loanCollType {
+    loan_collection_id?: null | number,
+    loan_intrest: null | number,
+    collection_date: string,
+    amount_collected: null | number,
+    remarks: string,
+    usersf: null | number
+  }
+
+  export interface loanType {
+    loan_id?: null | number,
+    person: null | number,
+    loan_amount: null | number,
+    usersf: null | number,
+    remarks: string,
+    is_active: boolean,
+    start_date: string,
+    days: null | number,
+    duration: null | number,
+    closing_date: string,
+    interest_rate: null | number,
+  }
