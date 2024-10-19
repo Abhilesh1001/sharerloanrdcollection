@@ -199,3 +199,49 @@ export interface hiddenType {
     closing_date: string,
     interest_rate: null | number,
   }
+
+  export interface RDCollType {
+    rd_collection_id?: null | number,
+    rd_interest : null | number,
+    collection_date: string,
+    amount_collected: null | number,
+    remarks: string,
+    usersf: null | number
+  }
+
+
+  export interface RDIntType {
+    rd_id?: null | number,
+    person: null | number,
+    usersf: null | number,
+    start_date: string,
+    closing_date: string,
+    is_active: boolean,
+    duration: string,
+    interest_rate: string
+  }
+
+
+  export interface shareholderType {
+    shf_id?: null | number,
+    person: null | number,
+    uusersf: null | number,
+    amount_credit : null | number
+    amount_Debit : null | number,
+    collection_date : string,
+    particulars : string,
+    time? : string
+  }
+
+  export interface staffSalryType {
+    sd_id?: null | number,
+    person: null | number,
+    usersf: null | number,
+    amount_Debit : null | number
+    collection_date : string,
+    remarks : string,
+    time? : string
+  }
+
+  
+  

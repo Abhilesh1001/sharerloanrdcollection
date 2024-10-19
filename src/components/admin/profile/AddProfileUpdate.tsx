@@ -19,11 +19,6 @@ const AddProfileUpdate = () => {
 
 
 
-
-
-
-
-
     return (
         <div>
 
