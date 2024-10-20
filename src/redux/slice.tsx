@@ -13,6 +13,8 @@ export interface CounterState {
   hidden : hiddenType,  
   alerthidden : string
   is_admin : boolean,
+  is_company_admin :boolean,
+  companyId : null |number
 } 
 
 const initialState: CounterState = {
@@ -35,10 +37,11 @@ const initialState: CounterState = {
     loanColl : 'hidden',
     invoice:'hidden',
     issuematerial : 'hidden'
-  
   },
   alerthidden :'hidden',
   is_admin : false,
+  is_company_admin : false,
+  companyId : null,
 }
 
 export const counterSlice = createSlice({
@@ -75,13 +78,19 @@ export const counterSlice = createSlice({
     },
     getAdmin : (state,action:PayloadAction<boolean>)=>{
       state.is_admin = action.payload
-    }
-    
+    },
+    getAdminCompany : (state,action:PayloadAction<boolean>)=>{
+      state.is_company_admin = action.payload
+    },
+    getCompanyId :(state,action:PayloadAction<number|null>) =>{
+      state.companyId = action.payload
+    },
+
   },
 
 })
 
 // Action creators are generated for each case reducer function
-export const { getLogindata,getAuthToken,getUser,clearAuthToken,clearUser,getUserId,clearUserId,getMainheader,getHidden,getAdmin} = counterSlice.actions
+export const { getLogindata,getAuthToken,getUser,clearAuthToken,clearUser,getUserId,clearUserId,getMainheader,getHidden,getAdmin,getAdminCompany,getCompanyId} = counterSlice.actions
 
 export default counterSlice.reducer

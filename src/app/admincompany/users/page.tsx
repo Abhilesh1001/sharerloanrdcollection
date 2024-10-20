@@ -16,8 +16,6 @@ export interface userType {
   is_active: boolean,
   is_admin: boolean,
   company: number | null,
-  is_company_admin: boolean,
-
 }
 
 
@@ -33,7 +31,7 @@ const Users = () => {
 
   const getTodos = async () => {
 
-    const res = await axios.get(`${baseurl}adminpanel/users`, {
+    const res = await axios.get(`${baseurl}adminpanel/userscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
@@ -45,17 +43,12 @@ const Users = () => {
 
   }
 
-  const { data } = useQuery({ queryKey: ['apiuser'], queryFn: getTodos })
-  console.log(data)
+  const { data } = useQuery({ queryKey: ['apiusercompany'], queryFn: getTodos })
 
+ console.log(data)
   return (
     <div className="text-base-content bg-base-100 h-auto min-h-screen">
       <div className="ml-80 my-6 mr-20">
-
-
-
-
-
 
         <div className="p-2"></div>
         <button className="btn btn-success mr-2 " onClick={() => {
@@ -91,8 +84,6 @@ const Users = () => {
               <th scope="col" className="px-6 py-2">USER ID</th>
               <th scope="col">USER NAME</th>
               <th scope="col">EMAIL</th>
-              <th scope="col">Company</th>
-              <th scope="col">IS Company Admin</th>
               <th scope="col">Active</th>
               <th scope="col">Admin</th>
               <th scope="col">Superuser</th>
@@ -116,15 +107,6 @@ const Users = () => {
                   <DumyInput indum={items.email} />
 
 
-                </td>
-                <td>
-
-                  <DumyInput indum={items.company} />
-
-
-                </td>
-                <td>
-                  <DumyInput indum={items.is_company_admin ?'Active':'Inactive'} />
                 </td>
                 <td>
 

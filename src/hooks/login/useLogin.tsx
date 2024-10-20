@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { jwtDecode } from "jwt-decode";
-import { getUser, getAuthToken, clearAuthToken, clearUser, getUserId, getAdmin } from '@/redux/slice'
+import { getUser, getAuthToken, clearAuthToken, clearUser, getUserId, getAdmin,getAdminCompany } from '@/redux/slice'
 import { StateProps } from '@/type/type'
 import { getMainheader } from '@/redux/slice'
 import { soundClick, soundSsuccess, soundError } from "@/sound/sound"
@@ -91,6 +91,7 @@ export const useLogin = (data?: loginred) => {
         dispatch(clearUser(""))
         dispatch(getMainheader('Login Page'))
         dispatch(getAdmin(false))
+        dispatch(getAdminCompany(false))
         router.push('/login')
     }
 

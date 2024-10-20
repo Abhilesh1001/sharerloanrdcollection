@@ -2,7 +2,7 @@
 import React, { useEffect, useState, memo } from 'react'
 import Link from 'next/link'
 import { useLogin } from '@/hooks/login/useLogin'
-import { getAdmin, getMainheader } from '@/redux/slice'
+import { getAdmin, getMainheader,getAdminCompany } from '@/redux/slice'
 import './style.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAuthToken } from '@/redux/slice'
@@ -14,6 +14,7 @@ import { toast } from 'react-toastify'
 import NavColl from './navcomponent/NavColl'
 import ShareholderMenu from './mainpage/ShareholderMenu'
 import DrawerAdmin from './navcomponent/DrawerAdmin'
+import DrawerAdminCompany from './navcomponent/DrawerAdminCompany'
 
 export type StateProps = {
     counter: {
@@ -23,14 +24,18 @@ export type StateProps = {
             access: string
         }
         baseurl: string,
-        is_admin : boolean
+        is_admin : boolean,
+        is_company_admin : boolean
     }
 }
 
 
 const Navbar = () => {
     const dispatch = useDispatch()
-    const { user, mainheader, authToken, baseurl,is_admin } = useSelector((state: StateProps) => state.counter)
+    const { user, mainheader, authToken, baseurl,is_admin,is_company_admin } = useSelector((state: StateProps) => state.counter)
+
+
+    console.log(is_company_admin)
     const data = { email: '', password: '' }
     const { handleLogout } = useLogin(data)
     const { handleClickMenu, hiddenmenu } = useMenu()
@@ -71,7 +76,11 @@ const Navbar = () => {
                         Authorization: `Bearer ${authToken?.access}`
                     }
                 })
+
+                console.log(data.data)
                 dispatch(getAdmin(data.data.is_admin))
+                dispatch(getAdminCompany(data.data.is_company_admin))
+                
             } catch (error) {
                 console.log('errro', error)
                 toast.error('Your sesson has expired Please Login', { position: 'top-center' })
@@ -145,6 +154,7 @@ const Navbar = () => {
                  {/* Drawer  */}
 
             {is_admin && <DrawerAdmin />}
+            {is_company_admin && <DrawerAdminCompany />}
 
 
             {/* end Drawer  */}

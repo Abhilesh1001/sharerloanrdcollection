@@ -8,47 +8,67 @@ import { toast } from 'react-toastify'
 import { format } from 'date-fns'
 
 
-export interface roleUpdateType {
-    id?: null | number
-    user: number | null,
-    role: number | null,
-    can_authenticate: boolean
+export interface personType {
+    person_id?: null | number,
+    name: string,
+    usersf: null | number,
+    phone_no: string,
+    email: string,
+    time?: string,
+    pan_no: string,
+    address: string,
+    adharcard: string
 }
 
 
 
 
-export const useAddUserRole = () => {
+
+export const usePerson = () => {
 
     const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
 
-    const [roleData, setRoleData] = useState<roleUpdateType>({
-        id: null,
-        user: null,
-        role: null,
-        can_authenticate: false
+    const [personData, setPersonData] = useState<personType>({
+        person_id: null,
+        name: '',
+        usersf: null,
+        phone_no: '',
+        email: '',
+        time: '',
+        pan_no: '',
+        address: '',
+        adharcard: ''
     });
 
     const [vid, setVid] = useState<string>('')
     const [change, setChange] = useState('change')
 
+    console.log('datadata',personData)
+
 
     // create data 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo) => {
-            return await axios.post(`${baseurl}adminpanel/userroles/`, newTodo, {
+            return await axios.post(`${baseurl}adminpanel/persons/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
+                    'Content-Type': 'multipart/form-data'
                 }
             })
         },
         onSuccess: (data) => {
             soundSsuccess?.play()
             console.log(data)
-            setRoleData({
-                user: null,
-                role: null,
-                can_authenticate: false
+            setPersonData({
+                person_id: null,
+                name: '',
+                usersf: null,
+                phone_no: '',
+                email: '',
+                time: '',
+                pan_no: '',
+                address: '',
+                adharcard: ''
             })
         },
         onError: (error) => {
@@ -59,14 +79,20 @@ export const useAddUserRole = () => {
     })
 
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const handleSubmit = async () => {
+       
         soundClick?.play()
-
         const newDatata = {
-            user: roleData.user,
-            role: roleData.role,
-            can_authenticate: roleData.can_authenticate
+            name: personData.name,
+            usersf: personData.usersf,
+            phone_no: personData.phone_no,
+            email: personData.email,
+            time: personData.time,
+            pan_no: personData.pan_no,
+            address: personData.address,
+            adharcard: personData.adharcard
+
+
         }
 
         console.log(newDatata, 'ok')
@@ -77,19 +103,26 @@ export const useAddUserRole = () => {
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}adminpanel/userroles/${vid}/`, newTodo, {
+            return await axios.patch(`${baseurl}adminpanel/persons/${vid}/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
+
+
                 }
             })
         },
         onSuccess: (data) => {
             console.log(data)
-            setRoleData({
-                id: null,
-                user: null,
-                role: null,
-                can_authenticate: false,
+            setPersonData({
+                person_id: null,
+                name: '',
+                usersf: null,
+                phone_no: '',
+                email: '',
+                time: '',
+                pan_no: '',
+                address: '',
+                adharcard: ''
             })
             soundSsuccess?.play()
         },
@@ -113,14 +146,18 @@ export const useAddUserRole = () => {
         soundClick?.play()
 
         const newDatata = {
-            id: roleData.id,
-            role: roleData.role,
-            user: roleData.user,
-            can_authenticate: roleData.can_authenticate
-
+            person_id: personData.person_id,
+            name: personData.name,
+            usersf: personData.usersf,
+            phone_no: personData.phone_no,
+            email: personData.email,
+            time: personData.time,
+            pan_no: personData.pan_no,
+            address: personData.address,
+            adharcard: personData.adharcard
         }
-        console.log(newDatata)
 
+        console.log(newDatata)
         mutationUpdate.mutate(newDatata)
 
     }
@@ -152,7 +189,7 @@ export const useAddUserRole = () => {
 
     const mutationUserInsert = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}adminpanel/userroles/${vid}`, {
+            return await axios.get(`${baseurl}adminpanel/persons/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
 
@@ -163,12 +200,18 @@ export const useAddUserRole = () => {
             soundSsuccess?.play()
             console.log(data.data, '..........')
 
-            setRoleData(prev => {
+            setPersonData(prev => {
                 return {
                     ...prev,
-                    role: data.data.role,
-                    user: data.data.user,
-                    can_authenticate: data.data.can_authenticate
+                    person_id :data.data.person_id,
+                    name: data.data.name,
+                    usersf: data.data.usersf,
+                    phone_no: data.data.phone_no,
+                    email: data.data.email,
+                    time: data.data.time,
+                    pan_no: data.data.pan_no,
+                    address: data.data.address,
+                    adharcard: data.data.adharcard
                 }
             })
         },
@@ -184,5 +227,5 @@ export const useAddUserRole = () => {
 
 
 
-    return { DataView, change, handleCreate, handleChange, handleUPdate, mutation, mutationUpdate, handleSubmit, handleKeyDownLoanId, vid, setVid, roleData, setRoleData }
+    return { DataView, change, handleCreate, handleChange, handleUPdate, mutation, mutationUpdate, handleSubmit, handleKeyDownLoanId, vid, setVid, personData, setPersonData }
 }

@@ -1,22 +1,30 @@
+'use client'
+import Link from 'next/link';
+import React, { ReactNode } from 'react';
 
-import Link from 'next/link'
-import React from 'react'
+type AdminUserProps = {
+  children: ReactNode;
+};  
 
-
-const DrawerAdmin = () => {
+const AdminUserindex: React.FC<AdminUserProps> = ({ children }) => {
   return (
-    <div>
-        <div className="drawer">
-                <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content">
-                    {/* Page content here */}
-                    <label htmlFor="my-drawer" className="btn btn-primary btn-sm drawer-button">Admin Panel</label>
-                </div>
-                <div className="drawer-side">
-                    <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                        {/* Sidebar content here */}
-                        <div className="bg-primary text-base-content p-2 rounded mb-2">CUSAUTH</div>
+    <div className="text-base-content bg-base-100 h-auto min-h-screen">
+    <div className="drawer lg:drawer-open">
+      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
+        {/* Page content here */}
+        <label htmlFor="my-drawer" className="btn btn-primary drawer-button lg:hidden">
+          Open drawer
+        </label>
+        <div className="p-4">
+          {children}
+        </div>
+      </div>
+      <div className="drawer-side">
+        <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          {/* Sidebar content here */}
+          <div className="bg-primary text-base-content p-2 rounded mb-2">CUSAUTH</div>
           <li><Link href="/admin/company">Company</Link></li>
           <li><Link href="/admin/profile-update">Profile Update</Link></li>
           <li><Link href="/admin/roles">Roles</Link></li>
@@ -33,11 +41,11 @@ const DrawerAdmin = () => {
           <li><Link href="/admin/rd-ints">RD Interests</Link></li>
           <li><Link href="/admin/shareholders">Shareholders</Link></li>
           <li><Link href="/admin/staff-salaries">Staff Salaries</Link></li>
-                    </ul>
-                </div>
-            </div>
+        </ul>
+      </div>
     </div>
+  </div>
   )
 }
 
-export default DrawerAdmin
+export default AdminUserindex;

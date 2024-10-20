@@ -1,31 +1,21 @@
 'use client'
-import AddUserModal from '@/components/admin/users/AddUserModal'
 import DumyInput from '@/components/dummyinput/DumyInput'
 import { StateProps } from '@/type/type'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import AddUserRole from '@/components/admin/userrole/AddUserRole'
 
-export interface userType {
-  id: number | null,
-  email: string,
-  is_superuser: boolean,
-  name: string,
-  tc: boolean,
-  is_active: boolean,
-  is_admin: boolean,
-  company: number | null,
-  is_company_admin: boolean,
 
+export interface roleUpdateType {
+  id?: null | number
+  user: number,
+  role: number,
+  can_authenticate: boolean
 }
 
-
-
-
-
-
-const Users = () => {
+const UserRole = () => {
 
 
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
@@ -33,45 +23,43 @@ const Users = () => {
 
   const getTodos = async () => {
 
-    const res = await axios.get(`${baseurl}adminpanel/users`, {
+    const res = await axios.get(`${baseurl}adminpanel/userroles`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
     })
 
-  
+
     return res.data
 
 
   }
 
-  const { data } = useQuery({ queryKey: ['apiuser'], queryFn: getTodos })
-  console.log(data)
-
+  const { data } = useQuery({ queryKey: ['adduserrole'], queryFn: getTodos })
+  
   return (
     <div className="text-base-content bg-base-100 h-auto min-h-screen">
       <div className="ml-80 my-6 mr-20">
 
 
 
-
-
-
-        <div className="p-2"></div>
+        <div className="p-4"></div>
         <button className="btn btn-success mr-2 " onClick={() => {
           const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
 
           if (modal) {
             modal.showModal();
           }
-        }}>Add Users</button>
+        }}>Add User Role</button>
 
         <dialog id="my_modal_1" className="modal">
           <div className="modal-box w-11/12 max-w-5xl ">
 
             <div className="modal-action mt-0">
             </div>
-            <AddUserModal />
+
+            <AddUserRole />
+
           </div>
         </dialog>
 
@@ -88,63 +76,27 @@ const Users = () => {
         <table className="w-full text-sm text-left rtl:text-right">
           <thead className="sticky top-0 z-1 bg-base-200">
             <tr>
-              <th scope="col" className="px-6 py-2">USER ID</th>
-              <th scope="col">USER NAME</th>
-              <th scope="col">EMAIL</th>
-              <th scope="col">Company</th>
-              <th scope="col">IS Company Admin</th>
-              <th scope="col">Active</th>
-              <th scope="col">Admin</th>
-              <th scope="col">Superuser</th>
-              <th scope="col">TC</th>
-              <th scope="col">Delete</th>
+              <th scope="col" className="px-6 py-2">User Role ID</th>
+              <th scope="col" className="px-6 py-2">USER</th>
+              <th scope="col">Role</th>
+              <th scope="col">Can Authenticate</th>
             </tr>
           </thead>
           <tbody className="text-center">
-            {data?.map((items: userType) => (
+            {data?.map((items: roleUpdateType) => (
               <tr key={items.id}>
                 <th scope="row">
                   <DumyInput indum={items.id !== undefined ? items.id : null} />
                 </th>
                 <td>
-
-                  <DumyInput indum={items.name} />
-
+                  <DumyInput indum={items.user} />
                 </td>
                 <td>
-
-                  <DumyInput indum={items.email} />
-
-
+                  <DumyInput indum={items.role} />
                 </td>
                 <td>
+                  {items.can_authenticate ? <div className="w-4 h-4 flex justify-center items-center bg-green-600 rounded-full ml-10"></div> :<div className="w-4 h-4 flex justify-center items-center bg-red-800 rounded-full ml-10"></div>}
 
-                  <DumyInput indum={items.company} />
-
-
-                </td>
-                <td>
-                  <DumyInput indum={items.is_company_admin ?'Active':'Inactive'} />
-                </td>
-                <td>
-
-                  <DumyInput indum={items.is_active ? 'Active' : 'Inactive'} />
-
-                </td>
-                <td>
-
-                  <DumyInput indum={items.is_admin ? 'Active' : 'Inactive'} />
-
-
-                </td>
-                <td>
-
-                  <DumyInput indum={items.is_superuser ? 'Active' : 'Inactive'} />
-
-                </td>
-                <td>
-
-                  <DumyInput indum={items.tc ? 'Active' : 'Inactive'} />
                 </td>
                 <td>
                   <button className="btn btn-sm btn-error">Delete</button>
@@ -158,5 +110,4 @@ const Users = () => {
   )
 }
 
-export default Users
-
+export default UserRole

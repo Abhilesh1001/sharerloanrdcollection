@@ -18,8 +18,7 @@ export interface userType{
     is_admin : boolean,
     company : number|null,
     password ?: string,
-    password2?:string,
-    is_company_admin :boolean,
+    password2?:string
   }
   
   
@@ -44,7 +43,7 @@ export const useAdmin =()=>{
 
     const { data } = useQuery({ queryKey: ['apipermission'], queryFn: getTodos })
 
-    const [userData,setUserData] = useState<userType>({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :'',password2:'',is_company_admin:false })
+    const [userData,setUserData] = useState<userType>({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :'',password2:''    })
    
     const [vid, setVid] = useState<string>('')
     const [change, setChange] = useState('change')
@@ -84,9 +83,7 @@ export const useAdmin =()=>{
             is_active : userData.is_active,
             password : userData.password,
             password2:userData.password2,
-            company : userData.company,
-            is_company_admin :userData.is_company_admin,
-            is_admin : userData.is_admin, 
+            company : userData.company
         }
         
         console.log(newDatata,'ok')
@@ -105,7 +102,7 @@ export const useAdmin =()=>{
         },
         onSuccess: (data) => {
             console.log(data)
-            setUserData({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :'',is_company_admin:false})
+            setUserData({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :''})
             soundSsuccess?.play()
         },      
         onError: (error) => {
@@ -134,10 +131,11 @@ export const useAdmin =()=>{
             name : userData.name,
             tc : userData.tc,
             is_active : userData.is_active,
-            company : userData.company,
-            is_company_admin : userData.is_company_admin,
-            is_admin : userData.is_admin,
+            company : userData.company
+
         }
+        
+     
         mutationUpdate.mutate(newDatata)
 
     }
@@ -186,10 +184,7 @@ export const useAdmin =()=>{
                     name : data.data.name,
                     tc : data.data.tc,
                     is_active : data.data.is_active,
-                    company : data.data.company,
-                    is_company_admin :data.data.is_company_admin,
-                    password : data.data.password,
-                    password2 : data.data.password2 
+                    company : data.data.company
                 }
             })
         },

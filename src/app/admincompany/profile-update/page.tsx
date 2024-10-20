@@ -1,31 +1,28 @@
 'use client'
-import AddUserModal from '@/components/admin/users/AddUserModal'
+
 import DumyInput from '@/components/dummyinput/DumyInput'
 import { StateProps } from '@/type/type'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import Image from 'next/image';
+import AddProfileUpdate from '@/components/admincompany/profile/AddProfileUpdate'
 
-export interface userType {
-  id: number | null,
-  email: string,
-  is_superuser: boolean,
-  name: string,
-  tc: boolean,
-  is_active: boolean,
-  is_admin: boolean,
-  company: number | null,
-  is_company_admin: boolean,
 
+
+export interface profileUpdateType {
+  id?: null | number
+  user: null | number,
+  Date_of_Birth: string
+  profile_picture: string,
+  pan_number: string,
+  pan_picture: string
 }
 
 
 
-
-
-
-const Users = () => {
+const ProfileUpdate = () => {
 
 
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
@@ -33,20 +30,26 @@ const Users = () => {
 
   const getTodos = async () => {
 
-    const res = await axios.get(`${baseurl}adminpanel/users`, {
+    const res = await axios.get(`${baseurl}adminpanel/profileupdatescompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
     })
 
-  
+
     return res.data
 
 
   }
 
-  const { data } = useQuery({ queryKey: ['apiuser'], queryFn: getTodos })
-  console.log(data)
+  const { data } = useQuery({ queryKey: ['apiprofileupdate'], queryFn: getTodos })
+
+ 
+
+
+
+
+
 
   return (
     <div className="text-base-content bg-base-100 h-auto min-h-screen">
@@ -54,24 +57,23 @@ const Users = () => {
 
 
 
-
-
-
-        <div className="p-2"></div>
+        <div className="p-4"></div>
         <button className="btn btn-success mr-2 " onClick={() => {
           const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
 
           if (modal) {
             modal.showModal();
           }
-        }}>Add Users</button>
+        }}>Add Profile</button>
 
         <dialog id="my_modal_1" className="modal">
           <div className="modal-box w-11/12 max-w-5xl ">
 
             <div className="modal-action mt-0">
             </div>
-            <AddUserModal />
+
+            <AddProfileUpdate />
+
           </div>
         </dialog>
 
@@ -89,62 +91,47 @@ const Users = () => {
           <thead className="sticky top-0 z-1 bg-base-200">
             <tr>
               <th scope="col" className="px-6 py-2">USER ID</th>
-              <th scope="col">USER NAME</th>
-              <th scope="col">EMAIL</th>
-              <th scope="col">Company</th>
-              <th scope="col">IS Company Admin</th>
-              <th scope="col">Active</th>
-              <th scope="col">Admin</th>
-              <th scope="col">Superuser</th>
-              <th scope="col">TC</th>
+              <th scope="col">Pan No</th>
+              <th scope="col">DOB</th>
+              <th scope="col">Profile Picture</th>
+              <th scope="col">Pan Picture</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody className="text-center">
-            {data?.map((items: userType) => (
+            {data?.map((items: profileUpdateType) => (
               <tr key={items.id}>
                 <th scope="row">
                   <DumyInput indum={items.id !== undefined ? items.id : null} />
                 </th>
                 <td>
-
-                  <DumyInput indum={items.name} />
-
+                  <DumyInput indum={items.pan_number} />
                 </td>
                 <td>
 
-                  <DumyInput indum={items.email} />
-
-
-                </td>
-                <td>
-
-                  <DumyInput indum={items.company} />
-
+                  <DumyInput indum={items.Date_of_Birth} />
 
                 </td>
                 <td>
-                  <DumyInput indum={items.is_company_admin ?'Active':'Inactive'} />
-                </td>
-                <td>
+                  <img
+                    src={items.profile_picture}
+                    alt="Profile Picture"
+                    width='100px'
+                    height='100px'
+                  />
 
-                  <DumyInput indum={items.is_active ? 'Active' : 'Inactive'} />
-
-                </td>
-                <td>
-
-                  <DumyInput indum={items.is_admin ? 'Active' : 'Inactive'} />
 
 
                 </td>
+
                 <td>
 
-                  <DumyInput indum={items.is_superuser ? 'Active' : 'Inactive'} />
-
-                </td>
-                <td>
-
-                  <DumyInput indum={items.tc ? 'Active' : 'Inactive'} />
+                  <img
+                    src={items.pan_picture}
+                    alt="Pan Picture"
+                    width='100px'
+                    height='100px'
+                  />
                 </td>
                 <td>
                   <button className="btn btn-sm btn-error">Delete</button>
@@ -158,5 +145,4 @@ const Users = () => {
   )
 }
 
-export default Users
-
+export default ProfileUpdate

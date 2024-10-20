@@ -8,25 +8,28 @@ import { toast } from 'react-toastify'
 import { format } from 'date-fns'
 
 
-export interface roleUpdateType {
-    id?: null | number
-    user: number | null,
-    role: number | null,
-    can_authenticate: boolean
+export interface roleType {
+    id?: null | number,
+    company: null | number,
+    name: string
+    permissions: any,
+
 }
 
 
 
 
-export const useAddUserRole = () => {
+
+export const useRole = () => {
 
     const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
 
-    const [roleData, setRoleData] = useState<roleUpdateType>({
+    const [roleData, setRoleData] = useState<roleType>({
         id: null,
-        user: null,
-        role: null,
-        can_authenticate: false
+        company: null,
+        name: '',
+        permissions: [],
+        
     });
 
     const [vid, setVid] = useState<string>('')
@@ -36,7 +39,7 @@ export const useAddUserRole = () => {
     // create data 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo) => {
-            return await axios.post(`${baseurl}adminpanel/userroles/`, newTodo, {
+            return await axios.post(`${baseurl}adminpanel/roles/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 }
@@ -46,9 +49,10 @@ export const useAddUserRole = () => {
             soundSsuccess?.play()
             console.log(data)
             setRoleData({
-                user: null,
-                role: null,
-                can_authenticate: false
+                id: null,
+                company: null,
+                name: '',
+                permissions: [],
             })
         },
         onError: (error) => {
@@ -64,9 +68,9 @@ export const useAddUserRole = () => {
         soundClick?.play()
 
         const newDatata = {
-            user: roleData.user,
-            role: roleData.role,
-            can_authenticate: roleData.can_authenticate
+            name : roleData.name,
+            company : roleData.company,
+            permissions : roleData.permissions
         }
 
         console.log(newDatata, 'ok')
@@ -77,7 +81,7 @@ export const useAddUserRole = () => {
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}adminpanel/userroles/${vid}/`, newTodo, {
+            return await axios.patch(`${baseurl}adminpanel/roles/${vid}/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 }
@@ -87,9 +91,9 @@ export const useAddUserRole = () => {
             console.log(data)
             setRoleData({
                 id: null,
-                user: null,
-                role: null,
-                can_authenticate: false,
+                company: null,
+                name: '',
+                permissions: [],
             })
             soundSsuccess?.play()
         },
@@ -114,9 +118,9 @@ export const useAddUserRole = () => {
 
         const newDatata = {
             id: roleData.id,
-            role: roleData.role,
-            user: roleData.user,
-            can_authenticate: roleData.can_authenticate
+            company : roleData.company,
+            name : roleData.name,
+            permissions : roleData.permissions
 
         }
         console.log(newDatata)
@@ -152,10 +156,10 @@ export const useAddUserRole = () => {
 
     const mutationUserInsert = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}adminpanel/userroles/${vid}`, {
+            return await axios.get(`${baseurl}adminpanel/roles/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
-
+                
                 }
             })
         },
@@ -166,9 +170,9 @@ export const useAddUserRole = () => {
             setRoleData(prev => {
                 return {
                     ...prev,
-                    role: data.data.role,
-                    user: data.data.user,
-                    can_authenticate: data.data.can_authenticate
+                    name : data.data.name,
+                    company : data.data.company,
+                    permissions : data.data.permissions
                 }
             })
         },

@@ -4,8 +4,9 @@ import React from 'react'
 import DumyInput from '@/components/dummyinput/DumyInput'
 import AddPermission from '@/components/admin/AddPermission'
 import ViewPermisson from '@/components/admin/ViewPermisson'
-import { useAdmin } from '@/hooks/admin/useAdmin'
 import AddRevokePermissions from '@/components/admin/AddRevokePermissions'
+import { useAdmin } from '@/hooks/admincompany/useAdmin'
+
 
 
 const Admin = () => {
