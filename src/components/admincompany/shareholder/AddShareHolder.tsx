@@ -4,7 +4,7 @@ import UpdateButton from '@/components/button/UpdateButton';
 import Loading from '@/components/loading/Loading';
 import { soundClick } from '@/sound/sound';
 import ButtonSubmit from '@/components/button/ButtonSubmit';
-import { useShareHolder } from '@/hooks/admin/useShareHolder';
+import { useShareHolder } from '@/hooks/admincompany/useShareHolder';
 
 const AddShareHolder = () => {
     const {

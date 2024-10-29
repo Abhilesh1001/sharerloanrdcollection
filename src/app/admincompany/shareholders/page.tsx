@@ -6,13 +6,13 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
-import AddShareHolder from '@/components/admin/shareholder/AddShareHolder';
+import AddShareHolder from '@/components/admincompany/shareholder/AddShareHolder';
 
 const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter);
 
   const fetchShareholders = async () => {
-    const response = await axios.get(`${baseurl}adminpanel/shareholders`, {
+    const response = await axios.get(`${baseurl}adminpanel/shareholderscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`,
       },
@@ -20,7 +20,7 @@ const Users = () => {
     return response.data;
   };
 
-  const { data } = useQuery({ queryKey: ['addShareholder'], queryFn: fetchShareholders });
+  const { data } = useQuery({ queryKey: ['addShareholdercompany'], queryFn: fetchShareholders });
 
 
   return (

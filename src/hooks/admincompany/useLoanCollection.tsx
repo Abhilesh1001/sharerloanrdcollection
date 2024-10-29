@@ -23,7 +23,7 @@ export const useLoanCollection = () => {
     // Create loan collection data
     const mutationCreate = useMutation<any, any, loanCollType, unknown>({
         mutationFn: async (newLoanCollection) => {
-            return await axios.post(`${baseurl}adminpanel/loancolls/`, newLoanCollection, {
+            return await axios.post(`${baseurl}adminpanel/loancollscompany/`, newLoanCollection, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                     'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const useLoanCollection = () => {
     // Update loan collection data
     const mutationUpdate = useMutation<any, any, loanCollType, unknown>({
         mutationFn: async (updatedLoanCollection: loanCollType) => {
-            return await axios.patch(`${baseurl}adminpanel/loancolls/${vid}/`, updatedLoanCollection, {
+            return await axios.patch(`${baseurl}adminpanel/loancollscompany/${vid}/`, updatedLoanCollection, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -122,7 +122,7 @@ export const useLoanCollection = () => {
 
     const mutationFetchLoanCollection = useMutation<any, any, number, unknown>({
         mutationFn: async (loanCollectionId: number) => {
-            return await axios.get(`${baseurl}adminpanel/loancolls/${loanCollectionId}`, {
+            return await axios.get(`${baseurl}adminpanel/loancollscompany/${loanCollectionId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },

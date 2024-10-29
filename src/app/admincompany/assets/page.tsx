@@ -1,5 +1,5 @@
 'use client'
-import AddAssets from '@/components/admin/assets/AddAssets';
+import AddAssets from '@/components/admincompany/assets/AddAssets';
 import React from 'react'
 
 import DumyInput from '@/components/dummyinput/DumyInput'
@@ -14,7 +14,7 @@ const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
   const getTodos = async () => {
 
-    const res = await axios.get(`${baseurl}adminpanel/assets`, {
+    const res = await axios.get(`${baseurl}adminpanel/assetscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
@@ -26,7 +26,7 @@ const Users = () => {
 
   }
 
-  const { data } = useQuery({ queryKey: ['addassets'], queryFn: getTodos })
+  const { data } = useQuery({ queryKey: ['addassetscompany'], queryFn: getTodos })
   
 
   return (

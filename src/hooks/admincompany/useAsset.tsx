@@ -7,7 +7,7 @@ import { soundSsuccess, soundError, soundClick } from '@/sound/sound';
 import { toast } from 'react-toastify';
 
 export const useAsset = () => {
-    const { baseurl, authToken } = useSelector((state: StateProps) => state.counter);
+    const { baseurl, authToken,userId } = useSelector((state: StateProps) => state.counter);
     const [assetData, setAssetData] = useState<assetType>({
         asset_no: null,
         amount_Debit: null,
@@ -22,7 +22,7 @@ export const useAsset = () => {
     // Create asset data
     const mutationCreate = useMutation<any, any, assetType, unknown>({
         mutationFn: async (newAsset) => {
-            return await axios.post(`${baseurl}adminpanel/assets/`, newAsset, {
+            return await axios.post(`${baseurl}adminpanel/assetscompany/`, newAsset, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                     'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export const useAsset = () => {
     // Update asset data
     const mutationUpdate = useMutation<any, any, assetType, unknown>({
         mutationFn: async (updatedAsset: assetType) => {
-            return await axios.patch(`${baseurl}adminpanel/assets/${vid}/`, updatedAsset, {
+            return await axios.patch(`${baseurl}adminpanel/assetscompany/${vid}/`, updatedAsset, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -128,7 +128,7 @@ export const useAsset = () => {
 
     const mutationFetchAsset = useMutation<any, any, number, unknown>({
         mutationFn: async (assetId: number) => {
-            return await axios.get(`${baseurl}adminpanel/assets/${assetId}`, {
+            return await axios.get(`${baseurl}adminpanel/assetscompany/${assetId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },

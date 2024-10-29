@@ -22,7 +22,7 @@ export interface roleType {
 
 export const useRole = () => {
 
-    const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
+    const { baseurl, authToken,companyId } = useSelector((state: StateProps) => state.counter)
 
     const [roleData, setRoleData] = useState<roleType>({
         id: null,
@@ -39,7 +39,7 @@ export const useRole = () => {
     // create data 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo) => {
-            return await axios.post(`${baseurl}adminpanel/roles/`, newTodo, {
+            return await axios.post(`${baseurl}adminpanel/rolescompany/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 }
@@ -69,7 +69,7 @@ export const useRole = () => {
 
         const newDatata = {
             name : roleData.name,
-            company : roleData.company,
+            company : companyId,
             permissions : roleData.permissions
         }
 
@@ -81,7 +81,7 @@ export const useRole = () => {
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}adminpanel/roles/${vid}/`, newTodo, {
+            return await axios.patch(`${baseurl}adminpanel/rolescompany/${vid}/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 }
@@ -118,7 +118,7 @@ export const useRole = () => {
 
         const newDatata = {
             id: roleData.id,
-            company : roleData.company,
+            company : companyId,
             name : roleData.name,
             permissions : roleData.permissions
 
@@ -156,7 +156,7 @@ export const useRole = () => {
 
     const mutationUserInsert = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}adminpanel/roles/${vid}`, {
+            return await axios.get(`${baseurl}adminpanel/rolescompany/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 

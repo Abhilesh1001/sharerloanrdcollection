@@ -10,7 +10,7 @@ import axios from 'axios'
 import { StateProps } from '@/type/type'
 import { useSelector } from 'react-redux'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { useAddUserRole } from '@/hooks/admin/useAddUserRole'
+import { useAddUserRole } from '@/hooks/admincompany/useAddUserRole'
 
 
 

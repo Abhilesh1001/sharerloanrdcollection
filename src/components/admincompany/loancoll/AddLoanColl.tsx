@@ -5,7 +5,7 @@ import ButtonSave from '@/components/button/ButtonSave';
 import UpdateButton from '@/components/button/UpdateButton';
 import Loading from '@/components/loading/Loading';
 import { soundClick } from '@/sound/sound';
-import { useLoanCollection } from '@/hooks/admin/useLoanCollection';
+import { useLoanCollection } from '@/hooks/admincompany/useLoanCollection';
 import ButtonSubmit from '@/components/button/ButtonSubmit';
 
 const AddLoanCollection = () => {

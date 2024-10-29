@@ -11,14 +11,13 @@ import { format } from 'date-fns'
 export interface userType{
     id ?:number|null,
     email : string,
-    is_superuser : boolean,
     name : string,
     tc : boolean,
     is_active : boolean,
-    is_admin : boolean,
     company : number|null,
     password ?: string,
-    password2?:string
+    password2?:string,
+    is_company_admin :boolean,
   }
   
   
@@ -27,11 +26,11 @@ export interface userType{
 
 export const useAdmin =()=>{
 
-    const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
+    const { baseurl, authToken,companyId } = useSelector((state: StateProps) => state.counter)
 
     const getTodos = async () => {
 
-        const res = await axios.get(`${baseurl}cus/api/permissions/`, {
+        const res = await axios.get(`${baseurl}cus/api/permissions/company`, {
             headers: {
                 Authorization: `Bearer ${authToken?.access}`
             }
@@ -43,7 +42,7 @@ export const useAdmin =()=>{
 
     const { data } = useQuery({ queryKey: ['apipermission'], queryFn: getTodos })
 
-    const [userData,setUserData] = useState<userType>({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :'',password2:''    })
+    const [userData,setUserData] = useState<userType>({id:null,email:'',name:'',tc:false,is_active:false,company:null,password :'',password2:'',is_company_admin :false    })
    
     const [vid, setVid] = useState<string>('')
     const [change, setChange] = useState('change')
@@ -77,13 +76,14 @@ export const useAdmin =()=>{
         soundClick?.play()
         const newDatata = {
             email:userData.email,
-            is_superuser: userData.is_superuser,
+            is_superuser: false,
             name : userData.name,
             tc : userData.tc,
             is_active : userData.is_active,
             password : userData.password,
             password2:userData.password2,
-            company : userData.company
+            company : companyId,
+            is_company_admin : userData.is_company_admin
         }
         
         console.log(newDatata,'ok')
@@ -94,7 +94,7 @@ export const useAdmin =()=>{
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}adminpanel/users/${vid}/`, newTodo, {
+            return await axios.patch(`${baseurl}adminpanel/userscompany/${vid}/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -102,7 +102,7 @@ export const useAdmin =()=>{
         },
         onSuccess: (data) => {
             console.log(data)
-            setUserData({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :''})
+            setUserData({id:null,email:'',name:'',tc:false,is_active:false,company:null,password :'',is_company_admin:false})
             soundSsuccess?.play()
         },      
         onError: (error) => {
@@ -127,12 +127,12 @@ export const useAdmin =()=>{
         const newDatata = {
             id: userData.id,
             email:userData.email,
-            is_superuser: userData.is_superuser,
+            is_superuser: false,
             name : userData.name,
             tc : userData.tc,
             is_active : userData.is_active,
-            company : userData.company
-
+            company : companyId,
+            is_company_admin : userData.is_company_admin
         }
         
      
@@ -167,7 +167,7 @@ export const useAdmin =()=>{
 
     const mutationUserInsert = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}adminpanel/users/${vid}`, {
+            return await axios.get(`${baseurl}adminpanel/userscompany/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -180,11 +180,11 @@ export const useAdmin =()=>{
                 return {
                     ...prev,
                     email:data.data.email,
-                    is_superuser: data.data.is_superuser,
                     name : data.data.name,
                     tc : data.data.tc,
                     is_active : data.data.is_active,
-                    company : data.data.company
+                    company : data.data.company,
+                    is_company_admin : data.data.is_company_admin
                 }
             })
         },

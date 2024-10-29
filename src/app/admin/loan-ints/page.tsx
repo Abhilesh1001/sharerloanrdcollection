@@ -37,7 +37,7 @@ const Users = () => {
             modal.showModal();
           }
         }}>
-          Add Loan Collection
+          Add Loan Intrest
         </button>
 
         <dialog id="my_modal_1" className="modal">

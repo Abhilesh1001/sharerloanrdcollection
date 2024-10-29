@@ -4,7 +4,7 @@ import UpdateButton from '@/components/button/UpdateButton';
 import Loading from '@/components/loading/Loading';
 import { soundClick } from '@/sound/sound';
 import ButtonSubmit from '@/components/button/ButtonSubmit';
-import { useParticular } from '@/hooks/admin/useParticular';
+import { useParticular } from '@/hooks/admincompany/useParticular';
 
 interface ExpenseType {
     p_id?: null | number;

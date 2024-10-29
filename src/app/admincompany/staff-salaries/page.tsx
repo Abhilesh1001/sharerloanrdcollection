@@ -6,15 +6,14 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
-import AddShareHolder from '@/components/admin/shareholder/AddShareHolder';
-import AddStaffSalary from '@/components/admin/staffsalary/AddStaffSalary';
+import AddStaffSalary from '@/components/admincompany/staffsalary/AddStaffSalary';
 
 
 const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter);
 
   const fetchShareholders = async () => {
-    const response = await axios.get(`${baseurl}adminpanel/staffsalaries`, {
+    const response = await axios.get(`${baseurl}adminpanel/staffsalariescompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`,
       },
@@ -22,7 +21,7 @@ const Users = () => {
     return response.data;
   };
 
-  const { data } = useQuery({ queryKey: ['addStaffSalary'], queryFn: fetchShareholders });
+  const { data } = useQuery({ queryKey: ['addStaffSalarycompany'], queryFn: fetchShareholders });
 
   return (
     <div className="text-base-content bg-base-100 h-auto min-h-screen">

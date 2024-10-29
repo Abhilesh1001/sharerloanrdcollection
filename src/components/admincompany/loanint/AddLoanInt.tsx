@@ -4,7 +4,7 @@ import UpdateButton from '@/components/button/UpdateButton';
 import Loading from '@/components/loading/Loading';
 import { soundClick } from '@/sound/sound';
 import ButtonSubmit from '@/components/button/ButtonSubmit';
-import { useLoanIntrest } from '@/hooks/admin/useLoanIntrest';
+import { useLoanIntrest } from '@/hooks/admincompany/useLoanIntrest';
 
 const AddLoanInst = () => {
     const {

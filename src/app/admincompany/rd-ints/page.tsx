@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
-import AddRdInst from '@/components/admin/rdint/AddRdInst';
+import AddRdInst from '@/components/admincompany/rdint/AddRdInst';
 
 
 
@@ -14,7 +14,7 @@ const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter);
 
   const fetchLoanIntervals = async () => {
-    const response = await axios.get(`${baseurl}adminpanel/rdints`, {
+    const response = await axios.get(`${baseurl}adminpanel/rdintscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
@@ -22,7 +22,7 @@ const Users = () => {
     return response.data;
   };
 
-  const { data } = useQuery({ queryKey: ['addRdint'], queryFn: fetchLoanIntervals });
+  const { data } = useQuery({ queryKey: ['addRdintcompany'], queryFn: fetchLoanIntervals });
 
   return (
     <div className="text-base-content bg-base-100 h-auto min-h-screen">

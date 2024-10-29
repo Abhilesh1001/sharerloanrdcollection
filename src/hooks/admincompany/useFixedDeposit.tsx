@@ -16,7 +16,7 @@ export const useFixedDeposit = () => {
     // Create fixed deposit data
     const mutationCreate = useMutation<any, any, FixedDepositeType, unknown>({
         mutationFn: async (newFixedDeposit) => {
-            return await axios.post(`${baseurl}adminpanel/fixeddeposits/`, newFixedDeposit, {
+            return await axios.post(`${baseurl}adminpanel/fixeddepositscompany/`, newFixedDeposit, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const useFixedDeposit = () => {
     // Update fixed deposit data
     const mutationUpdate = useMutation<any, any, FixedDepositeType, unknown>({
         mutationFn: async (updatedFixedDeposit: FixedDepositeType) => {
-            return await axios.patch(`${baseurl}adminpanel/fixeddeposits/${vid}/`, updatedFixedDeposit, {
+            return await axios.patch(`${baseurl}adminpanel/fixeddepositscompany/${vid}/`, updatedFixedDeposit, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -101,7 +101,7 @@ export const useFixedDeposit = () => {
 
     const mutationFetchFixedDeposit = useMutation<any, any, number, unknown>({
         mutationFn: async (fixedDepositId: number) => {
-            return await axios.get(`${baseurl}adminpanel/fixeddeposits/${fixedDepositId}`, {
+            return await axios.get(`${baseurl}adminpanel/fixeddepositscompany/${fixedDepositId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },

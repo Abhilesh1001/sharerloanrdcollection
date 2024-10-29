@@ -25,7 +25,7 @@ export const useRdIntrest = () => {
     // Create loan interest data
     const mutationCreate = useMutation<any, any, RDIntType, unknown>({
         mutationFn: async (newRdInst) => {
-            return await axios.post(`${baseurl}adminpanel/rdints/`, newRdInst, {
+            return await axios.post(`${baseurl}adminpanel/rdintscompany/`, newRdInst, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -66,7 +66,7 @@ export const useRdIntrest = () => {
     // Update loan interest data
     const mutationUpdate = useMutation<any, any, RDIntType, unknown>({
         mutationFn: async (updatedRdInst: RDIntType) => {
-            return await axios.patch(`${baseurl}adminpanel/rdints/${vid}/`, updatedRdInst, {
+            return await axios.patch(`${baseurl}adminpanel/rdintscompany/${vid}/`, updatedRdInst, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -127,7 +127,7 @@ export const useRdIntrest = () => {
 
     const mutationFetchLoanCollection = useMutation<any, any, number, unknown>({
         mutationFn: async (loanId: number) => {
-            return await axios.get(`${baseurl}adminpanel/rdints/${loanId}`, {
+            return await axios.get(`${baseurl}adminpanel/rdintscompany/${loanId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },

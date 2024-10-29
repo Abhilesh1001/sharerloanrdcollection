@@ -5,7 +5,8 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import AddUserRole from '@/components/admin/userrole/AddUserRole'
+import AddUserRole from '@/components/admincompany/userrole/AddUserRole'
+
 
 
 export interface roleUpdateType {
@@ -23,7 +24,7 @@ const UserRole = () => {
 
   const getTodos = async () => {
 
-    const res = await axios.get(`${baseurl}adminpanel/userroles`, {
+    const res = await axios.get(`${baseurl}adminpanel/userrolescompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
@@ -35,7 +36,7 @@ const UserRole = () => {
 
   }
 
-  const { data } = useQuery({ queryKey: ['adduserrole'], queryFn: getTodos })
+  const { data } = useQuery({ queryKey: ['adduserrolecompany'], queryFn: getTodos })
   
   return (
     <div className="text-base-content bg-base-100 h-auto min-h-screen">

@@ -4,7 +4,7 @@ import ButtonChange from '@/components/button/ButtonChange'
 import ButtonSave from '@/components/button/ButtonSave'
 import UpdateBotton from '@/components/button/UpdateButton'
 import Loading from '@/components/loading/Loading'
-import { usePerson } from '@/hooks/admin/usePersoon'
+import { usePerson } from '@/hooks/admincompany/usePersoon'
 import { soundClick } from '@/sound/sound'
 
 

@@ -23,7 +23,7 @@ export const useRdCollection = () => {
     // Create RD collection data
     const mutationCreate = useMutation<any, any, RDCollType, unknown>({
         mutationFn: async (newRdCollection) => {
-            return await axios.post(`${baseurl}adminpanel/rdcolls/`, newRdCollection, {
+            return await axios.post(`${baseurl}adminpanel/rdcollscompany/`, newRdCollection, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                     'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const useRdCollection = () => {
     // Update RD collection data
     const mutationUpdate = useMutation<any, any, RDCollType, unknown>({
         mutationFn: async (updatedRdCollection: RDCollType) => {
-            return await axios.patch(`${baseurl}adminpanel/rdcolls/${vid}/`, updatedRdCollection, {
+            return await axios.patch(`${baseurl}adminpanel/rdcollscompany/${vid}/`, updatedRdCollection, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -122,7 +122,7 @@ export const useRdCollection = () => {
 
     const mutationFetchRdCollection = useMutation<any, any, number, unknown>({
         mutationFn: async (rdCollectionId: number) => {
-            return await axios.get(`${baseurl}adminpanel/rdcolls/${rdCollectionId}`, {
+            return await axios.get(`${baseurl}adminpanel/rdcollscompany/${rdCollectionId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },

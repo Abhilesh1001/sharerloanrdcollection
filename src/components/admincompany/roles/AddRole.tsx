@@ -5,7 +5,7 @@ import ButtonSave from '@/components/button/ButtonSave'
 import UpdateBotton from '@/components/button/UpdateButton'
 import Loading from '@/components/loading/Loading'
 import { soundClick } from '@/sound/sound'
-import { useRole } from '@/hooks/admin/useRole'
+import { useRole } from '@/hooks/admincompany/useRole'
 import axios from 'axios'
 import { StateProps } from '@/type/type'
 import { useSelector } from 'react-redux'
@@ -30,8 +30,8 @@ const AddRole = () => {
 
     const getTodos = async () => {
 
-        const res = await axios.get(`${baseurl}cus/api/permissions/`, {
-            headers: {
+        const res = await axios.get(`${baseurl}cus/api/permissions/company`, {
+            headers: { 
                 Authorization: `Bearer ${authToken?.access}`
             }
         })
@@ -90,13 +90,6 @@ const AddRole = () => {
                             <input required value={vid} type="number" onKeyDown={(e) => handleKeyDownLoanId(e)} onChange={(e) => setVid(e.target.value)} className="input input-bordered w-full block" /></>}
                         <label htmlFor="userid" className="form-label text-sm ">Name</label>
                         <input className='input input-bordered w-full block' value={roleData.name !== null ? roleData.name : ''} type={'text'} onChange={(e) => setRoleData({ ...roleData, name: e.target.value })} />
-
-                        <label htmlFor="company" className="form-label text-sm ">Company ID</label>
-                        <input type='number' className='input input-bordered w-full block' value={roleData.company !== null ? roleData.company : ''} onChange={(e) => setRoleData({ ...roleData, company: Number(e.target.value) })} />
-
-
-
-
                     </div>
 
                     <div className="col-sm-6">

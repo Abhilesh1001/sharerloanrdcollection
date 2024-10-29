@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import AddLoanInst from '@/components/admin/loanint/AddLoanInt';
 import { format, parseISO } from 'date-fns';
-import AddParticulars from '@/components/admin/perticulars/AddPerticulars';
+import AddParticulars from '@/components/admincompany/perticulars/AddPerticulars';
 
 
 
@@ -27,7 +27,7 @@ const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter);
 
   const fetchExpenses = async () => {
-    const response = await axios.get(`${baseurl}adminpanel/partuclars`, {
+    const response = await axios.get(`${baseurl}adminpanel/partuclarscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`,
       },
@@ -35,7 +35,7 @@ const Users = () => {
     return response.data;
   };
 
-  const { data } = useQuery({ queryKey: ['addExpense'], queryFn: fetchExpenses });
+  const { data } = useQuery({ queryKey: ['addExpensecompany'], queryFn: fetchExpenses });
 
   return (
     <div className="text-base-content bg-base-100 h-auto min-h-screen">

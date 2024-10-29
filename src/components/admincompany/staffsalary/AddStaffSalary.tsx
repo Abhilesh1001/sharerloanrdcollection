@@ -4,7 +4,7 @@ import UpdateButton from '@/components/button/UpdateButton';
 import Loading from '@/components/loading/Loading';
 import { soundClick } from '@/sound/sound';
 import ButtonSubmit from '@/components/button/ButtonSubmit';
-import { useStaffSalary } from '@/hooks/admin/useStaffSalary';
+import { useStaffSalary } from '@/hooks/admincompany/useStaffSalary';
 
 
 

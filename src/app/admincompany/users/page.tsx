@@ -1,5 +1,5 @@
 'use client'
-import AddUserModal from '@/components/admin/users/AddUserModal'
+import AddUserModal from '@/components/admincompany/users/AddUserModal'
 import DumyInput from '@/components/dummyinput/DumyInput'
 import { StateProps } from '@/type/type'
 import { useQuery } from '@tanstack/react-query'
@@ -16,6 +16,7 @@ export interface userType {
   is_active: boolean,
   is_admin: boolean,
   company: number | null,
+  is_company_admin :boolean,
 }
 
 
@@ -85,9 +86,8 @@ const Users = () => {
               <th scope="col">USER NAME</th>
               <th scope="col">EMAIL</th>
               <th scope="col">Active</th>
-              <th scope="col">Admin</th>
-              <th scope="col">Superuser</th>
               <th scope="col">TC</th>
+              <th scope="col">IS Company Admin</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
@@ -113,20 +113,14 @@ const Users = () => {
                   <DumyInput indum={items.is_active ? 'Active' : 'Inactive'} />
 
                 </td>
-                <td>
-
-                  <DumyInput indum={items.is_admin ? 'Active' : 'Inactive'} />
-
-
-                </td>
-                <td>
-
-                  <DumyInput indum={items.is_superuser ? 'Active' : 'Inactive'} />
-
-                </td>
+               
                 <td>
 
                   <DumyInput indum={items.tc ? 'Active' : 'Inactive'} />
+                </td>
+                <td>
+
+                  <DumyInput indum={items.is_company_admin ? 'Active' : 'Inactive'} />
                 </td>
                 <td>
                   <button className="btn btn-sm btn-error">Delete</button>

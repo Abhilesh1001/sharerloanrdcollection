@@ -12,7 +12,8 @@ export interface roleUpdateType {
     id?: null | number
     user: number | null,
     role: number | null,
-    can_authenticate: boolean
+    can_authenticate: boolean,
+    company : null | number 
 }
 
 
@@ -20,13 +21,14 @@ export interface roleUpdateType {
 
 export const useAddUserRole = () => {
 
-    const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
+    const { baseurl, authToken,companyId } = useSelector((state: StateProps) => state.counter)
 
     const [roleData, setRoleData] = useState<roleUpdateType>({
         id: null,
         user: null,
         role: null,
-        can_authenticate: false
+        can_authenticate: false,
+        company : null
 
     });
 
@@ -37,7 +39,7 @@ export const useAddUserRole = () => {
     // create data 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo) => {
-            return await axios.post(`${baseurl}adminpanel/userroles/`, newTodo, {
+            return await axios.post(`${baseurl}adminpanel/userrolescompany/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 }
@@ -49,7 +51,8 @@ export const useAddUserRole = () => {
             setRoleData({
                 user: null,
                 role: null,
-                can_authenticate: false
+                can_authenticate: false,
+                company : null
             })
         },
         onError: (error) => {
@@ -67,7 +70,8 @@ export const useAddUserRole = () => {
         const newDatata = {
             user: roleData.user,
             role: roleData.role,
-            can_authenticate: roleData.can_authenticate
+            can_authenticate: roleData.can_authenticate,
+            company :  companyId
         }
 
         console.log(newDatata, 'ok')
@@ -78,7 +82,7 @@ export const useAddUserRole = () => {
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}adminpanel/userroles/${vid}/`, newTodo, {
+            return await axios.patch(`${baseurl}adminpanel/userrolescompany/${vid}/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 }
@@ -91,6 +95,7 @@ export const useAddUserRole = () => {
                 user: null,
                 role: null,
                 can_authenticate: false,
+                company : null
             })
             soundSsuccess?.play()
         },
@@ -153,7 +158,7 @@ export const useAddUserRole = () => {
 
     const mutationUserInsert = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}adminpanel/userroles/${vid}`, {
+            return await axios.get(`${baseurl}adminpanel/userrolescompany/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
 
@@ -169,7 +174,8 @@ export const useAddUserRole = () => {
                     ...prev,
                     role: data.data.role,
                     user: data.data.user,
-                    can_authenticate: data.data.can_authenticate
+                    can_authenticate: data.data.can_authenticate,
+                    company : data.data.company 
                 }
             })
         },

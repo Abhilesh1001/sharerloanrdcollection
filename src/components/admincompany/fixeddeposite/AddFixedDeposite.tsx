@@ -6,7 +6,7 @@ import UpdateButton from '@/components/button/UpdateButton';
 import Loading from '@/components/loading/Loading';
 
 import { soundClick } from '@/sound/sound';
-import { useFixedDeposit } from '@/hooks/admin/useFixedDeposit';
+import { useFixedDeposit } from '@/hooks/admincompany/useFixedDeposit';
 const AddFixedDeposit = () => {
     const {
         fixedDepositData,

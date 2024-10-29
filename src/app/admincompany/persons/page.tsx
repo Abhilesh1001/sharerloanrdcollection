@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
-import AddPerson from '@/components/admin/person/AddPerson'
+import AddPerson from '@/components/admincompany/person/AddPerson'
 
 
 
@@ -27,7 +27,7 @@ const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
   const getTodos = async () => {
 
-    const res = await axios.get(`${baseurl}adminpanel/persons`, {
+    const res = await axios.get(`${baseurl}adminpanel/personscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
@@ -39,7 +39,7 @@ const Users = () => {
 
   }
 
-  const { data } = useQuery({ queryKey: ['addperson'], queryFn: getTodos })
+  const { data } = useQuery({ queryKey: ['addpersoncompany'], queryFn: getTodos })
   
 
 

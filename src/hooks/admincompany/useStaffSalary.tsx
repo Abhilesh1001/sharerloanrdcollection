@@ -23,7 +23,7 @@ export const useStaffSalary = () => {
     // Create staff salary data
     const mutationCreate = useMutation<any, any, staffSalryType, unknown>({
         mutationFn: async (newStaffSalary) => {
-            return await axios.post(`${baseurl}adminpanel/staffsalaries/`, newStaffSalary, {
+            return await axios.post(`${baseurl}adminpanel/staffsalariescompany/`, newStaffSalary, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -62,7 +62,7 @@ export const useStaffSalary = () => {
     // Update staff salary data
     const mutationUpdate = useMutation<any, any, staffSalryType, unknown>({
         mutationFn: async (updatedStaffSalary: staffSalryType) => {
-            return await axios.patch(`${baseurl}adminpanel/staffsalaries/${vid}/`, updatedStaffSalary, {
+            return await axios.patch(`${baseurl}adminpanel/staffsalariescompany/${vid}/`, updatedStaffSalary, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -121,7 +121,7 @@ export const useStaffSalary = () => {
 
     const mutationFetchStaffSalary = useMutation<any, any, number, unknown>({
         mutationFn: async (staffSalaryId: number) => {
-            return await axios.get(`${baseurl}adminpanel/staffsalaries/${staffSalaryId}`, {
+            return await axios.get(`${baseurl}adminpanel/staffsalariescompany/${staffSalaryId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },

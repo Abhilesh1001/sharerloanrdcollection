@@ -24,7 +24,7 @@ export const useShareHolder = () => {
     // Create shareholder data
     const mutationCreate = useMutation<any, any, shareholderType, unknown>({
         mutationFn: async (newShareHolder) => {
-            return await axios.post(`${baseurl}adminpanel/shareholders/`, newShareHolder, {
+            return await axios.post(`${baseurl}adminpanel/shareholderscompany/`, newShareHolder, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -65,7 +65,7 @@ export const useShareHolder = () => {
     // Update shareholder data
     const mutationUpdate = useMutation<any, any, shareholderType, unknown>({
         mutationFn: async (updatedShareHolder: shareholderType) => {
-            return await axios.patch(`${baseurl}adminpanel/shareholders/${vid}/`, updatedShareHolder, {
+            return await axios.patch(`${baseurl}adminpanel/shareholderscompany/${vid}/`, updatedShareHolder, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -126,7 +126,7 @@ export const useShareHolder = () => {
 
     const mutationFetchShareholder = useMutation<any, any, number, unknown>({
         mutationFn: async (shareholderId: number) => {
-            return await axios.get(`${baseurl}adminpanel/shareholders/${shareholderId}`, {
+            return await axios.get(`${baseurl}adminpanel/shareholderscompany/${shareholderId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },

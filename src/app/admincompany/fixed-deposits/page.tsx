@@ -7,21 +7,21 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
-import AddFixedDeposit from '@/components/admin/fixeddeposite/AddFixedDeposite';
+import AddFixedDeposit from '@/components/admincompany/fixeddeposite/AddFixedDeposite';
 
 
 const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter);
 
   const fetchFixedDeposits = async () => {
-    const response = await axios.get(`${baseurl}adminpanel/fixeddeposits`, {
+    const response = await axios.get(`${baseurl}adminpanel/fixeddepositscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
     });
     return response.data;
   };
-  const { data } = useQuery({ queryKey: ['addassets'], queryFn: fetchFixedDeposits })
+  const { data } = useQuery({ queryKey: ['addfixeddepositecompany'], queryFn: fetchFixedDeposits })
   console.log(data)
 
   return (

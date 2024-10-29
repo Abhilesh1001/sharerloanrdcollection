@@ -5,7 +5,7 @@ import Loading from '@/components/loading/Loading';
 import { soundClick } from '@/sound/sound';
 
 import ButtonSubmit from '@/components/button/ButtonSubmit';
-import { useRdCollection } from '@/hooks/admin/useRdCollection';
+import { useRdCollection } from '@/hooks/admincompany/useRdCollection';
 
 export interface RDCollType {
     rd_collection_id?: null | number,

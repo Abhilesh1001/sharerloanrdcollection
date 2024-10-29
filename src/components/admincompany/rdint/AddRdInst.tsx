@@ -4,7 +4,7 @@ import UpdateButton from '@/components/button/UpdateButton';
 import Loading from '@/components/loading/Loading';
 import { soundClick } from '@/sound/sound';
 import ButtonSubmit from '@/components/button/ButtonSubmit';
-import { useRdIntrest } from '@/hooks/admin/useRdIntrest';
+import { useRdIntrest } from '@/hooks/admincompany/useRdIntrest';
 
 
 const AddRdInst = () => {

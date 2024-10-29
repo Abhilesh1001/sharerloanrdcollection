@@ -49,7 +49,7 @@ export const usePerson = () => {
     // create data 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo) => {
-            return await axios.post(`${baseurl}adminpanel/persons/`, newTodo, {
+            return await axios.post(`${baseurl}adminpanel/personscompany/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                     'Content-Type': 'multipart/form-data'
@@ -103,7 +103,7 @@ export const usePerson = () => {
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}adminpanel/persons/${vid}/`, newTodo, {
+            return await axios.patch(`${baseurl}adminpanel/personscompany/${vid}/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
 
@@ -189,7 +189,7 @@ export const usePerson = () => {
 
     const mutationUserInsert = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}adminpanel/persons/${vid}`, {
+            return await axios.get(`${baseurl}adminpanel/personscompany/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
 

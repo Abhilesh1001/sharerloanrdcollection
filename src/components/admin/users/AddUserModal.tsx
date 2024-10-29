@@ -18,7 +18,7 @@ import React, { useState } from 'react'
 const AddUserModal = () => {
 
   const { change, handleCreate, handleChange, handleUPdate, mutation, mutationUpdate, handleSubmit, handleKeyDownLoanId, vid, setVid, userData, setUserData } = useAdmin()
- 
+
 
 
   return (
@@ -45,6 +45,9 @@ const AddUserModal = () => {
 
       {change === 'create' && <div className='w-full h-4 flex justify-center my-4'>{mutationUpdate.isPending && <Loading />} {mutationUpdate.isSuccess && <div><div> USER Id NO  :  {mutationUpdate !== undefined && mutationUpdate?.data?.data?.id} updated</div></div>}</div>}
 
+
+
+
       <div>
         <div className="row">
           <div className="col-sm-6">
@@ -56,26 +59,35 @@ const AddUserModal = () => {
             <label htmlFor="email" className="form-label text-sm ">Email</label>
             <input className='input input-bordered w-full block' value={userData.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
 
-            {change !== 'create' &&  <div><div>
+
+            <div>
               <label htmlFor="Password" className="form-label text-sm">Password</label>
               <input type="password" className='input input-bordered w-full block mb-4' value={userData.password} onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
             </div>
-
             <div>
               <label htmlFor="Password" className="form-label text-sm">ReEnter Password</label>
               <input type="password" className='input input-bordered w-full block mb-4' value={userData.password2} onChange={(e) => setUserData({ ...userData, password2: e.target.value })} />
             </div>
-            </div>
-            }
-           
-
-            
-          </div> 
+          </div>
 
           <div className="col-sm-6">
+
+            <label htmlFor="company" className="form-label text-sm">Company</label>
+            <input type="number" className='input input-bordered w-full block mb-4' value={userData.company === null ? '' : userData.company} onChange={(e) => setUserData({ ...userData, company: Number(e.target.value) })} />
+
+
+              <div>
+            <input type="checkbox" checked={userData.is_superuser} onChange={(e) => setUserData({ ...userData, is_superuser: e.target.checked })} defaultChecked className="checkbox checkbox-sm checkbox-primary" />
+              <label htmlFor="checkboxadmin" className="form-label ml-2">IS_SUPERUSER</label>
+              </div>
               <div>
             <input type="checkbox" checked={userData.tc} defaultChecked onChange={(e) => setUserData({ ...userData, tc: e.target.checked })} className="checkbox checkbox-sm checkbox-primary" />
             <label htmlFor="checkboxtc" className="form-label form-label ml-2">TC</label>
+              </div>
+              <div>
+            <input type="checkbox" checked={userData.is_admin} onChange={(e) => setUserData({ ...userData, is_admin: e.target.checked })} defaultChecked className="checkbox  checkbox-sm checkbox-primary" />
+            <label htmlFor="checkboxadmin" className="form-label form-label ml-2 ">IS_ADMIN</label>
+
               </div>
               <div>
             <input type="checkbox" checked={userData.is_active} onChange={(e) => setUserData({ ...userData, is_active: e.target.checked })} defaultChecked className="checkbox checkbox-sm checkbox-primary" />

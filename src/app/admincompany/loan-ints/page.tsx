@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
 import AddLoanCollection from '@/components/admin/loancoll/AddLoanColl';
-import AddLoanInst from '@/components/admin/loanint/AddLoanInt';
+import AddLoanInst from '@/components/admincompany/loanint/AddLoanInt';
 
 
 
@@ -16,7 +16,7 @@ const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter);
 
   const fetchLoanCollections = async () => {
-    const response = await axios.get(`${baseurl}adminpanel/loanints`, {
+    const response = await axios.get(`${baseurl}adminpanel/loanintscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
@@ -24,7 +24,7 @@ const Users = () => {
     return response.data;
   };
 
-  const { data } = useQuery({ queryKey: ['addloanint'], queryFn: fetchLoanCollections });
+  const { data } = useQuery({ queryKey: ['addloanintcompany'], queryFn: fetchLoanCollections });
  
 
   return (
@@ -37,7 +37,7 @@ const Users = () => {
             modal.showModal();
           }
         }}>
-          Add Loan Collection
+          Add Loan Intrest
         </button>
 
         <dialog id="my_modal_1" className="modal">

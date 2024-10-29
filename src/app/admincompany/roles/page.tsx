@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import AddRole from '@/components/admin/roles/AddRole'
+import AddRole from '@/components/admincompany/roles/AddRole'
 
 
 export interface roleUpdateType {
@@ -24,7 +24,7 @@ const Roles = () => {
 
   const getTodos = async () => {
 
-    const res = await axios.get(`${baseurl}adminpanel/roles`, {
+    const res = await axios.get(`${baseurl}adminpanel/rolescompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
@@ -36,7 +36,7 @@ const Roles = () => {
 
   }
 
-  const { data } = useQuery({ queryKey: ['addrole'], queryFn: getTodos })
+  const { data } = useQuery({ queryKey: ['addrolecompany'], queryFn: getTodos })
   
   
 

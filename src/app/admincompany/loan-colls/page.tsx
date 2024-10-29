@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
-import AddLoanCollection from '@/components/admin/loancoll/AddLoanColl';
+import AddLoanCollection from '@/components/admincompany/loancoll/AddLoanColl';
 
 
 
@@ -15,7 +15,7 @@ const Users = () => {
   const { baseurl, authToken } = useSelector((state: StateProps) => state.counter);
 
   const fetchLoanCollections = async () => {
-    const response = await axios.get(`${baseurl}adminpanel/loancolls`, {
+    const response = await axios.get(`${baseurl}adminpanel/loancollscompany`, {
       headers: {
         Authorization: `Bearer ${authToken?.access}`
       }
@@ -23,7 +23,7 @@ const Users = () => {
     return response.data;
   };
 
-  const { data } = useQuery({ queryKey: ['loanCollections'], queryFn: fetchLoanCollections });
+  const { data } = useQuery({ queryKey: ['loanCollectionscompany'], queryFn: fetchLoanCollections });
   console.log(data);
 
   return (

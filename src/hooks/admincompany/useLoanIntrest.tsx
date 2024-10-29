@@ -30,7 +30,7 @@ export const useLoanIntrest = () => {
     // Create loan collection data
     const mutationCreate = useMutation<any, any, loanType, unknown>({
         mutationFn: async (newLoanCollection) => {
-            return await axios.post(`${baseurl}adminpanel/loanints/`, newLoanCollection, {
+            return await axios.post(`${baseurl}adminpanel/loanintscompany/`, newLoanCollection, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -83,7 +83,7 @@ export const useLoanIntrest = () => {
     // Update loan collection data
     const mutationUpdate = useMutation<any, any, loanType, unknown>({
         mutationFn: async (updatedLoanCollection: loanType) => {
-            return await axios.patch(`${baseurl}adminpanel/loanints/${vid}/`, updatedLoanCollection, {
+            return await axios.patch(`${baseurl}adminpanel/loanintscompany/${vid}/`, updatedLoanCollection, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -148,7 +148,7 @@ export const useLoanIntrest = () => {
 
     const mutationFetchLoanCollection = useMutation<any, any, number, unknown>({
         mutationFn: async (loanId: number) => {
-            return await axios.get(`${baseurl}adminpanel/loanints/${loanId}`, {
+            return await axios.get(`${baseurl}adminpanel/loanintscompany/${loanId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },

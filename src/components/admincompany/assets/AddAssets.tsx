@@ -6,7 +6,7 @@ import UpdateBotton from '@/components/button/UpdateButton'
 import Loading from '@/components/loading/Loading'
 
 import { soundClick } from '@/sound/sound'
-import { useAsset } from '@/hooks/admin/useAsset'
+import { useAsset } from '@/hooks/admincompany/useAsset'
 
 
 

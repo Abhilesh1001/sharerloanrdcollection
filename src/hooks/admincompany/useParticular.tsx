@@ -12,7 +12,7 @@ interface ExpenseType {
     usersf: null | number;
     amount_Debit: null | number;
     amount_credit: null | number;
-    time?: string;
+    time?: string;  
 }
 
 export const useParticular = () => {
@@ -31,7 +31,7 @@ export const useParticular = () => {
     // Create particular data
     const mutationCreate = useMutation<any, any, ExpenseType, unknown>({
         mutationFn: async (newParticular) => {
-            return await axios.post(`${baseurl}adminpanel/partuclars/`, newParticular, {
+            return await axios.post(`${baseurl}adminpanel/partuclarscompany/`, newParticular, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -73,7 +73,7 @@ export const useParticular = () => {
     // Update particular data
     const mutationUpdate = useMutation<any, any, ExpenseType, unknown>({
         mutationFn: async (updatedParticular: ExpenseType) => {
-            return await axios.patch(`${baseurl}adminpanel/partuclars/${vid}/`, updatedParticular, {
+            return await axios.patch(`${baseurl}adminpanel/partuclarscompany/${vid}/`, updatedParticular, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
@@ -131,7 +131,7 @@ export const useParticular = () => {
 
     const mutationFetchParticular = useMutation<any, any, number, unknown>({
         mutationFn: async (particularId: number) => {
-            return await axios.get(`${baseurl}adminpanel/partuclars/${particularId}`, {
+            return await axios.get(`${baseurl}adminpanel/partuclarscompany/${particularId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`,
                 },
