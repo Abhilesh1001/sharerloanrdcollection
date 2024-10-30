@@ -10,8 +10,6 @@ import { useAsset } from '@/hooks/admincompany/useAsset'
 
 
 
-
-
 const AddAssets = () => {
     const {  assetData,
         change,
