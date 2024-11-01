@@ -112,7 +112,7 @@ const Navbar = () => {
                 </div>}
 
                 <Link href="/" className="flex text-lg font-semibold">
-                    <div className="relative text-error font-bold" onClick={() => hanclickMainHead('Index Page')}>SAP</div>
+                    <div className="relative text-error font-bold" onClick={() => hanclickMainHead('Index Page')}>SHAREHOLDER</div>
                 </Link>
                 <div className="flex-1 h-12 flex text-success font-bold justify-between items-center ml-5 mr-5 w-full">
                     {mainheader}

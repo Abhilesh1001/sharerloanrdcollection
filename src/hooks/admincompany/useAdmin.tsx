@@ -40,7 +40,7 @@ export const useAdmin =()=>{
 
     }
 
-    const { data } = useQuery({ queryKey: ['apipermission'], queryFn: getTodos })
+    const { data } = useQuery({ queryKey: ['apipermissioncompany'], queryFn: getTodos })
 
     const [userData,setUserData] = useState<userType>({id:null,email:'',name:'',tc:false,is_active:false,company:null,password :'',password2:'',is_company_admin :false    })
    

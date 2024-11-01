@@ -15,7 +15,7 @@ export default function ViewPermisson() {
 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async () => {
-            return await axios.get(`${baseurl}cus/api/permissions/user/${id}`, {
+            return await axios.get(`${baseurl}cus/api/permissions/user/company/${id}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -40,7 +40,7 @@ export default function ViewPermisson() {
         mutation.mutate(id)
 
         try {
-            const data = await axios.get(`${baseurl}adminpanel/users/${id}`, {
+            const data = await axios.get(`${baseurl}adminpanel/userscompany/${id}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }

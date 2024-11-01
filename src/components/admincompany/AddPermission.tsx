@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
 import { StateProps } from '../Navbar'
 import DumyInput from '../dummyinput/DumyInput'
-import { useAdmin } from '@/hooks/admin/useAdmin'
+import { useAdmin } from '@/hooks/admincompany/useAdmin'
 
 
 export default function AddPermission() {
@@ -28,7 +28,7 @@ export default function AddPermission() {
 
   const mutation = useMutation<any, any, any, unknown>({
     mutationFn: async (data) => {
-      return await axios.post(`${baseurl}cus/api/permissions/assign/`, data, {
+      return await axios.post(`${baseurl}cus/api/permissions/assign/company/`, data, {
         headers: {
           Authorization: `Bearer ${authToken?.access}`
         }
@@ -62,7 +62,7 @@ export default function AddPermission() {
   const handleuserID = async () => {
 
     try {
-      const data = await axios.get(`${baseurl}adminpanel/users/${userId}`, {
+      const data = await axios.get(`${baseurl}adminpanel/userscompany/${userId}`, {
         headers: {
           Authorization: `Bearer ${authToken?.access}`
         }
@@ -179,10 +179,10 @@ export default function AddPermission() {
 
 
               <tr >
-                <td><DumyInput indum={permissionData[0].id} /></td>
-                <td><DumyInput indum={permissionData[0].name} /></td>
-                <td><DumyInput indum={permissionData[0].codename} /></td>
-                <td><DumyInput indum={permissionData[0].content_type__model} /></td>
+                <td><DumyInput indum={permissionData[0]?.id} /></td>
+                <td><DumyInput indum={permissionData[0]?.name} /></td>
+                <td><DumyInput indum={permissionData[0]?.codename} /></td>
+                <td><DumyInput indum={permissionData[0]?.content_type__model} /></td>
               </tr>
 
 

@@ -53,10 +53,10 @@ const ParticularCreation = () => {
                 <input className='input input-bordered w-full block' value={expense.particulars} type={'text'} onChange={(e) => setExpense({ ...expense,particulars: e.target.value })} />
 
                 <label htmlFor="Phone" className="form-label text-sm ">Cedit Amount</label>
-                <input className='input input-bordered w-full block' value={expense.amount_credit !== null ? expense.amount_credit : ''} type={'number'} onChange={(e) => setExpense({ ...expense, amount_credit: Number(e.target.value) })} />
+                <input className='input input-bordered w-full block' value={expense.amount_credit !== null ? expense.amount_credit : ''} type={'number'} onChange={(e) => setExpense({ ...expense, amount_credit: Number(e.target.value) })} required/>
 
                 <label htmlFor="Phone" className="form-label text-sm ">Debit Amount</label>
-                <input className='input input-bordered w-full block mb-4' value={expense.amount_Debit!== null ? expense.amount_Debit : ''} type={'number'} onChange={(e) => setExpense({ ...expense, amount_Debit: Number(e.target.value) })} />
+                <input className='input input-bordered w-full block mb-4' value={expense.amount_Debit!== null ? expense.amount_Debit : ''} type={'number'} onChange={(e) => setExpense({ ...expense, amount_Debit: Number(e.target.value) })} required />
 
 
                 {change !== 'create' && <ButtonSave label={'Submit'} buttomType={'submit'} />}

@@ -18,14 +18,15 @@ export type StateProps = {
             access: string
         }
         baseurl: string,
-        is_admin :boolean
+        is_admin :boolean,
+        is_company_admin : boolean
     }
 }
 
 const NavColl = () => {
     const dispatch = useDispatch()
     const { handleLogout } = useLogin()
-    const { user,is_admin } = useSelector((state: StateProps) => state.counter)
+    const { user,is_admin,is_company_admin } = useSelector((state: StateProps) => state.counter)
 
 
     const router = useRouter()
@@ -53,6 +54,15 @@ const NavColl = () => {
                     href={'/admin'}
                 >
                   Admin
+                </Link>
+            </li>}
+
+            {is_company_admin && <li className="py-2 lg:py-0 ">
+                    <Link
+                    className="text-sm "
+                    href={'/admincompany'}
+                >
+                  Admin Company
                 </Link>
             </li>}
 

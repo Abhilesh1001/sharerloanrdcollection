@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
-import AddLoanCollection from '@/components/admin/loancoll/AddLoanColl';
 import AddLoanInst from '@/components/admincompany/loanint/AddLoanInt';
 
 

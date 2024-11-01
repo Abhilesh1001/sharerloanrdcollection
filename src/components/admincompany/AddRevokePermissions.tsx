@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
 import { StateProps } from '../Navbar'
 import DumyInput from '../dummyinput/DumyInput'
-import { useAdmin } from '@/hooks/admin/useAdmin'
+import { useAdmin } from '@/hooks/admincompany/useAdmin'
 
 
 export default function AddRevokePermissions() {
@@ -59,7 +59,7 @@ export default function AddRevokePermissions() {
   const handleuserID = async () => {
 
     try {
-      const data = await axios.get(`${baseurl}adminpanel/users/${userId}`, {
+      const data = await axios.get(`${baseurl}adminpanel/userscompany/${userId}`, {
         headers: {
           Authorization: `Bearer ${authToken?.access}`
         }
@@ -146,10 +146,10 @@ export default function AddRevokePermissions() {
 
 
               <tr >
-                <td><DumyInput indum={userData.id} /></td>
-                <td><DumyInput indum={userData.name} /></td>
-                <td><DumyInput indum={userData.email} /></td>
-                <td><DumyInput indum={userData.company} /></td>
+                <td><DumyInput indum={userData?.id} /></td>
+                <td><DumyInput indum={userData?.name} /></td>
+                <td><DumyInput indum={userData?.email} /></td>
+                <td><DumyInput indum={userData?.company} /></td>
               </tr>
 
 
@@ -168,10 +168,10 @@ export default function AddRevokePermissions() {
 
 
               <tr >
-                <td><DumyInput indum={permissionData[0].id} /></td>
-                <td><DumyInput indum={permissionData[0].name} /></td>
-                <td><DumyInput indum={permissionData[0].codename} /></td>
-                <td><DumyInput indum={permissionData[0].content_type__model} /></td>
+                <td><DumyInput indum={permissionData[0]?.id} /></td>
+                <td><DumyInput indum={permissionData[0]?.name} /></td>
+                <td><DumyInput indum={permissionData[0]?.codename} /></td>
+                <td><DumyInput indum={permissionData[0]?.content_type__model} /></td>
               </tr>
 
 

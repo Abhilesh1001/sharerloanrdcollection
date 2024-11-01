@@ -11,18 +11,6 @@ import ButtonChange from '../button/ButtonChange'
 import { soundClick } from '@/sound/sound'
 
 
-interface loanDetails {
-    id: number | null,
-    loan_person: string,
-    loan_amount: number | null,
-    opening_date: string,
-    closing_date: string,
-    is_active: boolean,
-    total_pending_amoount?: number | null,
-    balance_amount?: number | null,
-    remarks: string,
-}
-
 
 
 const LoanAmountCreation = () => {
@@ -109,7 +97,7 @@ const LoanAmountCreation = () => {
                             />
                             <label className="form-label text-sm ml-2">{loan.is_active ? 'Loan Open' : 'Loan Closed'}</label>
                         </div>
-                        <label htmlFor="duration" className="form-label text-sm">Duration (months)</label>
+                        <label htmlFor="duration" className="form-label text-sm">Duration (days)</label>
                             <input
                                 type='number'
                                 className='input input-bordered w-full block'
