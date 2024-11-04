@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { hiddenType } from '@/type/type';
 
 export interface CounterState {
-  baseurl:string,
+  baseurl:string|undefined,
   logindata :{},
   authToken: { refresh: string; access: string }| null,
   user : string,
@@ -17,12 +17,11 @@ export interface CounterState {
   companyId : null |number
 } 
 
+const baseurlfile = process.env.NEXT_PUBLIC_BASEURL;
+
 const initialState: CounterState = {
-  // https://abhileshmaterial.pythonanywhere.com/
-  // http://127.0.0.1:8000/
-  // https://abhileshsharefund.pythonanywhere.com/
-  //https://www.abhilesh.online/
-  baseurl : 'https://www.mayoor.in.net/',
+  
+  baseurl : baseurlfile,
   logindata : {},
   authToken : null,
   user : "",
