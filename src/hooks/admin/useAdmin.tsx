@@ -63,7 +63,7 @@ export const useAdmin =()=>{
         onSuccess: (data) => {
             soundSsuccess?.play()
             console.log(data)
-            setUserData(userData)
+            setUserData({id:null,email:'',is_superuser:false,name:'',tc:false,is_active:false,is_admin:false,company:null,password :'',is_company_admin:false})
         },
         onError:(error)=>{
             soundError?.play()

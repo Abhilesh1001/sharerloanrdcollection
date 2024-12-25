@@ -20,7 +20,7 @@ export interface CounterState {
 const baseurlfile = process.env.NEXT_PUBLIC_BASEURL;
 // base cahnge 
 
-const initialState: CounterState = {
+const initialState: CounterState = {  
   
   baseurl : baseurlfile,
   logindata : {},
