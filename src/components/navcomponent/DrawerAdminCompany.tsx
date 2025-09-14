@@ -22,6 +22,7 @@ const DrawerAdminCompany = () => {
           <li><Link href="/admincompany/roles">Roles</Link></li>
           <li><Link href="/admincompany/user-roles">User Roles</Link></li>
           <li><Link href="/admincompany/users">Users</Link></li>
+          <li><Link href="/admincompany/authgroup">Authorization Group</Link></li>
           <div className="bg-primary mb-2 text-base-content p-2 rounded">SHLORD</div>
           <li><Link href="/admincompany/assets">Assets</Link></li>
           <li><Link href="/admincompany/fixed-deposits">Fixed Deposits</Link></li>

@@ -1,12 +1,10 @@
-
-import AddFormButton from '@/components/button/AddFormButton'
 import ButtonChange from '@/components/button/ButtonChange'
 import ButtonSave from '@/components/button/ButtonSave'
 import UpdateBotton from '@/components/button/UpdateButton'
 import Loading from '@/components/loading/Loading'
 import { useAdmin } from '@/hooks/admincompany/useAdmin'
 import { soundClick } from '@/sound/sound'
-import React, { useState } from 'react'
+
 
 
 
@@ -17,7 +15,7 @@ import React, { useState } from 'react'
 
 const AddUserModal = () => {
 
-  const { change, handleCreate, handleChange, handleUPdate, mutation, mutationUpdate, handleSubmit, handleKeyDownLoanId, vid, setVid, userData, setUserData } = useAdmin()
+  const { change,handleChange, handleUPdate, mutation, mutationUpdate, handleSubmit, handleKeyDownLoanId, vid, setVid, userData, setUserData } = useAdmin()
 
 
 
@@ -26,7 +24,6 @@ const AddUserModal = () => {
 
       <div className='flex justify-between'>
         <div>
-          {/* <AddFormButton onClick={handleCreate} label={'Create'} /> */}
           <ButtonChange onClick={handleChange} label={'Change'} />
           {change === 'create' && <UpdateBotton onClick={handleUPdate} label={'Update'} />}
           {change !== 'create' && <ButtonSave label={'Submit'} buttomType={'button'} onClick={handleSubmit} />}

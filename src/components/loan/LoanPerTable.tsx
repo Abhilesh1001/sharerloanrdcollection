@@ -60,7 +60,7 @@ const LoanPerTable = () => {
                                         modal.showModal();
                                     }
                                     handleclickrdcolallview(items.person_id);
-                                }}>Check Collection</button>
+                                }}>Check Address</button>
 
                             </td>
                         </tr>
