@@ -11,7 +11,7 @@ git config --global --add safe.directory /var/www/sharerloanrdcollection
 git fetch --all
 git reset --hard origin/main
 
-echo "New changes copied to server... !"
+echo "New changes copied to server !"
 
 echo "Installing Dependencies..."
 npm install --yes
