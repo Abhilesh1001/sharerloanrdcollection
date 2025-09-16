@@ -14,7 +14,7 @@ git reset --hard origin/main
 echo "New changes copied to server... !"
 
 echo "Installing Dependencies..."
-sudo npm install --yes
+npm install --yes
 
 echo "Creating Production Build..."
 npm run build
