@@ -8,34 +8,34 @@ import { toast } from 'react-toastify'
 import { format } from 'date-fns'
 
 
-export interface authGroupType {
-    group_id: number | null,
-    user: number | null,
-    usersf: number | null,
-    model_name: 'LoanColl'| 'RDColl'|'',
-    auth_type : "checked_by" | "approved_by"|'' ,
-    time?: '',
-   
+export interface authgroupType{
+    group_id?: null | number
+    model_name : string,
+    auth_type : string,
+    user : number | null,
+    usersf : number | null,
+    user_name ?: string,
+    usersf_name ?: string
   }
   
+  
 
-export const useAuthgroup =()=>{
+
+
+export const useAddAuthorization =()=>{
 
     const { baseurl, authToken,userId } = useSelector((state: StateProps) => state.counter)
 
-  
-
-    const [authGroup,setAuthGroup] = useState<authGroupType>({group_id:null,user:null,usersf:userId,model_name:'',auth_type:''})
+    const [authData,setAuthData] = useState<authgroupType>({group_id:null,model_name:'',auth_type:'',user:null,usersf:userId,user_name:'',usersf_name:''})
    
     const [vid, setVid] = useState<string>('')
     const [change, setChange] = useState('change')
 
 
-
     // create data 
     const mutation = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo) => {
-            return await axios.post(`${baseurl}adminpanel/authgroupcompany`, newTodo, {
+            return await axios.post(`${baseurl}adminpanel/authgroup/`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -43,29 +43,29 @@ export const useAuthgroup =()=>{
         },
         onSuccess: (data) => {
             soundSsuccess?.play()
-            console.log(data)
-            setAuthGroup(authGroup)
+            // console.log(data)
+            setAuthData(authData)
         },
         onError:(error)=>{
             soundError?.play()
-            console.log(error)
+            // console.log(error)
             toast.error('Enter all Required Fields',{position:'top-left'})
         }
     })
-        
+    
 
-    const handleSubmit = async () => {
-       
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         soundClick?.play()
+        // console.log('ok')
         const newDatata = {
-            user:authGroup.user,
-            usersf : userId,
-            model_name:authGroup.model_name,
-            auth_type:authGroup.auth_type  
-
+            user:authData.user,
+            usersf:userId,
+            model_name:authData.model_name,
+            auth_type:authData.auth_type,
         }
         
-        console.log(newDatata,'ok')
+        // console.log(newDatata,'ok')
 
         mutation.mutate(newDatata)
     }
@@ -73,7 +73,7 @@ export const useAuthgroup =()=>{
 
     const mutationUpdate = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.patch(`${baseurl}adminpanel/authgroupcompany/${vid}`, newTodo, {
+            return await axios.patch(`${baseurl}adminpanel/authgroup/${vid}`, newTodo, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -81,11 +81,11 @@ export const useAuthgroup =()=>{
         },
         onSuccess: (data) => {
             console.log(data)
-            setAuthGroup({group_id:null,user:null,usersf:null,model_name:'',auth_type:''})
+            setAuthData({group_id:null,model_name:'',auth_type:'',user:null,usersf:null,user_name:'',usersf_name:''})
             soundSsuccess?.play()
         },      
         onError: (error) => {
-            console.log(error)
+            // console.log(error)
             soundError?.play()
             toast.error('Enter all Required Fields',{position:'top-left'})
         }
@@ -104,14 +104,12 @@ export const useAuthgroup =()=>{
         soundClick?.play()
 
         const newDatata = {
-
-            user: authGroup.user,   
-            model_name: authGroup.model_name,
-            auth_type: authGroup.auth_type,
-            
+            user:authData.user,
+            usersf:userId,
+            model_name:authData.model_name,
+            auth_type:authData.auth_type, 
         }
-        
-     
+        // console.log('new',newDatata)
         mutationUpdate.mutate(newDatata)
 
     }
@@ -131,10 +129,10 @@ export const useAuthgroup =()=>{
 
     function handleKeyDownLoanId(e: React.KeyboardEvent<HTMLInputElement>) {
         const value = (e.target as HTMLInputElement).value;
-        console.log('Enter user ID')
+        // console.log('Enter user ID')
         if (e.key === 'Enter') {
             soundClick?.play()  
-            console.log('ok')
+            // console.log('ok')
             const vid = parseInt(value)
             e.preventDefault();
             mutationUserInsert.mutate(vid)
@@ -143,7 +141,7 @@ export const useAuthgroup =()=>{
 
     const mutationUserInsert = useMutation<any, any, any, unknown>({
         mutationFn: async (newTodo: any) => {
-            return await axios.get(`${baseurl}adminpanel/authgroupcompany/${vid}`, {
+            return await axios.get(`${baseurl}adminpanel/authgroup/${vid}`, {
                 headers: {
                     Authorization: `Bearer ${authToken?.access}`
                 }
@@ -151,13 +149,15 @@ export const useAuthgroup =()=>{
         },
         onSuccess: (data) => {
             soundSsuccess?.play()
-            console.log(data.data, '..........')
-            setAuthGroup(prev => {
+            // console.log(data.data, '..........')
+            setAuthData(prev => {
                 return {
                     ...prev,
-                    user: data.data.user,   
-                    model_name: data.data.model_name,
-                    auth_type: data.data.auth_type,
+                    group_id:data.data.group_id,
+                    user:data.data.user,
+                    usersf:data.data.usersf,
+                    model_name:data.data.model_name,
+                    auth_type:data.data.auth_type,
                 }
             })
         },
@@ -169,5 +169,9 @@ export const useAuthgroup =()=>{
 
 
 
-    return {DataView,change,handleCreate,handleChange,handleUPdate,mutation,mutationUpdate,handleSubmit,handleKeyDownLoanId,vid,setVid,authGroup,setAuthGroup}
+
+
+
+
+    return {DataView,change,handleCreate,handleChange,handleUPdate,mutation,mutationUpdate,handleSubmit,handleKeyDownLoanId,vid,setVid,authData,setAuthData}
 }

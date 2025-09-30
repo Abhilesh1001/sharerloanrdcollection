@@ -74,7 +74,7 @@ const AddAuthModal = () => {
                             required
                         >
                             <option value="">Select Model</option>
-                            <option value="c    hecked_by">Checked By</option>
+                            <option value="checked_by">Checked By</option>
                             <option value="approved_by">Approved By</option>
                         </select>
                         
