@@ -20,7 +20,7 @@ export interface authgroupType{
   }
 
 
-const page = () => {
+export default function Page() {
 
       const { baseurl, authToken } = useSelector((state: StateProps) => state.counter)
 
@@ -117,4 +117,3 @@ const page = () => {
   )
 }
 
-export default page

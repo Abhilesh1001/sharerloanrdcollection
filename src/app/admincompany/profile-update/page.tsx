@@ -113,11 +113,10 @@ const ProfileUpdate = () => {
 
                 </td>
                 <td>
-                  <img
+                  <Image
                     src={items.profile_picture}
                     alt="Profile Picture"
-                    width='100px'
-                    height='100px'
+                    width={200} height={100}
                   />
 
 
@@ -126,11 +125,10 @@ const ProfileUpdate = () => {
 
                 <td>
 
-                  <img
+                  <Image
                     src={items.pan_picture}
                     alt="Pan Picture"
-                    width='100px'
-                    height='100px'
+                   width={200} height={100}
                   />
                 </td>
                 <td>
